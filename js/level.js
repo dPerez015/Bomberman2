@@ -7,7 +7,7 @@ bomberman.level = {
     },
     
     preload:function(){
-        game.load.spriteSheet('puff', 'img/puff.png', 160, 24);
+       // this.load.spriteSheet('puff', 'img/puff.png', 160, 24);
         
     },
     

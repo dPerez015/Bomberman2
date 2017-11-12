@@ -1,0 +1,2 @@
+var bomberman = bomberman || {};
+
