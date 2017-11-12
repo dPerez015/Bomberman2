@@ -3,6 +3,7 @@ var bomberman = bomberman || {};
 //com de moment nomes implementem un enemic li dic enemy, ja en el futur cquan implementem mes dun ho canviem
 bomberman.puffPuff = function(game,x,y,speed,direction,level, hp, score){
     Phaser.Sprite.call(this,game,x,y,'puff');
+    //game.add.existing(this); el crido en el level.js
     this.anchor.setTo(.5);
     this.animations.add('walkDown',[0,1,2],10,true);
     this.animations.add('walkLeft',[4,5,6], 10, true);
