@@ -22,7 +22,7 @@ bomberman.level = {
         this.space = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         this.esc = this.game.input.keyboard.addKey(Phaser.Keyboard.ESC);
         
-        this.puff = new platformer.puffPuff(game,0,0,3,'down',this, 1, 100);
+        this.puff = new bomberman.puffPuff(this.game,0,0,3,'down',this, 1, 100);
         this.game.add.existing(this.puff);
     },
     
