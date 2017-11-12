@@ -1,4 +1,4 @@
-var bomberman = bomberman || {};
+/*var bomberman = bomberman || {};
 
 bomberman.bomberman_prefab = function(game, x, y, currLevel, _speed, currMove){
   Phaser.Sprite.call(this, game, x, y, 'Bomberman');
@@ -26,6 +26,6 @@ bomberman.bomberman_prefab = function(game, x, y, currLevel, _speed, currMove){
   this.speed = _speed;
 };
 
-bomberma.bomberman_prefab.prototype = Object.create(Phase.Sprite.prototype);
-bomberman.bomberman_prefab.prototype.constructor = bomberman.bomberman_prefab;
+bomberman.bomberman_prefab.prototype = Object.create(Phase.Sprite.prototype);
+bomberman.bomberman_prefab.prototype.constructor = bomberman.bomberman_prefab;*/
 

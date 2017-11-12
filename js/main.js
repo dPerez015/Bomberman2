@@ -2,7 +2,7 @@ var bomberman = bomberman || {};
 
 var gameValues={
     gameWidth: 1360,
-    gaemHeight: 681,
+    gameHeight: 681,
     currentLevel:1,
     currentWorld:1
 }
