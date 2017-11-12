@@ -13,7 +13,7 @@ bomberman.menu = {
     },
     
     create:function(){
-        this.ProvMenu = this.game.add.image(0, 0, 'ProvMenu');
+        this.ProvMenu = this.game.add.image(0, 0, 'ProvMenu'); 
         
         this.ProvButton = this.game.add.button(this.world.centerX, this.world.centerY, 'ProvButton', this.gameStart, this);
         this.ProvButton.anchor.setTo(.5);
