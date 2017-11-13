@@ -24,8 +24,49 @@ bomberman.bomberman_prefab = function(game, x, y, currLevel, _speed, currMove){
   game.physics.arcade.enable(this);
   this.level = currLevel;
   this.speed = _speed;
-};
+  this.isLeft = false;
+  this.isRight = false;
+  this.isUp = false;
+  this.isDown = false;    
+    
+}
 
-bomberman.bomberman_prefab.prototype = Object.create(Phase.Sprite.prototype);
+bomberman.bomberman_prefab.prototype = Object.create(Phaser.Sprite.prototype);
 bomberman.bomberman_prefab.prototype.constructor = bomberman.bomberman_prefab;
 
+bomberman.bomberman_prefab.prototype.create = function(){
+    this.cursors = this.game.input.keyboard.createCursorKeys();
+    this.space = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+}
+
+bomberman.bomberman_prefab.prototype.update = function(){
+    
+    if(this.cursors.left.isDown){
+        this.body.velocity.x = -this.speed;
+        this.animations.play('walk_left');
+        this.isLeft = true;
+    }else if(this.cursors.right.isDown){
+        this.body.velocity.x = +this.speed;
+        this.animations.play('walk_right');
+        this.isRight = true;
+    }else if(this.cursors.up.isDown){
+        this.body.velocity.y = -this.speed;
+        this.animations.play('walk_up');
+        this.isUp = true;
+    }else if(this.cursors.down.isDown){
+        this.body.velocity.y = +this.speed;
+        this.animations.play('walk_down');
+        this.isDown = true;
+    }
+    
+    if(this.cursors.space.isDown && this.isUp == true){
+        this.animations.play('placing_bomb_up');
+    }else if(this.cursors.space.isDown && this.isDown == true){
+        this.animations.play('placing_bomb_down');
+    }else if(this.cursors.space.isDown && this.isLeft == true){
+        this.animations.play('placing_bomb_left');
+    }else if(this.cursors.space.isDown && this.isRight == true){
+        this.animations.play('placing_bomb_right');
+    }
+    //falten coses per afegir però necesito que el nivell estigui fet i tampoc és prioritari
+}

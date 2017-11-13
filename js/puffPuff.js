@@ -3,6 +3,7 @@ var bomberman = bomberman || {};
 //com de moment nomes implementem un enemic li dic enemy, ja en el futur cquan implementem mes dun ho canviem
 bomberman.puffPuff = function(game,x,y,speed,direction,level, hp, score){
     Phaser.Sprite.call(this,game,x,y,'puff');
+    //game.add.existing(this); el crido en el level.js
     this.anchor.setTo(.5);
     this.animations.add('walkDown',[0,1,2],10,true);
     this.animations.add('walkLeft',[4,5,6], 10, true);
@@ -60,18 +61,18 @@ bomberman.puffPuff.prototype.update = function(){
         this.changeDirection();
     }
 
-    this.game.physics.arcade.overlap(this,this.level.explosion, this.hit,null,this);
+    this.game.physics.arcade.overlap(this,this.level.exploidPrefab, this.hit, null,this);
 
     
     
 };
-//bomberman.puffPuff.prototype.
+
 bomberman.puffPuff.prototype.changeDirection = function(){
         var arrayDir = ['up', 'down', 'left', 'right'];
         for(var i = 0; i < arrayDir.length(); i++){
             if(arrayDir[i] == this.direction) {arrayDir.pop();}
         }
-        this.direction = arrayDir[Math.floor(Math.random() * arrayDir.length)]
+        this.direction = arrayDir[Math.floor(Math.random() * arrayDir.length())]
         return this.direction;
 };
 
