@@ -36,6 +36,7 @@ bomberman.bomberman_prefab.prototype.constructor = bomberman.bomberman_prefab;
 
 bomberman.bomberman_prefab.prototype.create = function(){
     this.cursors = this.game.input.keyboard.createCursorKeys();
+    this.space = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 }
 
 bomberman.bomberman_prefab.prototype.update = function(){
@@ -58,13 +59,13 @@ bomberman.bomberman_prefab.prototype.update = function(){
         this.isDown = true;
     }
     
-    if(this.cursors.v.isDown && this.isUp == true){
+    if(this.cursors.space.isDown && this.isUp == true){
         this.animations.play('placing_bomb_up');
-    }else if(this.cursors.v.isDown && this.isDown == true){
+    }else if(this.cursors.space.isDown && this.isDown == true){
         this.animations.play('placing_bomb_down');
-    }else if(this.cursors.v.isDown && this.isLeft == true){
+    }else if(this.cursors.space.isDown && this.isLeft == true){
         this.animations.play('placing_bomb_left');
-    }else if(this.cursors.v.isDown && this.isRight == true){
+    }else if(this.cursors.space.isDown && this.isRight == true){
         this.animations.play('placing_bomb_right');
     }
     //falten coses per afegir però necesito que el nivell estigui fet i tampoc és prioritari

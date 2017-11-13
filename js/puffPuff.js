@@ -61,7 +61,7 @@ bomberman.puffPuff.prototype.update = function(){
         this.changeDirection();
     }
 
-    this.game.physics.arcade.overlap(this,this.level.explosion, this.hit, null,this);
+    this.game.physics.arcade.overlap(this,this.level.exploidPrefab, this.hit, null,this);
 
     
     
@@ -72,7 +72,7 @@ bomberman.puffPuff.prototype.changeDirection = function(){
         for(var i = 0; i < arrayDir.length(); i++){
             if(arrayDir[i] == this.direction) {arrayDir.pop();}
         }
-        this.direction = arrayDir[Math.floor(Math.random() * arrayDir.length)]
+        this.direction = arrayDir[Math.floor(Math.random() * arrayDir.length())]
         return this.direction;
 };
 
