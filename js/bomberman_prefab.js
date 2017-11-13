@@ -27,6 +27,8 @@ bomberman.bomberman_prefab = function(game, x, y, _currLevel, _speed, _life, _wi
   this.posY = y;
   this.level = _currLevel;
   this.speedBomberman = _speed;
+
+    //console.log(_speed);
   this.isLeft = false;
   this.isRight = false;
   this.isUp = false;
@@ -42,9 +44,6 @@ bomberman.bomberman_prefab = function(game, x, y, _currLevel, _speed, _life, _wi
 bomberman.bomberman_prefab.prototype = Object.create(Phaser.Sprite.prototype);
 bomberman.bomberman_prefab.prototype.constructor = bomberman.bomberman_prefab;
 
-bomberman.bomberman_prefab.prototype.create = function(){
-    
-}
 
 bomberman.bomberman_prefab.prototype.upgradeBomb = function(){
     if(this.powerUp == 1){//Power Up patins
@@ -60,22 +59,55 @@ bomberman.bomberman_prefab.prototype.upgradeBomb = function(){
 bomberman.bomberman_prefab.prototype.update = function(){
     //console.log('h');
     if(this.level.cursors.left.isDown){
-        this.body.velocity.x = -this.speed;
-        this.animations.play('walk_left');
+        this.body.velocity.y=0;
+        this.body.velocity.x = -this.speedBomberman;
+        this.animations.play('walk_right');
+        this.isDown=false;
+        this.isRight=false;
+        this.isUp=false;
         this.isLeft = true;
     }else if(this.level.cursors.right.isDown){
-        this.body.velocity.x = +this.speed;
-        this.animations.play('walk_right');
-        this.isRight = true;
+        this.body.velocity.y=0;
+        this.body.velocity.x = +this.speedBomberman;
+        this.animations.play('walk_left');
+        this.isDown=false;
+        this.isRight=true;
+        this.isUp=false;
+        this.isLeft = false;
     }else if(this.level.cursors.up.isDown){
-        this.body.velocity.y = -this.speed;
+        this.body.velocity.x=0;
+        this.body.velocity.y = -this.speedBomberman;
         this.animations.play('walk_up');
         this.isUp = true;
+        this.isDown=false;
+        this.isRight=false;
+        this.isLeft = false;
     }else if(this.level.cursors.down.isDown){
-        this.body.velocity.y = +this.speed;
+        this.body.velocity.x=0;
+        this.body.velocity.y = +this.speedBomberman;
         this.animations.play('walk_down');
         this.isDown = true;
+        this.isRight=false;
+        this.isUp=false;
+        this.isLeft = false;
     }
+    else{
+        //console.log('h');
+        this.body.velocity.setTo(0);
+        if(this.isUp){
+           this.animations.frame=0;
+           }
+        else if(this.isDown){
+            this.animations.frame=20;
+        }
+        else if(this.isLeft){
+            this.animations.frame=30;
+        }
+        else if(this.isRight){
+            this.animations.frame=10;
+        }
+    }
+    console.log(this);
     
     if(this.level.space.isDown && this.isUp == true){
         this.animations.play('placing_bomb_up');
