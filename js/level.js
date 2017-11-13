@@ -27,7 +27,7 @@ bomberman.level = {
         this.puff = new bomberman.puffPuff(this.game,0,0,3,'down',this, 1, 100);//constructor enemy puffpuff
         this.game.add.existing(this.puff);
         
-        this.player = new bomberman.bomberman_prefab(this.game.level, this.game.world.centerX, this.game.world.centerY, this, gameValues.bombermanSpeed, gameValues.bombermanLife, gameValues.hasWon, gameValues.bombsQuantity, gameValues.bombRange, );
+        this.player = new bomberman.bomberman_prefab(this.game, this.game.world.centerX, this.game.world.centerY, this, gameValues.bombermanSpeed, gameValues.bombermanLife, gameValues.hasWon, gameValues.bombsQuantity, gameValues.bombRange, );
        // this.bomb = new.bomberman.bombPrefab(this.game, 10, 10, player.range, player.timer ) //constructor bombPrefab
         //this.game.level.existing(this.bomb);?
     },
