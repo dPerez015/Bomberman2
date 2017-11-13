@@ -50,8 +50,9 @@ bomberman.level = {
 
         this.player = new bomberman.bomberman_prefab(this.game, this.game.world.centerX, this.game.world.centerY, this, gameValues.bombermanSpeed, gameValues.bombermanLife, gameValues.hasWon, gameValues.bombsQuantity, gameValues.bombRange, gameValues.powerUp);
         this.game.add.existing(this.player);
-       // this.bomb = new.bomberman.bombPrefab(this.game, 10, 10, player.range, player.timer ) //constructor bombPrefab
+        this.bomb = new.bomberman.bombPrefab(this.game, 10, 10, player.range, player.timer ) //constructor bombPrefab
         //this.game.level.existing(this.bomb);?
+        //
     },
     
     update:function(){
