@@ -3,7 +3,10 @@ var bomberman = bomberman || {};
 bomberman.menu = {
     
     init:function(){
-        
+        this.scale.scaleMode=Phaser.ScaleManager.SHOW_ALL;
+        this.scale.setGameSize(gameValues.MenuWidth,gameValues.MenuHeight);
+        this.scale.pageAlignHorizontally = true;  
+        this.scale.pageAlignVertically = true;
     },
     
     preload:function(){

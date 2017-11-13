@@ -1,8 +1,10 @@
 var bomberman = bomberman || {};
 
 var gameValues={
-    gameWidth: 1360,
-    gameHeight: 681,
+    gameWidth: 320,
+    gameHeight: 224,
+    MenuWidth:1360,
+    MenuHeight:681,
     currentLevel:1,
     currentWorld:1,
     bombermanSpeed:5,
@@ -12,6 +14,7 @@ var gameValues={
     bombTimer:0,
     powerUp:0
 }
+
 
 bomberman.game = new Phaser.Game(gameValues.gameWidth,gameValues.gameHeight,Phaser.AUTO,null,this,false,false);
 

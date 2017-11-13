@@ -4,7 +4,7 @@ bomberman.bomberman_prefab = function(game, x, y, _currLevel, _speed, _life, _wi
   Phaser.Sprite.call(this, game, x, y, 'Bomberman');
   //this.game.add.existing(this);
   this.anchor.setTo(.5);
-  this.scale.setTo(2);
+  //this.scale.setTo(2);
   //Hauriem de mirar si hi ha alguna manera de fer una funció que retorni l'animació
   this.animations.add('walk_up',[0,1,2],10,true);
   this.animations.add('walk_left',[3,4,5],10,true);
