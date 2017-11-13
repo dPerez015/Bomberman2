@@ -22,7 +22,7 @@ bomberman.bomberman_prefab = function(game, x, y, _currLevel, _speed, _life, _wi
   this.animations.add('damage_before_dead',[100,101,102,103],10,true);
   this.animations.add('dead',[110,111,112,113,114],10,true);
   this.animations.add('win',[270,271,272],10,true);
-  //this.game.physics.arcade.enable(this);
+  this.game.physics.arcade.enable(this);
   this.posX = x;
   this.posY = y;
   this.level = _currLevel;
@@ -39,10 +39,11 @@ bomberman.bomberman_prefab = function(game, x, y, _currLevel, _speed, _life, _wi
   this.powerUp = _powerUp;
 }
 
+bomberman.bomberman_prefab.prototype = Object.create(Phaser.Sprite.prototype);
+bomberman.bomberman_prefab.prototype.constructor = bomberman.bomberman_prefab;
+
 bomberman.bomberman_prefab.prototype.create = function(){
-    this.cursors = this.game.input.keyboard.createCursorKeys();
-    this.space = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-    this.bomb = new bomberman.bombPrefab(this.game, this.posX, this.posY, this.bombPower, this.bombTimer);
+    
 }
 
 bomberman.bomberman_prefab.prototype.upgradeBomb = function(){
@@ -57,36 +58,36 @@ bomberman.bomberman_prefab.prototype.upgradeBomb = function(){
 }
 
 bomberman.bomberman_prefab.prototype.update = function(){
-    
-    if(this.cursors.left.isDown){
+    //console.log('h');
+    if(this.level.cursors.left.isDown){
         this.body.velocity.x = -this.speed;
         this.animations.play('walk_left');
         this.isLeft = true;
-    }else if(this.cursors.right.isDown){
+    }else if(this.level.cursors.right.isDown){
         this.body.velocity.x = +this.speed;
         this.animations.play('walk_right');
         this.isRight = true;
-    }else if(this.cursors.up.isDown){
+    }else if(this.level.cursors.up.isDown){
         this.body.velocity.y = -this.speed;
         this.animations.play('walk_up');
         this.isUp = true;
-    }else if(this.cursors.down.isDown){
+    }else if(this.level.cursors.down.isDown){
         this.body.velocity.y = +this.speed;
         this.animations.play('walk_down');
         this.isDown = true;
     }
     
-    if(this.cursors.space.isDown && this.isUp == true){
+    if(this.level.space.isDown && this.isUp == true){
         this.animations.play('placing_bomb_up');
-    }else if(this.cursors.space.isDown && this.isDown == true){
+    }else if(this.level.space.isDown && this.isDown == true){
         this.animations.play('placing_bomb_down');
-    }else if(this.cursors.space.isDown && this.isLeft == true){
+    }else if(this.level.space.isDown && this.isLeft == true){
         this.animations.play('placing_bomb_left');
-    }else if(this.cursors.space.isDown && this.isRight == true){
+    }else if(this.level.space.isDown && this.isRight == true){
         this.animations.play('placing_bomb_right');
     }
     
-    if(life == 0){
+    if(this.life == 0){
         this.animations.play('dead');
     }
     
@@ -96,7 +97,4 @@ bomberman.bomberman_prefab.prototype.update = function(){
     //falten coses per afegir però necesito que el nivell estigui fet i tampoc és prioritari
 }
 
-
-bomberman.bomberman_prefab.prototype = Object.create(Phaser.Sprite.prototype);
-bomberman.bomberman_prefab.prototype.constructor = bomberman.bomberman_prefab;
 

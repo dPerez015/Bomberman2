@@ -20,4 +20,4 @@ bomberman.game = new Phaser.Game(gameValues.gameWidth,gameValues.gameHeight,Phas
 
 bomberman.game.state.add('main',bomberman.level);
 bomberman.game.state.add('menu',bomberman.menu);
-bomberman.game.state.start('menu');
+bomberman.game.state.start('main');

@@ -29,6 +29,9 @@ bomberman.level = {
     },
     
     create:function(){
+        this.cursors = this.game.input.keyboard.createCursorKeys();
+        this.space = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+        this.bomb = new bomberman.bombPrefab(this.game, this.posX, this.posY, this.bombPower, this.bombTimer);
         //mapa
         this.map=this.game.add.tilemap('level1-1');
         this.map.addTilesetImage('world1');
@@ -44,8 +47,8 @@ bomberman.level = {
         this.space = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         this.esc = this.game.input.keyboard.addKey(Phaser.Keyboard.ESC);
         
-        this.puff = new bomberman.puffPuff(this.game,0,0,1,'right',this, 1, 100);//constructor enemy puffpuff
-        this.game.add.existing(this.puff);
+        //this.puff = new bomberman.puffPuff(this.game,0,0,1,'right',this, 1, 100);//constructor enemy puffpuff
+        //this.game.add.existing(this.puff);
         
 
         this.player = new bomberman.bomberman_prefab(this.game, this.game.world.centerX, this.game.world.centerY, this, gameValues.bombermanSpeed, gameValues.bombermanLife, gameValues.hasWon, gameValues.bombsQuantity, gameValues.bombRange, gameValues.powerUp);
@@ -55,7 +58,7 @@ bomberman.level = {
     },
     
     update:function(){
-        this.player.update();
+       // this.player.update();
     },   
     
 }
