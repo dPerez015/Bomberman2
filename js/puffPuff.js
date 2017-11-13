@@ -61,12 +61,12 @@ bomberman.puffPuff.prototype.update = function(){
         this.changeDirection();
     }
 
-    this.game.physics.arcade.overlap(this,this.level.explosion, this.hit,null,this);
+    this.game.physics.arcade.overlap(this,this.level.explosion, this.hit, null,this);
 
     
     
 };
-//bomberman.puffPuff.prototype.
+
 bomberman.puffPuff.prototype.changeDirection = function(){
         var arrayDir = ['up', 'down', 'left', 'right'];
         for(var i = 0; i < arrayDir.length(); i++){
