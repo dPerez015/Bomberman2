@@ -4,11 +4,14 @@ var bomberman = bomberman || {};
 bomberman.puffPuff = function(game,x,y,speed,direction,level, hp, score){
     Phaser.Sprite.call(this,game,x,y,'puff');
     //game.add.existing(this); el crido en el level.js
+        this.scale.setTo(5,5);
+
     this.anchor.setTo(.5);
     this.animations.add('walkDown',[0,1,2],10,true);
-    this.animations.add('walkLeft',[4,5,6], 10, true);
-    this.animations.add('walkUp', [7,8,9], 10, true);
-    this.animations.add('kill', [10], 1, true);
+    this.animations.add('walkLeft',[3,4,5], 10, true);
+    this.animations.add('walkUp', [6,7,8], 10, true);
+    this.animations.add('walkRight',[10,11,12], 10, true);
+    this.animations.add('kill', [9], 1, true);
     //this.animations.play('walk');
 
     this.speed = speed;
@@ -30,12 +33,12 @@ bomberman.puffPuff.prototype.update = function(){
     this.game.physics.arcade.collide(this,this.level.bombs);
     switch(this.direction){
         case 'up':
-            this.body.velocity.y += this.speed;
+            this.body.velocity.y -= this.speed;
             this.animations.play('walkUp');
             break;
         
         case 'down':
-            this.body.velocity.y -= this.speed; 
+            this.body.velocity.y += this.speed; 
             this.animations.play('walkDown');
             break;
        
