@@ -106,12 +106,20 @@ bomberman.bomberman_prefab.prototype.update = function(){
 
         if(this.level.space.isDown && this.isUp == true){
             this.animations.play('placing_bomb_up');
+            var bomb = new bomberman.bombPrefab(this.level.game, this.body.position.x, this.body.position.y, 1, 100);
+            //this.level.groupBombs.add(bomb);
         }else if(this.level.space.isDown && this.isDown == true){
             this.animations.play('placing_bomb_down');
+            var bomb = new bomberman.bombPrefab(this.level.game, this.body.position.x, this.body.position.y, 1, 100);
+           // this.level.groupBombs.add(bomb);
         }else if(this.level.space.isDown && this.isLeft == true){
             this.animations.play('placing_bomb_left');
+            var bomb = new bomberman.bombPrefab(this.level.game, this.body.position.x, this.body.position.y, 1, 100);
+           // this.level.groupBombs.add(bomb);
         }else if(this.level.space.isDown && this.isRight == true){
             this.animations.play('placing_bomb_right');
+            var bomb = new bomberman.bombPrefab(this.level.game, this.body.position.x, this.body.position.y, 1, 100);
+           // this.level.groupBombs.add(bomb);
         }
 
         if(gameValues.bombermanLife == 0){

@@ -17,8 +17,8 @@ bomberman.level = {
         this.load.spritesheet('Bomberman', 'img/Bomberman.png', 16, 32);
         this.load.spritesheet('puff', 'img/puff.png', 17, 24);
 
-       // this.load.spritesheet('bomb', 'img/...png', someSixeX, someSizeY);
-        this.load.spritesheet('explosions', 'img/explosion.png', 15, 15);
+        this.load.spritesheet('bomb', 'img/bomb.png', 16, 16);
+        this.load.spritesheet('explosions', 'img/explosion.png', 16, 16);
         
         //mapa
         this.load.tilemap('level1-1','maps/lvl1-1.JSON', null, Phaser.Tilemap.TILED_JSON);
@@ -65,9 +65,11 @@ bomberman.level = {
         this.player = new bomberman.bomberman_prefab(this.game, 9*16,9*16, this, gameValues.hasWon);
         this.game.add.existing(this.player);
         
+        //this.bomb = new bomberman.bombPrefab(this.game, 100, this.posY, 1, 10000);
+        //this.groupBombs = this.add.group();
         
-        //this.bomb = new bomberman.bombPrefab(this.game, 10, 10, player.range, player.timer ) //constructor bombPrefab
-        //this.game.level.existing(this.bomb);?
+        //this.bomb = new bomberman.bombPrefab(this.game, 100, 100, 1, 100); //constructor bombPrefab
+        //this.game.add.existing(this.bomb);
         //
     },
     
