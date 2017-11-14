@@ -12,3 +12,11 @@ bomberman.explosion_prefab = function(game,x,y){
     this.animations.add('Upper_explosion', [7,15,23,31,39], 10, true);
 
 }
+
+
+bomberman.explosion_prefab.prototype.update = function(){
+    
+}
+
+bomberman.explosion_prefab = Object.create(Phaser.Sprite.prototype);
+bomberman.explosion_prefab.prototype.constructor = bomberman.explosion_prefab;
