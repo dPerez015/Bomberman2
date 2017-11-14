@@ -23,6 +23,7 @@ bomberman.bomberman_prefab = function(game, x, y, _currLevel, _win){
   this.animations.add('dead',[140,141,142,143,144],10,true);
   this.animations.add('win',[270,271,272],10,true);
   this.game.physics.arcade.enable(this);
+  this.body.setSize(10,8,3,21);
   this.posX = x;
   this.posY = y;
   this.level = _currLevel;
