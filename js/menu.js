@@ -39,9 +39,11 @@ bomberman.menu = {
     },
     battleMode:function(){
         //cosas
+        bomberman.loadScene('comsoon');
     },
     passordsMode:function(){
         //radev rules
+        bomberman.loadScene('comsoon');
     }
     
 }
