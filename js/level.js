@@ -58,18 +58,12 @@ bomberman.level = {
         this.space = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         this.esc = this.game.input.keyboard.addKey(Phaser.Keyboard.ESC);
         
-        //this.puff = new bomberman.puffPuff(this.game,0,0,1,'right',this, 1, 100);//constructor enemy puffpuff
-        //this.game.add.existing(this.puff);
-        
+       // this.puff = new bomberman.puffPuff(this.game,0,0,1,'right',this, 1, 100);//constructor enemy puffpuff
 
         this.player = new bomberman.bomberman_prefab(this.game, 9*16,9*16, this, gameValues.hasWon);
         this.game.add.existing(this.player);
         
-        //this.bomb = new bomberman.bombPrefab(this.game, 100, this.posY, 1, 10000);
-        //this.groupBombs = this.add.group();
-        
-        //this.bomb = new bomberman.bombPrefab(this.game, 100, 100, 1, 100); //constructor bombPrefab
-        //this.game.add.existing(this.bomb);
+
         //
     },
     
