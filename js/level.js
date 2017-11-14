@@ -40,6 +40,7 @@ bomberman.level = {
         this.destroy=this.map.createLayer('ObjetosDestruibles');
         this.anim=this.map.createLayer('BackgroundAnimated');
         this.map.setCollisionBetween(1,129,true, 'ObjetosSolidos');
+        this.map.setCollisionBetween(1,129,true, 'ObjetosDestruibles');
         //this.walls.
         /*this.map.setCollision(34,true, 'ObjetosSolidos');
         this.map.setCollision(87,true, 'ObjetosSolidos');

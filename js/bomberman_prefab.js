@@ -11,10 +11,10 @@ bomberman.bomberman_prefab = function(game, x, y, _currLevel, _win){
   this.animations.add('walk_down',[20,21,22],10,true);
   this.animations.add('walk_right',[30,31,32],10,true);
   this.animations.add('ready_fight',[40],1,true);
-  this.animations.add('placing_bomb_up',[50,51,52,53],10,true);
-  this.animations.add('placing_bomb_right',[60,61,62,63],10,true);
-  this.animations.add('placing_bomb_down',[70,71,72],10,true);
-  this.animations.add('placing_bomb_left',[80,81,82,83],10,true);
+  this.animations.add('placing_bomb_up',[50,51,52,53],10,false);
+  this.animations.add('placing_bomb_right',[60,61,62,63],10,false);
+  this.animations.add('placing_bomb_down',[70,71,72],10,false);
+  this.animations.add('placing_bomb_left',[80,81,82,83],10,false);
   /*this.animations.add('throw_bomb_up',[28,29],10,true);
   this.animations.add('throw_bomb_left',[30,31],10,true);
   this.animations.add('throw_bomb_down',[32,33],10,true);
@@ -52,6 +52,7 @@ bomberman.bomberman_prefab.prototype.upgradeBomb = function(){
 
 bomberman.bomberman_prefab.prototype.update = function(){
         this.game.physics.arcade.collide(this,this.level.walls);
+        this.game.physics.arcade.collide(this,this.level.destroy);
         //console.log('h');
         if(this.level.cursors.left.isDown){
             this.body.velocity.y=0;
