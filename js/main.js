@@ -7,7 +7,7 @@ var gameValues={
     MenuHeight:681,
     currentLevel:1,
     currentWorld:1,
-    bombermanSpeed:100,
+    bombermanSpeed:50,
     bombermanLife:1,
     bombsQuantity:1,
     bombRange:1,
