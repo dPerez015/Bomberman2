@@ -2,11 +2,11 @@ var bomberman = bomberman || {};
 
 bomberman.bombPrefab = function (game, x, y, range, timing){
     Phaser.Sprite.call(this,game,x,y,'bomb');
-    //this.anchor.setTo(.5);
-    this.animations.add('stand', [0,1,2,3], 5, true);
+    this.anchor.setTo(.5);
+    this.animations.add('stand', [0,1,2,3], 1, true);
     this.range = range;
-    this.timing;
-    game.physics.arcade.enable(this);
+    this.timing = timing;
+    this.game.physics.arcade.enable(this);
 };
 
 bomberman.bombPrefab.prototype.timer = function (){
