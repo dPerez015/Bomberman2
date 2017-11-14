@@ -57,7 +57,8 @@ bomberman.bomberman_prefab.prototype.upgradeBomb = function(){
 }
 
 bomberman.bomberman_prefab.prototype.update = function(){
-       // console.log('h');
+        this.game.physics.arcade.collide(this,this.level.walls);
+        //console.log('h');
         if(this.level.cursors.left.isDown){
             this.body.velocity.y=0;
             this.body.velocity.x = -this.speedBomberman;
@@ -85,6 +86,11 @@ bomberman.bomberman_prefab.prototype.update = function(){
         }else if(this.level.cursors.down.isDown){
             this.body.velocity.x=0;
             this.body.velocity.y = +this.speedBomberman;
+             this.animations.play('walk_down');
+            this.isUp = false;
+            this.isDown=true;
+            this.isRight=false;
+            this.isLeft = false;
         }
         else{
             //console.log('h');
