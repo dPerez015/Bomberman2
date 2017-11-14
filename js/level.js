@@ -7,6 +7,8 @@ bomberman.level = {
         this.scale.setGameSize(gameValues.gameWidth,gameValues.gameHeight);
         this.scale.pageAlignHorizontally = true;  
         this.scale.pageAlignVertically = true;
+        
+        this.game.physics.startSystem(Phaser.Physics.ARCADE);
     },
     
     preload:function(){
@@ -36,7 +38,18 @@ bomberman.level = {
         this.inter=this.map.createLayer('Interactuables');
         this.destroy=this.map.createLayer('ObjetosDestruibles');
         this.anim=this.map.createLayer('BackgroundAnimated');
-        //this.map.setCollision
+        this.map.setCollisionBetween(1,129,true, 'ObjetosSolidos');
+        //this.walls.
+        /*this.map.setCollision(34,true, 'ObjetosSolidos');
+        this.map.setCollision(87,true, 'ObjetosSolidos');
+        this.map.setCollision(1,true, 'ObjetosSolidos');
+        this.map.setCollision(129,true, 'ObjetosSolidos');
+        this.map.setCollision(38,true,'ObjetosSolidos');
+        this.map.setCollision(39,true, 'ObjetosSolidos');
+        this.map.setCollision(70,true, 'ObjetosSolidos');
+        this.map.setCollision(46,true, 'ObjetosSolidos');
+        this.map.setCollision(33,true, 'ObjetosSolidos');*/
+        
         
         
         this.cursors = this.game.input.keyboard.createCursorKeys();
@@ -50,13 +63,14 @@ bomberman.level = {
         this.player = new bomberman.bomberman_prefab(this.game, 9*16,9*16, this, gameValues.bombermanSpeed, gameValues.bombermanLife, gameValues.hasWon, gameValues.bombsQuantity, gameValues.bombRange, gameValues.powerUp);
         this.game.add.existing(this.player);
         
+        
         //this.bomb = new bomberman.bombPrefab(this.game, 10, 10, player.range, player.timer ) //constructor bombPrefab
         //this.game.level.existing(this.bomb);?
         //
     },
     
     update:function(){
-        
+        this.game.debug.body(this.player);
     },   
     
 }
