@@ -18,6 +18,7 @@ bomberman.level = {
         this.load.spritesheet('puff', 'img/puff.png', 17, 24);
 
        // this.load.spritesheet('bomb', 'img/...png', someSixeX, someSizeY);
+        this.load.spritesheet('explosions', 'img/explosion.png', 15, 15);
         
         //mapa
         this.load.tilemap('level1-1','maps/lvl1-1.JSON', null, Phaser.Tilemap.TILED_JSON);
