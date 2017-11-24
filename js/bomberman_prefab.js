@@ -40,11 +40,11 @@ bomberman.bomberman_prefab.prototype = Object.create(Phaser.Sprite.prototype);
 bomberman.bomberman_prefab.prototype.constructor = bomberman.bomberman_prefab;
 
 bomberman.bomberman_prefab.prototype.upgradeBomb = function(){
-    if(this.powerUp == 1){//Power Up patins
+    if(gameValues.powerUp == 1){//Power Up patins
         gameValues.bombermanSpeed = +1;
-    }else if(this.powerUp == 2){//More bombs
+    }else if(gameValues.powerUp == 2){//More bombs
         gameValues.bombsQuantity = +1;
-    }else if(this.powerUp == 3){//Range
+    }else if(gameValues.powerUp == 3){//Range
         gameValues.bombRange = +1;
     }
     
@@ -100,7 +100,7 @@ bomberman.bomberman_prefab.prototype.update = function(){
                 this.animations.frame=30;
             }
             else if(this.isRight){
-                this.animations.frame=10;
+                this.animations.frame=10; 
             }
         }
 
