@@ -13,6 +13,7 @@ bomberman.bombPrefab = function (game, x, y, range, timing){
     this.timing = timing;
     console.log(this.timing);
     this.game.physics.arcade.enable(this);
+    this.isExploding = false;
 };
 
 bomberman.bombPrefab.prototype = Object.create(Phaser.Sprite.prototype);
@@ -22,13 +23,15 @@ bomberman.bombPrefab.prototype.timer = function (){
     if(this.timing != 0){
         this.timing--;
       
-    } else 
-     this.explosion();  
+    } else {
+        this.explosion();
+        this.isExploding = true;
+    }
 };
 
 bomberman.bombPrefab.prototype.explosion = function(){
-    var explosion = new bomberman.explosion_prefab(this.gm, this.posX, this.posY);
-    
+    var explosion = new bomberman.explosion_prefab(this.gm, this.posX, this.posY, this.isExploding, 100);
+    this.isExploding = false;
     this.kill();
 };
 
