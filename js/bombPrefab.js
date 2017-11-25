@@ -3,7 +3,7 @@ var bomberman = bomberman || {};
 bomberman.bombPrefab = function (game, x, y, range, timing){
     Phaser.Sprite.call(this, game,x,y,'bomb');
     game.add.existing(this);
-    console.log('hey');
+    console.log('bombConstructor');
     this.anchor.setTo(.5);
     this.animations.add('stand', [0,1,2,3], 1, true);
     this.posX = x;
@@ -32,7 +32,9 @@ bomberman.bombPrefab.prototype.timer = function (){
 bomberman.bombPrefab.prototype.explosion = function(){
     var explosion = new bomberman.explosion_prefab(this.gm, this.posX, this.posY, this.isExploding, 100);
     this.isExploding = false;
-    this.kill();
+    console.log('explosion');
+    this.destroy();
+    
 };
 
 bomberman.bombPrefab.prototype.update = function (){

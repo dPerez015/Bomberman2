@@ -29,10 +29,13 @@ bomberman.bomberman_prefab = function(game, x, y, _currLevel, _win){
   this.level = _currLevel;
     //console.log(_speed);
   this.isLeft = false;
-  this.isRight = false;
+  this.isRight = false; 
   this.isUp = false;
-  this.isDown = false;    
+  this.DownDir = false;    
   this.hasWon = _win;
+
+    //bomb generator
+  this.bombGenerated = false;
 }
 
 
@@ -104,24 +107,8 @@ bomberman.bomberman_prefab.prototype.update = function(){
             }
         }
 
-        if(this.level.space.isDown && this.isUp == true){
-            this.animations.play('placing_bomb_up');
-            var bomb = new bomberman.bombPrefab(this.level.game, this.body.position.x, this.body.position.y, 1, 100);
-            //this.level.groupBombs.add(bomb);
-        }else if(this.level.space.isDown && this.isDown == true){
-            this.animations.play('placing_bomb_down');
-            var bomb = new bomberman.bombPrefab(this.level.game, this.body.position.x, this.body.position.y, 1, 100);
-           // this.level.groupBombs.add(bomb);
-        }else if(this.level.space.isDown && this.isLeft == true){
-            this.animations.play('placing_bomb_left');
-            var bomb = new bomberman.bombPrefab(this.level.game, this.body.position.x, this.body.position.y, 1, 100);
-           // this.level.groupBombs.add(bomb);
-        }else if(this.level.space.isDown && this.isRight == true){
-            this.animations.play('placing_bomb_right');
-            var bomb = new bomberman.bombPrefab(this.level.game, this.body.position.x, this.body.position.y, 1, 100);
-           // this.level.groupBombs.add(bomb);
-        }
-
+       
+        
         if(gameValues.bombermanLife == 0){
             this.animations.play('dead');
         }
@@ -130,6 +117,42 @@ bomberman.bomberman_prefab.prototype.update = function(){
             this.animations.play('win');
         }
         //falten coses per afegir però necesito que el nivell estigui fet i tampoc és prioritari
-    }
+    this.createBomb();
+}
 
+bomberman.bomberman_prefab.prototype.createBomb = function(){
 
+    bombGenerated = false;
+    
+    console.log(this.bombGenerated);
+     if(this.level.space.isDown && this.isUp == true  &&  bombGenerated != true){
+            this.animations.play('placing_bomb_up');
+            var bomb = new bomberman.bombPrefab(this.level.game, this.body.position.x, this.body.position.y, 1, 100);
+            bombGenerated= true;
+            console.log(bombGenerated);
+            //this.level.groupBombs.add(bomb);
+        }else if(this.level.space.isDown && this.isDown == true &&  bombGenerated != true){
+            this.animations.play('placing_bomb_down');
+            var bomb = new bomberman.bombPrefab(this.level.game, this.body.position.x, this.body.position.y, 1, 100);
+            bombGenerated= true;
+            console.log(bombGenerated);
+
+           // this.level.groupBombs.add(bomb);
+        }else if(this.level.space.isDown && this.isLeft == true && bombGenerated != true){
+            this.animations.play('placing_bomb_left');
+            var bomb = new bomberman.bombPrefab(this.level.game, this.body.position.x, this.body.position.y, 1, 100);
+           // this.level.groupBombs.add(bomb);
+            bombGenerated= true;
+            console.log(bombGenerated);
+
+        }else if(this.level.space.isDown && this.isRight == true && bombGenerated != true){
+            this.animations.play('placing_bomb_right');
+            var bomb = new bomberman.bombPrefab(this.level.game, this.body.position.x, this.body.position.y, 1, 100);
+            bombGenerated= true;
+           // this.level.groupBombs.add(bomb);
+            console.log(bombGenerated);
+           
+        } /*else {
+            bombGenerated = false;
+        }*/
+}
