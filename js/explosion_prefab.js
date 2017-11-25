@@ -33,38 +33,47 @@ bomberman.explosion_prefab.prototype.update = function(){
     if(this.rightExplodes != 0){
         this.animations.play('Right_explosion');
         gameValues.bombermanLife = -1;
+        gameValues.puffLife = -1;
 
     }else if(this.rightExplodes > 1){
         this.animations.play('Vertical_explosion');
         gameValues.bombermanLife = -1;
+        gameValues.puffLife = -1;
         
     }else if(this.leftExplodes != 0){
         this.animations.play('Left_explosion');
         gameValues.bombermanLife = -1;
+        gameValues.puffLife = -1;
         
     }else if(this.leftExplodes < -1){
         this.animations.play('Vertical_explosion');
         gameValues.bombermanLife = -1;
+        gameValues.puffLife = -1;
         
     }else if(this.upExplodes != 0){
         this.animations.play('Upper_explosion');
         gameValues.bombermanLife = -1;
+        gameValues.puffLife = -1;
         
     }else if(this.upExplodes < -1){
         this.animations.play('Horizontal_explosion');
         gameValues.bombermanLife = -1;
+        gameValues.puffLife = -1;
         
     }else if(this.downExplodes != 0){
         this.animations.play('Down_explosion');
         gameValues.bombermanLife = -1;
+        gameValues.puffLife = -1;
         
     }else if(this.downExplodes > 1){
         this.animations.play('Horizontal_explosion');
         gameValues.bombermanLife = -1;
+        gameValues.puffLife = -1;
         
     }else{
         this.animations.play('Center_explosion');
-        gameValues.bombermanLife = -1;  
+        gameValues.bombermanLife = -1;
+        gameValues.puffLife = -1;
     }
       
     if(this.timer != 0){

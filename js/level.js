@@ -25,7 +25,9 @@ bomberman.level = {
         this.load.image('world1','img/world1.png');
         
         this.hasWon = false;
-        this.powerUp = 0;        
+        this.powerUp = 0;
+        
+        this.load.audio('Lvl1_music', 'sound/Lvl1_soundtrack.mp3');
         
     },
     
@@ -63,8 +65,9 @@ bomberman.level = {
         this.player = new bomberman.bomberman_prefab(this.game, 9*16,9*16, this, gameValues.hasWon);
         this.game.add.existing(this.player);
         
-
-        //
+        this.lvlMusic = this.add.audio('Lvl1_music');
+        this.lvlMusic.play();
+        this.lvlMusic.loopFull(0.1);
     },
     
     update:function(){

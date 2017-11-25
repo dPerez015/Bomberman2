@@ -12,7 +12,8 @@ var gameValues={
     bombsQuantity:1,
     bombRange:1,
     bombTimer:0,
-    powerUp:0
+    powerUp:0,
+    puffLife:1
 }
 
 
