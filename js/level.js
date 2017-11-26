@@ -19,10 +19,13 @@ bomberman.level = {
 
         this.load.spritesheet('bomb', 'img/bomb.png', 16, 16);
         this.load.spritesheet('explosions', 'img/explosion.png', 16, 16);
+        this.load.spritesheet('destruible','img/wall_destroyable.png',16,16);
         
         //mapa
         this.load.tilemap('level1-1','maps/lvl1-1.JSON', null, Phaser.Tilemap.TILED_JSON);
         this.load.image('world1','img/world1.png');
+        
+        
         
         this.hasWon = false;
         this.powerUp = 0;
@@ -36,13 +39,22 @@ bomberman.level = {
         //mapa
         this.map=this.game.add.tilemap('level1-1');
         this.map.addTilesetImage('world1');
+        
         this.walls=this.map.createLayer('ObjetosSolidos');
         this.bg=this.map.createLayer('BackgroundStatic');
         this.inter=this.map.createLayer('Interactuables');
-        this.destroy=this.map.createLayer('ObjetosDestruibles');
+        //this.destroy=this.map.createLayer('ObjetosDestruibles');
         this.anim=this.map.createLayer('BackgroundAnimated');
+        
+        this.destruibles=this.game.add.group();
+       this.map.createFromObjects('ObjetosDestruibles',4,'destruible',0,true,false,this.destruibles,bomberman.muroDestruiblePrefab);
+        //this.walls.forEach()
+        
+        //colisiones
         this.map.setCollisionBetween(1,129,true, 'ObjetosSolidos');
         this.map.setCollisionBetween(1,129,true, 'ObjetosDestruibles');
+        
+        
         //this.walls.
         /*this.map.setCollision(34,true, 'ObjetosSolidos');
         this.map.setCollision(87,true, 'ObjetosSolidos');
