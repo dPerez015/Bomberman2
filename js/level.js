@@ -81,7 +81,7 @@ bomberman.level = {
         
         this.lvlMusic = this.add.audio('Lvl1_music');
         this.lvlMusic.play();
-        this.lvlMusic.loopFull(0.1);
+        this.lvlMusic.loop = true;
     },
     
     update:function(){
