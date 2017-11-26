@@ -24,9 +24,9 @@ bomberman.menu = {
         
         this.music = this.add.audio('Menu_music');
         this.music.play();
-        this.music.loopFull(0.1);
+        this.music.loop = true;
         
-        this.startGameButton = new bomberman.MenuButton_prefab(this.game,287,437,'Button',this.gameStart,);
+        this.startGameButton = new bomberman.MenuButton_prefab(this.game,287,437,'Button',this.gameStart);
         this.game.add.existing(this.startGameButton);
         
         this.battleModeButton = new bomberman.MenuButton_prefab(this.game,287,487,'Button',this.battleMode);
@@ -42,17 +42,17 @@ bomberman.menu = {
 
     },
     gameStart:function(){
-        this.music.destroy();
+        this.music.stop();
         bomberman.loadScene('main');
     },
     battleMode:function(){
         //cosas
-        this.music.destroy();
+        this.music.stop();
         bomberman.loadScene('comsoon');
     },
     passordsMode:function(){
         //radev rules
-        this.music.destroy();
+        this.music.stop();
         bomberman.loadScene('comsoon');
         
     }
