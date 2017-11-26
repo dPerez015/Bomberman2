@@ -5,12 +5,16 @@ bomberman.muroDestruiblePrefab=function (game,x,y){
     //game.add.existing(this);
     console.log("construido");
     this.anchor.setTo(.5);
-    this.animations.add('die',[0,1,2,3,4],10,true);
-    this.posX=x;
-    this.posY=y;
+   var anim = this.animations.add('die',[1,2,3,4,5],10,true);
     this.game.physics.arcade.enable(this);
+    this.body.immovable=true;
+    
+    
 }
 
 bomberman.muroDestruiblePrefab.prototype=Object.create(Phaser.Sprite.prototype);
 bomberman.muroDestruiblePrefab.prototype.constructor=bomberman.muroDestruiblePrefab;
 
+bomberman.muroDestruiblePrefab.prototype.breakBlock=function(){
+        this.animations.play('die',null,false,true);
+    };

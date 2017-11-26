@@ -46,13 +46,15 @@ bomberman.level = {
         //this.destroy=this.map.createLayer('ObjetosDestruibles');
         this.anim=this.map.createLayer('BackgroundAnimated');
         
-        this.destruibles=this.game.add.group();
-       this.map.createFromObjects('ObjetosDestruibles',4,'destruible',0,true,false,this.destruibles,bomberman.muroDestruiblePrefab);
+       this.createDestruibles(this); 
+       //this.map.createFromObjects('ObjetosDestruibles',4,'destruible',0,true,false,this.destruibles,bomberman.muroDestruiblePrefab);
         //this.walls.forEach()
+        
+        
         
         //colisiones
         this.map.setCollisionBetween(1,129,true, 'ObjetosSolidos');
-        this.map.setCollisionBetween(1,129,true, 'ObjetosDestruibles');
+     //   this.map.setCollisionBetween(1,129,true, 'ObjetosDestruibles');
         
         
         //this.walls.
@@ -83,7 +85,37 @@ bomberman.level = {
     },
     
     update:function(){
+        this.physics.arcade.collide(this.destruibles,this.player,this.choquemuro,null,this);
         this.game.debug.body(this.player);
     },   
+    
+    createDestruibles:function(state){
+        
+        this.destruibles = this.game.add.group();
+        var objArray=this.findObjectsById(4,this.map,'ObjetosDestruibles');
+        var item;
+        objArray.forEach(function(elem){
+            
+            item=new bomberman.muroDestruiblePrefab(state.game,elem.x, elem.y);
+            state.destruibles.add(item);
+        });
+        
+        
+    },
+    findObjectsById:function(id,map,layer){
+        var result=new Array();
+        map.objects[layer].forEach(function(element){
+           if(element.gid==id){
+               element.y-=map.tileHeight/2;
+               element.x+=map.tileWidth/2;
+               result.push(element);
+           } 
+        });
+        return result;
+    },
+    choquemuro:function(player,muro){
+        //console.log(muro);
+        muro.breakBlock();
+    },
     
 }

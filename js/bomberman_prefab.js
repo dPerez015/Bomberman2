@@ -124,7 +124,7 @@ bomberman.bomberman_prefab.prototype.createBomb = function(){
 
     bombGenerated = false;
     
-    console.log(this.bombGenerated);
+   // console.log(this.bombGenerated);
      if(this.level.space.isDown && this.isUp == true  &&  bombGenerated != true){
             this.animations.play('placing_bomb_up');
             var bomb = new bomberman.bombPrefab(this.level.game, this.body.position.x, this.body.position.y, 1, 100);
