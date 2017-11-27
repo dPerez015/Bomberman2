@@ -10,7 +10,7 @@ bomberman.explosion_prefab = function(game,x,y, _hasExploted, _timer){
     this.animations.add('Vertical_explosion', [4,12,20,28,36], 10, true);
     this.animations.add('Horizontal_explosion', [5,13,21,29,37], 10, true);
     this.animations.add('Center_explosion', [6,14,22,30,38], 10, true);
-    this.animations.add('Objects_explosion', [7,15,23,31,39], 10, true);
+    this.animations.add('PowerUp_explosion', [7,15,23,31,39], 10, true);
     this.isExploding = _hasExploted;
     this.posX = x;
     this.posY = y;
