@@ -20,6 +20,7 @@ bomberman.level = {
         this.load.spritesheet('bomb', 'img/bomb.png', 16, 16);
         this.load.spritesheet('explosions', 'img/explosion.png', 16, 16);
         this.load.spritesheet('destruible','img/wall_destroyable.png',16,16);
+        this.load.spritesheet('iman','img/iman.png',16,16);
         
         //mapa
         this.load.tilemap('level1-1','maps/lvl1-1.JSON', null, Phaser.Tilemap.TILED_JSON);
@@ -42,31 +43,20 @@ bomberman.level = {
         
         this.walls=this.map.createLayer('ObjetosSolidos');
         this.bg=this.map.createLayer('BackgroundStatic');
-        this.inter=this.map.createLayer('Interactuables');
+        //this.inter=this.map.createLayer('Interactuables');
         //this.destroy=this.map.createLayer('ObjetosDestruibles');
         this.anim=this.map.createLayer('BackgroundAnimated');
         
-       this.createDestruibles(this); 
-       //this.map.createFromObjects('ObjetosDestruibles',4,'destruible',0,true,false,this.destruibles,bomberman.muroDestruiblePrefab);
-        //this.walls.forEach()
-        
+        //bloques
+        this.createDestruibles(this); 
+
+        //imanes
+        this.createImanes(this);
         
         
         //colisiones
         this.map.setCollisionBetween(1,129,true, 'ObjetosSolidos');
-     //   this.map.setCollisionBetween(1,129,true, 'ObjetosDestruibles');
-        
-        
-        //this.walls.
-        /*this.map.setCollision(34,true, 'ObjetosSolidos');
-        this.map.setCollision(87,true, 'ObjetosSolidos');
-        this.map.setCollision(1,true, 'ObjetosSolidos');
-        this.map.setCollision(129,true, 'ObjetosSolidos');
-        this.map.setCollision(38,true,'ObjetosSolidos');
-        this.map.setCollision(39,true, 'ObjetosSolidos');
-        this.map.setCollision(70,true, 'ObjetosSolidos');
-        this.map.setCollision(46,true, 'ObjetosSolidos');
-        this.map.setCollision(33,true, 'ObjetosSolidos');*/
+
         
         
         
@@ -86,7 +76,9 @@ bomberman.level = {
     
     update:function(){
         this.physics.arcade.collide(this.destruibles,this.player,this.choquemuro,null,this);
+        this.physics.arcade.collide(this.imanes,this.player);
         this.game.debug.body(this.player);
+        
     },   
     
     createDestruibles:function(state){
@@ -100,6 +92,22 @@ bomberman.level = {
             state.destruibles.add(item);
         });
         
+        
+    },
+    createImanes:function(state){
+        this.imanes=this.game.add.group();
+        var objArray=this.findObjectsById(92,this.map,'Interactuables');
+        var item
+        //arriba
+        objArray.forEach(function(element){
+           item=new bomberman.imanPrefab(state.game,element.x,element.y,0);
+            state.imanes.add(item);
+        });
+        //derecha
+        /*objArray=this.findObjectsById(93,this.map,'Interactuables');
+        objArray.forEach(function(element){
+           item=new bomberman.imanPrefab(state.game,elem.x,elem.y,-90); 
+        });*/
         
     },
     findObjectsById:function(id,map,layer){
