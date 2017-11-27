@@ -79,16 +79,28 @@ bomberman.level = {
             font: "16px Arial",
             fill: "#fff",
             align: "center",
-            wordWrap: true,
-            wordWrapWidth: this.hud.width,
-            wordWrapHeight: this.hud.height,
         };
-        this.text = this.game.add.text(88, 2, "PITO", this.style);
-
+        
+            //---score----//
+      //  this.textScore = this.game.add()
+        
+            //---timer----//
+        this.textTimer = this.game.add.text(160, 3, "2:00", this.style);
+        this.game.time.events.loop(Phaser.Timer.SECOND, this.updateTimer, this);
+        this.seconds = 0;
+        this.minuts = 2;
+            //--lives----//
+        this.textLives = this.game.add.text(235, 3, this.player.lives, this.style);
+            //---numbBombs----//
+        this.textNumBombs = this.game.add.text(270,3, 5, this.style);
+            //---range----//
+        this.textRange = this.game.add.text(300, 3, "Y", this.style);
+        
+        //MUSIC
         lvlMusic = this.add.audio('Lvl1_music');
         lvlMusic.play();
          lvlMusic.loop = true;
-
+    
     },
     
     update:function(){
@@ -97,12 +109,7 @@ bomberman.level = {
         this.game.debug.body(this.player);
 
     },   
-    
-    updateText:function(){
-        this.coundown = 10;
-        this.text.setText = this.coundown + "pooooooooooooooooooooooyas" + (-this.coundown);
-    },
-    
+
     createDestruibles:function(state){
         
         this.destruibles = this.game.add.group();
@@ -147,5 +154,25 @@ bomberman.level = {
         //console.log(muro);
         muro.breakBlock();
     },
+    
+    updateTimer:function(){
+        this.seconds --;
+
+        if(this.seconds < 10){
+            this.textTimer.setText(this.minuts + ":" + "0" + this.seconds);
+            if(this.seconds < 0){
+            this.minuts--;
+            this.seconds = 59;
+            this.textTimer.setText(this.minuts + ":" + this.seconds);  
+            }
+        }
+        else {
+        this.textTimer.setText(this.minuts + ":" + this.seconds);   
+        }
+    },
+    
+    renderTextLives:function(){
+        this.textLives.setText(this.player.lives);
+    },    
     
 }
