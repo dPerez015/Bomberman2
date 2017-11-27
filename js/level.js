@@ -1,5 +1,7 @@
 var bomberman = bomberman || {};
 
+var lvlMusic;
+
 bomberman.level = {
     
     init:function(){
@@ -58,17 +60,7 @@ bomberman.level = {
         
         //COLLISIONS
         this.map.setCollisionBetween(1,129,true, 'ObjetosSolidos');
-<<<<<<< HEAD
-    
-        
-        //this.walls.
-        /*this.map.setCollision(34,true, 'ObjetosSolidos');*/
-        //87-1-129-38-39-70-46-33
-=======
 
-        
-        
->>>>>>> origin/master
         
         //INPUTS
         this.cursors = this.game.input.keyboard.createCursorKeys();
@@ -79,13 +71,6 @@ bomberman.level = {
 
         this.player = new bomberman.bomberman_prefab(this.game, 9*16,9*16, this, gameValues.hasWon);
         this.game.add.existing(this.player);
-        
-<<<<<<< HEAD
-        
-        //SOUNDS
-        //this.lvlMusic = this.add.audio('Lvl1_music');
-    //    this.lvlMusic.play();
-      //  this.lvlMusic.loopFull(0.1);
         
         
         //HUD
@@ -100,24 +85,17 @@ bomberman.level = {
         };
         this.text = this.game.add.text(88, 2, "PITO", this.style);
 
-=======
-        this.lvlMusic = this.add.audio('Lvl1_music');
-        this.lvlMusic.play();
-        this.lvlMusic.loop = true;
->>>>>>> origin/master
+        lvlMusic = this.add.audio('Lvl1_music');
+        lvlMusic.play();
+         lvlMusic.loop = true;
+
     },
     
     update:function(){
         this.physics.arcade.collide(this.destruibles,this.player,this.choquemuro,null,this);
         this.physics.arcade.collide(this.imanes,this.player);
         this.game.debug.body(this.player);
-        
-<<<<<<< HEAD
-      /* this.text.x = Math.floor(this.style.x + this.style.width / 2);
-       this.text.y = Math.floor(this.style.y + this.style.height / 2);*/
-        //this.updateText();
-=======
->>>>>>> origin/master
+
     },   
     
     updateText:function(){

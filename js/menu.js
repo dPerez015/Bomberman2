@@ -45,25 +45,16 @@ bomberman.menu = {
         
     },
     gameStart:function(){
-<<<<<<< HEAD
-       // this.music.stop();
-=======
         music.stop();
->>>>>>> origin/master
         bomberman.loadScene('main');
     },
     battleMode:function(){
         //cosas
-<<<<<<< HEAD
-      //  this.music.stop();
+        music.stop();
         bomberman.loadScene('comsoon');
     },
     passordsMode:function(){
         //radev rules
-      //  this.music.stop();
-        bomberman.loadScene('comsoon');
-        
-=======
        music.stop();
        bomberman.loadScene('comsoon');
     },
@@ -71,7 +62,6 @@ bomberman.menu = {
         //radev rules
        music.stop();
        bomberman.loadScene('comsoon'); 
->>>>>>> origin/master
     }
     
 }
