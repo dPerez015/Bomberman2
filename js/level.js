@@ -72,6 +72,7 @@ bomberman.level = {
         this.player = new bomberman.bomberman_prefab(this.game, 9*16,9*16, this, gameValues.hasWon);
         this.game.add.existing(this.player);
         
+<<<<<<< HEAD
         
         //SOUNDS
         //this.lvlMusic = this.add.audio('Lvl1_music');
@@ -91,6 +92,11 @@ bomberman.level = {
         };
         this.text = this.game.add.text(88, 2, "PITO", this.style);
 
+=======
+        this.lvlMusic = this.add.audio('Lvl1_music');
+        this.lvlMusic.play();
+        this.lvlMusic.loop = true;
+>>>>>>> origin/master
     },
     
     update:function(){

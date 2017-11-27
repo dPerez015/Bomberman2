@@ -1,5 +1,7 @@
 var bomberman = bomberman || {};
 
+var music;
+
 bomberman.menu = {
     
     init:function(){
@@ -16,15 +18,17 @@ bomberman.menu = {
         
         this.load.audio('Menu_music', 'sound/Menu_soundtrack.mp3');
         
-
+        this.isDown = false;
     },
     
     create:function(){
         this.ProvMenu = this.game.add.image(0, 0, 'ProvMenu'); 
+    
+        //bomberman.musicPlayer_prefab('Menu_music', false);
         
-        this.music = this.add.audio('Menu_music');
-        this.music.play();
-        this.music.loop = true;
+        music = this.game.add.audio('Menu_music');
+        music.play();
+        music.loop = true;
         
         this.startGameButton = new bomberman.MenuButton_prefab(this.game,287,437,'Button',this.gameStart);
         this.game.add.existing(this.startGameButton);
@@ -35,18 +39,22 @@ bomberman.menu = {
         this.passwordButton = new bomberman.MenuButton_prefab(this.game,287,537,'Button',this.passordsMode);
         this.game.add.existing(this.passwordButton);
         
-
     },
     
     update:function(){
-
+        
     },
     gameStart:function(){
+<<<<<<< HEAD
        // this.music.stop();
+=======
+        music.stop();
+>>>>>>> origin/master
         bomberman.loadScene('main');
     },
     battleMode:function(){
         //cosas
+<<<<<<< HEAD
       //  this.music.stop();
         bomberman.loadScene('comsoon');
     },
@@ -55,6 +63,15 @@ bomberman.menu = {
       //  this.music.stop();
         bomberman.loadScene('comsoon');
         
+=======
+       music.stop();
+       bomberman.loadScene('comsoon');
+    },
+    passordsMode:function(){
+        //radev rules
+       music.stop();
+       bomberman.loadScene('comsoon'); 
+>>>>>>> origin/master
     }
     
 }
