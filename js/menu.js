@@ -42,17 +42,17 @@ bomberman.menu = {
 
     },
     gameStart:function(){
-        this.music.stop();
+       // this.music.stop();
         bomberman.loadScene('main');
     },
     battleMode:function(){
         //cosas
-        this.music.stop();
+      //  this.music.stop();
         bomberman.loadScene('comsoon');
     },
     passordsMode:function(){
         //radev rules
-        this.music.stop();
+      //  this.music.stop();
         bomberman.loadScene('comsoon');
         
     }
