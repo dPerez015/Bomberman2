@@ -14,7 +14,7 @@ bomberman.bomberman_prefab = function(game, x, y, _currLevel, _win){
   
   
   var anim=this.animations.add('placing_bomb_up',[50,51,52,53],10,false);
-  anim.onComplete.addOnce(this.createBomb,this.level);
+  anim.onComplete.add(this.createBomb,this.level);
     
   anim=this.animations.add('placing_bomb_right',[60,61,62,63],10,false);
   anim.onComplete.add(this.createBomb,this.level);
@@ -126,7 +126,6 @@ bomberman.bomberman_prefab.prototype.update = function(){
         }
      if(this.canGenerateBomb){
         if(this.recentlyPlacedBomb!=false){
-            console.log("caca");
             this.recentlyPlacedBomb.body.immovable=true;
             this.level.bombas.add(this.recentlyPlacedBomb);
             this.recentlyPlacedBomb=false;
@@ -147,7 +146,7 @@ bomberman.bomberman_prefab.prototype.createBomb = function(){
     this.recentlyPlacedBomb=this.level.bombas.getFirstExists(false);
     if(!this.recentlyPlacedBomb){
         
-        this.recentlyPlacedBomb= new bomberman.bombPrefab(this.game,(this.level.bg.getTileX(this.body.position.x)*16)+8,(this.level.bg.getTileY(this.body.position.y)*16)+8,gameValues.bombRange);
+        this.recentlyPlacedBomb= new bomberman.bombPrefab(this.game,(this.level.bg.getTileX(this.body.position.x)*16)+8,(this.level.bg.getTileY(this.body.position.y)*16)+8,gameValues.bombRange,this);
     }
     else{
        this.recentlyPlacedBomb.reset((this.level.bg.getTileX(this.body.position.x)*16)+8,(this.level.bg.getTileY(this.body.position.y)*16)+8);
