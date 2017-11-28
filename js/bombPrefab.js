@@ -27,7 +27,7 @@ bomberman.bombPrefab.prototype.explosion = function(){
     //var explosion = new bomberman.explosion_prefab(this.gm, this.posX, this.posY, this.isExploding, 100);
     
     this.isExploding = false;
-    console.log(_this);
+    //console.log(_this);
     this.kill();
     
 };
