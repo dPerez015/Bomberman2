@@ -61,6 +61,8 @@ bomberman.level = {
         //COLLISIONS
         this.map.setCollisionBetween(1,129,true, 'ObjetosSolidos');
 
+        //Bombas
+        this.bombas=this.game.add.group();
         
         //INPUTS
         this.cursors = this.game.input.keyboard.createCursorKeys();

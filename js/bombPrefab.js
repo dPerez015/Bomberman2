@@ -1,6 +1,6 @@
 var bomberman = bomberman || {};
 
-bomberman.bombPrefab = function (game, x, y, range, timing){
+bomberman.bombPrefab = function (game, x, y, range){
     Phaser.Sprite.call(this, game,x,y,'bomb');
     game.add.existing(this);
     console.log('bombConstructor');
@@ -10,8 +10,8 @@ bomberman.bombPrefab = function (game, x, y, range, timing){
     this.posY = y;
     this.range = range;
     this.gm = game;
-    this.timing = timing;
-    console.log(this.timing);
+   // this.timing = timing;
+
     this.game.physics.arcade.enable(this);
     this.isExploding = false;
 };
@@ -19,15 +19,7 @@ bomberman.bombPrefab = function (game, x, y, range, timing){
 bomberman.bombPrefab.prototype = Object.create(Phaser.Sprite.prototype);
 bomberman.bombPrefab.prototype.constructor = bomberman.bombPrefab;
 
-bomberman.bombPrefab.prototype.timer = function (){
-    if(this.timing != 0){
-        this.timing--;
-      
-    } else {
-        this.explosion();
-        this.isExploding = true;
-    }
-};
+
 
 bomberman.bombPrefab.prototype.explosion = function(){
     var explosion = new bomberman.explosion_prefab(this.gm, this.posX, this.posY, this.isExploding, 100);
@@ -40,7 +32,7 @@ bomberman.bombPrefab.prototype.explosion = function(){
 bomberman.bombPrefab.prototype.update = function (){
     
         this.animations.play('stand');
-        this.timer();
+
         //this.game.physics.arcade.overlap(this,this.explosionPrefab, bomberman.bombPrefab.explosion(), null,this);//si isItrigger = true amb lexploid prefab la bomba tambe explota
     
     

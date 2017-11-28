@@ -6,15 +6,24 @@ bomberman.bomberman_prefab = function(game, x, y, _currLevel, _win){
   this.anchor.setTo(.5);
   //this.scale.setTo(2);
   //Hauriem de mirar si hi ha alguna manera de fer una funció que retorni l'animació
-  this.animations.add('walk_up',[0,1,2],10,true);
+ this.animations.add('walk_up',[0,1,2],10,true);
   this.animations.add('walk_left',[10,11,12],10,true);
   this.animations.add('walk_down',[20,21,22],10,true);
   this.animations.add('walk_right',[30,31,32],10,true);
   this.animations.add('ready_fight',[40],1,true);
-  this.animations.add('placing_bomb_up',[50,51,52,53],10,false);
-  this.animations.add('placing_bomb_right',[60,61,62,63],10,false);
-  this.animations.add('placing_bomb_down',[70,71,72],10,false);
-  this.animations.add('placing_bomb_left',[80,81,82,83],10,false);
+  
+  
+  var anim=this.animations.add('placing_bomb_up',[50,51,52,53],10,false);
+  anim.onComplete.addOnce(this.createBomb,this.level);
+    
+  anim=this.animations.add('placing_bomb_right',[60,61,62,63],10,false);
+  anim.onComplete.add(this.createBomb,this.level);
+    
+  anim=this.animations.add('placing_bomb_down',[70,71,72],10,false);
+  anim.onComplete.add(this.createBomb,this.level);
+    
+  anim=this.animations.add('placing_bomb_left',[80,81,82,83],10,false);
+  anim.onComplete.add(this.createBomb,this);
   /*this.animations.add('throw_bomb_up',[28,29],10,true);
   this.animations.add('throw_bomb_left',[30,31],10,true);
   this.animations.add('throw_bomb_down',[32,33],10,true);
@@ -24,7 +33,7 @@ bomberman.bomberman_prefab = function(game, x, y, _currLevel, _win){
   this.animations.add('win',[270,271,272],10,true);
   this.game.physics.arcade.enable(this);
   this.body.setSize(10,8,3,21);
-  this.posX = x;
+  this.body.position.x = x;
   this.posY = y;
   this.level = _currLevel;
     //console.log(_speed);
@@ -34,8 +43,12 @@ bomberman.bomberman_prefab = function(game, x, y, _currLevel, _win){
   this.DownDir = false;    
   this.hasWon = _win;
 
-    //bomb generator
-  this.bombGenerated = false;
+  //vidas
+    this.lives=2;
+  //bomb generator 
+    this.canGenerateBomb = true;
+    this.recentlyPlacedBomb=false;
+    
 }
 
 
@@ -54,8 +67,13 @@ bomberman.bomberman_prefab.prototype.upgradeBomb = function(){
 }
 
 bomberman.bomberman_prefab.prototype.update = function(){
-        this.game.physics.arcade.collide(this,this.level.walls);
-        this.game.physics.arcade.collide(this,this.level.destroy);
+    this.game.physics.arcade.collide(this,this.level.walls);
+    this.game.physics.arcade.collide(this,this.level.destroy);
+    this.game.physics.arcade.collide(this,this.level.bombas);
+    this.canGenerateBomb=true;
+    
+    this.game.physics.arcade.overlap(this,this.recentlyPlacedBomb,this.onBomb);
+    //console.log(this.canGenerateBomb);
         //console.log('h');
         if(this.level.cursors.left.isDown){
             this.body.velocity.y=0;
@@ -106,53 +124,38 @@ bomberman.bomberman_prefab.prototype.update = function(){
                 this.animations.frame=10; 
             }
         }
-
-       
-        
-        if(gameValues.bombermanLife == 0){
-            this.animations.play('dead');
+     if(this.canGenerateBomb){
+        if(this.recentlyPlacedBomb!=false){
+            console.log("caca");
+            this.recentlyPlacedBomb.body.immovable=true;
+            this.level.bombas.add(this.recentlyPlacedBomb);
+            this.recentlyPlacedBomb=false;
         }
+    }
+    if(this.level.space.isDown && this.canGenerateBomb){
+        this.createBomb();
+    }
+   
+         
 
-        if(this.hasWon == true){
-            this.animations.play('win');
-        }
-        //falten coses per afegir però necesito que el nivell estigui fet i tampoc és prioritari
-    this.createBomb();
 }
 
 bomberman.bomberman_prefab.prototype.createBomb = function(){
 
-    bombGenerated = false;
+    this.canGenerateBomb = false;
+   
+    this.recentlyPlacedBomb=this.level.bombas.getFirstExists(false);
+    if(!this.recentlyPlacedBomb){
+        
+        this.recentlyPlacedBomb= new bomberman.bombPrefab(this.game,(this.level.bg.getTileX(this.body.position.x)*16)+8,(this.level.bg.getTileY(this.body.position.y)*16)+8,gameValues.bombRange);
+    }
+    else{
+       this.recentlyPlacedBomb.reset((this.level.bg.getTileX(this.body.position.x)*16)+8,(this.level.bg.getTileY(this.body.position.y)*16)+8);
+    }
+}
+
+bomberman.bomberman_prefab.prototype.onBomb=function(player,bomb){
     
-   // console.log(this.bombGenerated);
-     if(this.level.space.isDown && this.isUp == true  &&  bombGenerated != true){
-            this.animations.play('placing_bomb_up');
-            var bomb = new bomberman.bombPrefab(this.level.game, this.body.position.x, this.body.position.y, 1, 100);
-            bombGenerated= true;
-            console.log(bombGenerated);
-            //this.level.groupBombs.add(bomb);
-        }else if(this.level.space.isDown && this.isDown == true &&  bombGenerated != true){
-            this.animations.play('placing_bomb_down');
-            var bomb = new bomberman.bombPrefab(this.level.game, this.body.position.x, this.body.position.y, 1, 100);
-            bombGenerated= true;
-            console.log(bombGenerated);
-
-           // this.level.groupBombs.add(bomb);
-        }else if(this.level.space.isDown && this.isLeft == true && bombGenerated != true){
-            this.animations.play('placing_bomb_left');
-            var bomb = new bomberman.bombPrefab(this.level.game, this.body.position.x, this.body.position.y, 1, 100);
-           // this.level.groupBombs.add(bomb);
-            bombGenerated= true;
-            console.log(bombGenerated);
-
-        }else if(this.level.space.isDown && this.isRight == true && bombGenerated != true){
-            this.animations.play('placing_bomb_right');
-            var bomb = new bomberman.bombPrefab(this.level.game, this.body.position.x, this.body.position.y, 1, 100);
-            bombGenerated= true;
-           // this.level.groupBombs.add(bomb);
-            console.log(bombGenerated);
-           
-        } /*else {
-            bombGenerated = false;
-        }*/
+    player.canGenerateBomb=false;
+   // console.log(this.canGenerateBomb);
 }
