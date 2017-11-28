@@ -13,7 +13,7 @@ bomberman.imanPrefab=function(game,x,y,rot){
 bomberman.imanPrefab.prototype=Object.create(Phaser.Sprite.prototype);
 bomberman.imanPrefab.prototype.contructor=bomberman.imanPrefab;
 
-bomberman.imanPrefab.prototype.atract=function(bomba){
+bomberman.imanPrefab.prototype.atract=function(iman,bomba){
     var x=bomba.position.x-this.position.x;
     var y= bomba.position.y-this.position.y;
     var distance = Math.sqrt(Math.pow(x,2)+Math.pow(y,2));
@@ -26,7 +26,6 @@ bomberman.imanPrefab.prototype.rotate=function(rotation){
     switch (rotation){
         case 0:
             this.animations.frame=0;
-            
             break;
         case 1:
             this.animation.frame=1;
