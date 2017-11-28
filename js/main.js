@@ -22,4 +22,5 @@ bomberman.game = new Phaser.Game(gameValues.gameWidth,gameValues.gameHeight,Phas
 bomberman.game.state.add('main',bomberman.level);
 bomberman.game.state.add('menu',bomberman.menu);
 bomberman.game.state.add('comsoon',bomberman.comingSoon);
+bomberman.game.state.add('transScene', bomberman.Transicion_scene);
 bomberman.game.state.start('menu');

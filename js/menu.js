@@ -46,7 +46,7 @@ bomberman.menu = {
     },
     gameStart:function(){
         music.stop();
-        bomberman.loadScene('main');
+        bomberman.loadScene('transScene');
     },
     battleMode:function(){
         //cosas
