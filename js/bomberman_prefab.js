@@ -68,7 +68,7 @@ bomberman.bomberman_prefab.prototype.upgradeBomb = function(){
 
 bomberman.bomberman_prefab.prototype.update = function(){
     this.game.physics.arcade.collide(this,this.level.walls);
-    this.game.physics.arcade.collide(this,this.level.destroy);
+   // this.game.physics.arcade.collide(this,this.level.destroy);
     this.game.physics.arcade.collide(this,this.level.bombas);
     this.canGenerateBomb=true;
     
