@@ -35,7 +35,6 @@ bomberman.bomberman_prefab = function(game, x, y, _currLevel){
   this.body.setSize(10,8,3,21);
   
   this.level = _currLevel;
-    //console.log(_speed);
   this.isLeft = false;
   this.isRight = false; 
   this.isUp = false;
@@ -43,13 +42,16 @@ bomberman.bomberman_prefab = function(game, x, y, _currLevel){
   this.hasWon = false;
 
   //vidas
-    this.lives=2;
+    this.lives= gameValues.bombermanLife;
   //bomb generator 
     this.canGenerateBomb = true;
     this.recentlyPlacedBomb=false;
     
     this.range=gameValues.bombRange;
     
+    //guardo la posicio inicial on ha de respawnejar
+    this.initPosX = x;
+    this.initPosY = y;
 }
 
 
@@ -74,8 +76,13 @@ bomberman.bomberman_prefab.prototype.update = function(){
     this.canGenerateBomb=true;
     
     this.game.physics.arcade.overlap(this,this.recentlyPlacedBomb,this.onBomb);
-    //console.log(this.canGenerateBomb);
-        //console.log('h');
+    
+    //collisions enemics i explosions
+    if(this.game.physics.arcade.overlap(this,this.level.puff) || this.game.physics.arcade.overlap(this,this.level.explosions))
+       {    
+           this.animations.play('dead',10,false,true);
+           this.bombermanHit()};
+
         if(this.level.cursors.left.isDown){
             this.body.velocity.y=0;
             this.body.velocity.x = -gameValues.bombermanSpeed;
@@ -158,4 +165,15 @@ bomberman.bomberman_prefab.prototype.onBomb=function(player,bomb){
     
     player.canGenerateBomb=false;
    // console.log(this.canGenerateBomb);
+}
+
+bomberman.bomberman_prefab.prototype.bombermanHit = function(){
+    gameValues.bombermanLife = gameValues.bombermanLife - 1;
+    this.body.position.x = this.initPosX;
+    this.body.position.y = this.initPosY;
+    this.animations.play('dead');
+    this.level.renderTextLives;
+    lvlMusic.stop();
+    bomberman.loadScene('transScene');
+  //  bomberman.menu.gameStart();
 }

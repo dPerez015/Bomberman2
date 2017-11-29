@@ -8,12 +8,12 @@ var gameValues={
     currentLevel:1,
     currentWorld:1,
     bombermanSpeed:50,
-    bombermanLife:1,
+    bombermanLife:3,
     bombsQuantity:1,
     bombRange:1,
     bombTimer:0,
     powerUp:0,
-    puffLife:1
+    puffScore:100,
 }
 
 

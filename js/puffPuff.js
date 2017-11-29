@@ -1,7 +1,7 @@
 var bomberman = bomberman || {};
 
 //com de moment nomes implementem un enemic li dic enemy, ja en el futur cquan implementem mes dun ho canviem
-bomberman.puffPuff = function(game,x,y,speed,direction,level,score){
+bomberman.puffPuff = function(game,x,y,speed,direction,level){
     Phaser.Sprite.call(this,game,x,y,'puff');
     this.game.add.existing(this);
     this.anchor.setTo(.5);
@@ -15,8 +15,7 @@ bomberman.puffPuff = function(game,x,y,speed,direction,level,score){
     this.direction = direction;
     this.level = level;
     this.hp = 1;
-    console.log(this.hp);
-    this.score = score;
+    this.score = gameValues.puffScore;
     this.isHit = false;
     this.game.physics.arcade.enable(this);
     this.body.setSize(16, 16, 0, 16);
@@ -70,21 +69,16 @@ bomberman.puffPuff.prototype.update = function(){
         this.changeDirection();
     } 
 
-   // this.game.physics.arcade.overlap(this, this.level.explosions, this.hit(this.hp), null, this);
     if(this.game.physics.arcade.overlap(this, this.level.explosions)){
        this.hit(this.hp);
        }
-   //if(this.level.checkOverlap())
+
 };
 
 bomberman.puffPuff.prototype.changeDirection = function(){
-   // console.log("calcul de canvi de direccio");
-        var arrayDir = ['up', 'down', 'left', 'right'];
-        /*for(var i = 0; i < arrayDir.length; i++){
-            if(arrayDir[i] == this.direction) {arrayDir.pop();}
-        }*/
-        this.direction = arrayDir[Math.floor(Math.random() * arrayDir.length)];
-        return this.direction;
+    var arrayDir = ['up', 'down', 'left', 'right'];
+    this.direction = arrayDir[Math.floor(Math.random() * arrayDir.length)];
+    return this.direction;
 };
 
 bomberman.puffPuff.prototype.hit = function(Number){
@@ -94,6 +88,12 @@ bomberman.puffPuff.prototype.hit = function(Number){
         //console.log("en el bucle" + this.hp);
         this.animations.play('killPuff');
         this.destroy();
+        this.showScore();
     }
     return this.hp;
 };
+
+bomberman.puffPuff.prototype.showScore = function(){
+    var textPuffScore = this.level.add.text(this.x, this.y, "+ " + gameValues.puffScore, this.level.style);
+    this.level.renderScore(gameValues.puffScore);
+}
