@@ -93,8 +93,7 @@ bomberman.level = {
         };
         
             //---score----//
-        this.textScore = this.game.add.text(50, 3, "00000", this.style);
-        this.score = 0;        
+        this.textScore = this.game.add.text(50, 3, gameValues.score, this.style);       
             //---timer----//
         this.textTimer = this.game.add.text(160, 3, "2:00", this.style);
         this.game.time.events.loop(Phaser.Timer.SECOND, this.updateTimer, this);
@@ -103,9 +102,9 @@ bomberman.level = {
             //--lives----//
         this.textLives = this.game.add.text(235, 3, this.player.lives, this.style);
             //---numbBombs----//
-        this.textNumBombs = this.game.add.text(270,3, 5, this.style);
+        this.textNumBombs = this.game.add.text(270,3, gameValues.bombsQuantity, this.style);
             //---range----//
-        this.textRange = this.game.add.text(300, 3, "Y", this.style);
+        this.textRange = this.game.add.text(300, 3, gameValues.bombRange, this.style);
         
         //MUSIC
         lvlMusic = this.add.audio('Lvl1_music');
@@ -188,8 +187,12 @@ bomberman.level = {
     
     renderScore:function(Number){
         var nScore = Number;
-        this.score += nScore;
-        this.textScore.setText(this.score);
-    }
+        gameValues.score += nScore;
+        this.textScore.setText(gameValues.score);
+    },
     
+    renderRange:function(){
+        this.textRange.setText(gameValues.bombRange);
+    },
+
 }

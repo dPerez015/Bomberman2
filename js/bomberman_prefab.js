@@ -2,11 +2,9 @@ var bomberman = bomberman || {};
 
 bomberman.bomberman_prefab = function(game, x, y, _currLevel){
   Phaser.Sprite.call(this, game, x, y, 'Bomberman');
-  //this.game.add.existing(this);
   this.anchor.setTo(.5);
   //this.scale.setTo(2);
-  //Hauriem de mirar si hi ha alguna manera de fer una funció que retorni l'animació
- this.animations.add('walk_up',[0,1,2],10,true);
+  this.animations.add('walk_up',[0,1,2],10,true);
   this.animations.add('walk_left',[10,11,12],10,true);
   this.animations.add('walk_down',[20,21,22],10,true);
   this.animations.add('walk_right',[30,31,32],10,true);
