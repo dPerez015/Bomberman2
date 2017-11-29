@@ -74,7 +74,10 @@ bomberman.level = {
         //CHARACTERS
             //---First enemy: puffpuff---//
         this.puff = new bomberman.puffPuff(this.game,(this.bg.getTileX(75)*16)+8,
-        9*16, 0.2,'right',this, 100);//constructor enemy puffpuff
+        5*16, 0.2,'right',this);//constructor enemy puffpuff
+        
+        this.puff2 = new bomberman.puffPuff(this.game,(this.bg.getTileX(75)*16)+8,
+        10*17, 0.2, 'up', this);
  
             //---player----//
         this.player = new bomberman.bomberman_prefab(this.game, (9*16)-8,(9*16)+8, this);
@@ -90,8 +93,8 @@ bomberman.level = {
         };
         
             //---score----//
-      //  this.textScore = this.game.add()
-        
+        this.textScore = this.game.add.text(50, 3, "00000", this.style);
+        this.score = 0;        
             //---timer----//
         this.textTimer = this.game.add.text(160, 3, "2:00", this.style);
         this.game.time.events.loop(Phaser.Timer.SECOND, this.updateTimer, this);
@@ -181,6 +184,12 @@ bomberman.level = {
     
     renderTextLives:function(){
         this.textLives.setText(this.player.lives);
-    },    
+    },
+    
+    renderScore:function(Number){
+        var nScore = Number;
+        this.score += nScore;
+        this.textScore.setText(this.score);
+    }
     
 }
