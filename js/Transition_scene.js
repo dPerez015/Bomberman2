@@ -13,6 +13,17 @@ bomberman.Transicion_scene = {
         this.mainImage = this.add.image(this.game.world.centerX, this.game.world.centerY, 'lvl1-1');
         this.mainImage.scale.setTo(0.5);
         this.mainImage.anchor.setTo(0.5);
+        
+        
+        /*this.textMen = this.game.add.text(this.game.world.centerX -1, this.game.world.centerY, gameValues.currentLevel, {
+        font: "fonts/ARCADECLASSIC.ttf",
+        fill: "white",
+        align: "center"
+    });
+        this.textMen.scale.setTo(15);
+        this.textMen.anchor.setTo(0.5);
+        
+        */
         this.timer = 200;
         
         music = this.game.add.audio('Stage_change_music');
