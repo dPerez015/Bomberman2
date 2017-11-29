@@ -112,7 +112,7 @@ bomberman.level = {
     
     update:function(){
         this.game.debug.body(this.puff);
-        this.physics.arcade.collide(this.destruibles,this.player,this.choquemuro,null,this);
+        this.physics.arcade.collide(this.destruibles,this.explosions,this.choquemuro,null,this);
         this.physics.arcade.collide(this.imanes,this.player);
         this.game.debug.body(this.player);
     },   
@@ -157,9 +157,10 @@ bomberman.level = {
         });
         return result;
     },
-    choquemuro:function(player,muro){
+    choquemuro:function(muro,explosion){
         //console.log(muro);
         muro.breakBlock();
+        explosion.kill();
     },
     
     updateTimer:function(){
