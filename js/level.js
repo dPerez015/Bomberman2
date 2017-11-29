@@ -74,7 +74,7 @@ bomberman.level = {
         //CHARACTERS
             //---First enemy: puffpuff---//
         this.puff = new bomberman.puffPuff(this.game,(this.bg.getTileX(75)*16)+8,
-        9*16, 0.2,'right',this, 1, 100);//constructor enemy puffpuff
+        9*16, 0.2,'right',this, 100);//constructor enemy puffpuff
  
             //---player----//
         this.player = new bomberman.bomberman_prefab(this.game, (9*16)-8,(9*16)+8, this);
@@ -107,8 +107,7 @@ bomberman.level = {
         //MUSIC
         lvlMusic = this.add.audio('Lvl1_music');
         lvlMusic.play();
-         lvlMusic.loop = true;
-    console.debug(this.destruibles);
+        lvlMusic.loop = true;
     },
     
     update:function(){

@@ -1,7 +1,7 @@
 var bomberman = bomberman || {};
 
 //com de moment nomes implementem un enemic li dic enemy, ja en el futur cquan implementem mes dun ho canviem
-bomberman.puffPuff = function(game,x,y,speed,direction,level, hp, score){
+bomberman.puffPuff = function(game,x,y,speed,direction,level,score){
     Phaser.Sprite.call(this,game,x,y,'puff');
     this.game.add.existing(this);
     this.anchor.setTo(.5);
@@ -9,13 +9,15 @@ bomberman.puffPuff = function(game,x,y,speed,direction,level, hp, score){
     this.animations.add('walkLeft',[3,4,5], 10, true);
     this.animations.add('walkUp', [6,7,8], 10, true);
     this.animations.add('walkRight',[10,11,12], 10, true);
-    this.animations.add('kill', [9], 1, true);
+    this.animations.add('killPuff', [9], 1, true);
 
     this.speed = speed;
     this.direction = direction;
     this.level = level;
-    this.hp = hp;
+    this.hp = 1;
+    console.log(this.hp);
     this.score = score;
+    this.isHit = false;
     this.game.physics.arcade.enable(this);
     this.body.setSize(16, 16, 0, 16);
 
@@ -68,10 +70,11 @@ bomberman.puffPuff.prototype.update = function(){
         this.changeDirection();
     } 
 
-   // this.game.physics.arcade.overlap(this, this.game.level.exploid_Prefab, this.hit(), null,this);
-
- //   console.log(this.direction);
-    
+   // this.game.physics.arcade.overlap(this, this.level.explosions, this.hit(this.hp), null, this);
+    if(this.game.physics.arcade.overlap(this, this.level.explosions)){
+       this.hit(this.hp);
+       }
+   //if(this.level.checkOverlap())
 };
 
 bomberman.puffPuff.prototype.changeDirection = function(){
@@ -84,10 +87,13 @@ bomberman.puffPuff.prototype.changeDirection = function(){
         return this.direction;
 };
 
-bomberman.puffPuff.prototype.hit = function(){
+bomberman.puffPuff.prototype.hit = function(Number){
     this.hp --;
+    //console.log("la vida es" + this.hp);
     if(this.hp == 0){
-        this.animations.play('kill');
-        this.puffPuff.destroy();
+        //console.log("en el bucle" + this.hp);
+        this.animations.play('killPuff');
+        this.destroy();
     }
+    return this.hp;
 };

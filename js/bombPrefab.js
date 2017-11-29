@@ -115,7 +115,6 @@ bomberman.bombPrefab.prototype.explosion = function(){
     
     
     this.kill();
-    
 };
 
 bomberman.bombPrefab.prototype.update = function (){
