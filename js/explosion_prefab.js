@@ -11,6 +11,7 @@ bomberman.explosion_prefab = function(game,x,y, type){
     this.animations.add('Vertical_explosion', [4,12,20,28,36], 10, true);
     this.animations.add('Horizontal_explosion', [5,13,21,29,37], 10, true);
     this.animations.add('PowerUp_explosion', [7,15,23,31,39], 10, true);
+    this.game.physics.arcade.enable(this);
     this.resetExplosion = function(x, y, type){
         
     this.reset(x,y);
