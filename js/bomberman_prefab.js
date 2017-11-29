@@ -1,6 +1,6 @@
 var bomberman = bomberman || {};
 
-bomberman.bomberman_prefab = function(game, x, y, _currLevel, _win){
+bomberman.bomberman_prefab = function(game, x, y, _currLevel){
   Phaser.Sprite.call(this, game, x, y, 'Bomberman');
   //this.game.add.existing(this);
   this.anchor.setTo(.5);
@@ -40,13 +40,15 @@ bomberman.bomberman_prefab = function(game, x, y, _currLevel, _win){
   this.isRight = false; 
   this.isUp = false;
   this.DownDir = false;    
-  this.hasWon = _win;
+  this.hasWon = false;
 
   //vidas
     this.lives=2;
   //bomb generator 
     this.canGenerateBomb = true;
     this.recentlyPlacedBomb=false;
+    
+    this.range=gameValues.bombRange;
     
 }
 
@@ -134,7 +136,6 @@ bomberman.bomberman_prefab.prototype.update = function(){
         this.createBomb();
     }
    
-         
 
 }
 
@@ -149,6 +150,7 @@ bomberman.bomberman_prefab.prototype.createBomb = function(){
     }
     else{
        this.recentlyPlacedBomb.reset((this.level.bg.getTileX(this.body.position.x)*16)+8,(this.level.bg.getTileY(this.body.position.y)*16)+8);
+        this.recentlyPlacedBomb.animations.play('stand');
     }
 }
 

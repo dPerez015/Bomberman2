@@ -6,7 +6,7 @@ bomberman.imanPrefab=function(game,x,y,rot){
     this.game.physics.arcade.enable(this);
     this.body.immovable=true;
     this.trigger=new Phaser.Physics.Arcade.Body(this);
-    console.log(this.trigger);
+    //console.log(this.trigger);
     this.trigger.setSize(32,32,0,0);
 }
 

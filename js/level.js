@@ -1,4 +1,4 @@
-var bomberman = bomberman || {};
+ var bomberman = bomberman || {};
 
 var lvlMusic;
 
@@ -18,7 +18,6 @@ bomberman.level = {
 
         this.load.spritesheet('Bomberman', 'img/Bomberman.png', 16, 32);
         this.load.spritesheet('puff', 'img/puff.png', 17, 24);
-
         this.load.spritesheet('bomb', 'img/bomb.png', 16, 16);
         this.load.spritesheet('explosions', 'img/explosion.png', 16, 16);
         this.load.spritesheet('destruible','img/wall_destroyable.png',16,16);
@@ -64,6 +63,9 @@ bomberman.level = {
         //Bombas
         this.bombas=this.game.add.group();
         
+        //explosiones
+        this.explosions=this.game.add.group();
+
         //INPUTS
         this.cursors = this.game.input.keyboard.createCursorKeys();
         this.space = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
@@ -75,7 +77,7 @@ bomberman.level = {
         9*16, 0.2,'right',this, 1, 100);//constructor enemy puffpuff
  
             //---player----//
-        this.player = new bomberman.bomberman_prefab(this.game, 9*16,9*16, this, gameValues.hasWon);
+        this.player = new bomberman.bomberman_prefab(this.game, (9*16)-8,(9*16)+8, this);
         this.game.add.existing(this.player);
         
         
