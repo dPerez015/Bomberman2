@@ -57,7 +57,7 @@ bomberman.bomberman_prefab = function(game, x, y, _currLevel){
                 gameValues.bombermanSpeed = +1;
                 break;
             case 2:
-                gameValues.bombsQuantity = +1:
+                gameValues.bombsQuantity = +1;
                 break;
             case 3:
                 gameValues.bombRange = +1;
