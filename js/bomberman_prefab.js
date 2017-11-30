@@ -27,7 +27,7 @@ bomberman.bomberman_prefab = function(game, x, y, _currLevel){
   this.animations.add('throw_bomb_down',[32,33],10,true);
   this.animations.add('throw_bomb_right',[34,35],10,true);*/
   this.animations.add('damage_before_dead',[130,131,132,133],10,true);
-  this.animations.add('dead',[140,141,142,143,144],10,true);
+  this.animations.add('dead',[140,141,142,143,144],1,true);
   this.animations.add('win',[270,271,272],10,true);
   this.game.physics.arcade.enable(this);
   this.body.setSize(10,8,3,21);
@@ -82,10 +82,10 @@ bomberman.bomberman_prefab.prototype.update = function(){
     this.game.physics.arcade.overlap(this,this.recentlyPlacedBomb,this.onBomb);
     
     //collisions enemics i explosions
-    if(this.game.physics.arcade.overlap(this,this.level.puff) || this.game.physics.arcade.overlap(this,this.level.explosions))
+   /* if(this.game.physics.arcade.overlap(this,this.level.puff) || this.game.physics.arcade.overlap(this,this.level.explosions))
        {    
-           this.animations.play('dead',10,false,true);
-           this.bombermanHit()};
+           this.animations.play('dead',10,false,true, false);
+           this.bombermanHit()};*/
 
         if(this.level.cursors.left.isDown){
             this.body.velocity.y=0;
@@ -173,11 +173,16 @@ bomberman.bomberman_prefab.prototype.onBomb=function(player,bomb){
 
 bomberman.bomberman_prefab.prototype.bombermanHit = function(){
     gameValues.bombermanLife = gameValues.bombermanLife - 1;
-    this.body.position.x = this.initPosX;
-    this.body.position.y = this.initPosY;
-    this.animations.play('dead');
+    /*this.body.position.x = this.initPosX;
+    this.body.position.y = this.initPosY;*/
+    this.animations.play('dead', null, false, true);
     this.level.renderTextLives;
-    lvlMusic.stop();
-    bomberman.loadScene('transScene');
-  //  bomberman.menu.gameStart();
+
+    if(gameValues.bombermanLife < 0){
+        lvlMusic.stop()
+        bomberman.loadScene('menu');
+    }else{
+        lvlMusic.stop();
+        bomberman.loadScene('transScene');
+    }
 }

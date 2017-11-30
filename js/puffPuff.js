@@ -3,7 +3,7 @@ var bomberman = bomberman || {};
 //com de moment nomes implementem un enemic li dic enemy, ja en el futur cquan implementem mes dun ho canviem
 bomberman.puffPuff = function(game,x,y,speed,direction,level){
     Phaser.Sprite.call(this,game,x,y,'puff');
-    this.game.add.existing(this);
+    this.game.add.existing(this);//renderitza wey
     this.anchor.setTo(.5);
     this.animations.add('walkDown',[0,1,2],10,true);
     this.animations.add('walkLeft',[3,4,5], 10, true);
@@ -18,6 +18,8 @@ bomberman.puffPuff = function(game,x,y,speed,direction,level){
     this.score = gameValues.puffScore;
     this.isHit = false;
     this.game.physics.arcade.enable(this);
+    this.body.velocity.x = this.speed;
+    this.body.velocity.y = this.speed;
     this.body.setSize(16, 16, 0, 16);
 
 };
@@ -31,7 +33,30 @@ bomberman.puffPuff.prototype.update = function(){
     this.game.physics.arcade.collide(this,this.level.destruibles);
     this.game.physics.arcade.collide(this,this.level.bombas);
     
-    switch(this.direction){
+    if(this.game.physics.arcade.overlap(this,this.level.player)){
+        this.level.player.bombermanHit();
+    }
+    
+    if((this.body.blocked.up || this.body.touching.up) && this.direction == 'up'){
+        this.changeDirection();
+    } else if((this.body.blocked.down || this.body.touching.down) && this.direction == 'down'){
+        this.changeDirection();
+    } else if((this.body.blocked.right || this.body.touching.right) && this.direction == 'right'){
+        this.changeDirection();
+    } else if((this.body.blocked.left || this.body.touching.left) && this.direction == 'left'){
+        this.changeDirection();
+    } 
+
+    if(this.game.physics.arcade.overlap(this, this.level.explosions)){
+       this.hit(this.hp);
+       }
+
+};
+
+bomberman.puffPuff.prototype.changeDirection = function(){
+    var arrayDir = ['up', 'down', 'left', 'right'];
+    this.direction = arrayDir[Math.floor(Math.random() * arrayDir.length)];
+        switch(this.direction){
         case 'up':
             this.body.velocity.y -= this.speed;
             this.body.velocity.x = 0;
@@ -58,26 +83,6 @@ bomberman.puffPuff.prototype.update = function(){
             
         
     }
-    
-    if((this.body.blocked.up || this.body.touching.up) && this.direction == 'up'){
-        this.changeDirection();
-    } else if((this.body.blocked.down || this.body.touching.down) && this.direction == 'down'){
-        this.changeDirection();
-    } else if((this.body.blocked.right || this.body.touching.right) && this.direction == 'right'){
-        this.changeDirection();
-    } else if((this.body.blocked.left || this.body.touching.left) && this.direction == 'left'){
-        this.changeDirection();
-    } 
-
-    if(this.game.physics.arcade.overlap(this, this.level.explosions)){
-       this.hit(this.hp);
-       }
-
-};
-
-bomberman.puffPuff.prototype.changeDirection = function(){
-    var arrayDir = ['up', 'down', 'left', 'right'];
-    this.direction = arrayDir[Math.floor(Math.random() * arrayDir.length)];
     return this.direction;
 };
 
@@ -85,9 +90,9 @@ bomberman.puffPuff.prototype.hit = function(Number){
     this.hp --;
     //console.log("la vida es" + this.hp);
     if(this.hp == 0){
-        //console.log("en el bucle" + this.hp);
-        this.animations.play('killPuff');
-        this.destroy();
+        this.body.velocity.x = 0;
+        this.body.velocity.y = 0;
+        this.animations.play('killPuff', null, false, true);
         this.showScore();
     }
     return this.hp;

@@ -75,11 +75,10 @@ bomberman.level = {
         //CHARACTERS
             //---First enemy: puffpuff---//
         this.puff = new bomberman.puffPuff(this.game,(this.bg.getTileX(75)*16)+8,
-        5*16, 0.2,'right',this);//constructor enemy puffpuff
+        5*16, 20,'right',this);//constructor enemy puffpuff
         
-        this.puff2 = new bomberman.puffPuff(this.game,(this.bg.getTileX(75)*16)+8,
-        10*17, 0.2, 'up', this);
- 
+        this.puff2 = new bomberman.puffPuff(this.game,61,165, 20, 'down', this);
+
             //---player----//
         this.player = new bomberman.bomberman_prefab(this.game, (9*16)-8,(9*16)+8, this);
         this.game.add.existing(this.player);
@@ -114,10 +113,11 @@ bomberman.level = {
     },
     
     update:function(){
-        this.game.debug.body(this.puff);
+        this.game.debug.body(this.puff2);
         this.physics.arcade.collide(this.destruibles,this.explosions,this.choquemuro,null,this);
         this.physics.arcade.collide(this.imanes,this.player);
         this.game.debug.body(this.player);
+
     },   
 
     createDestruibles:function(state){
