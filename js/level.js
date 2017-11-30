@@ -92,10 +92,11 @@ bomberman.level = {
         
         //CHARACTERS
             //---First enemy: puffpuff---//
-        this.puff = new bomberman.puffPuff(this.game,(this.bg.getTileX(75)*16)+8,
+        this.puff = new bomberman.puffPuff(this.game,(this.bg.getTileX(55)*16)+8,
         5*16, 20,'right',this);//constructor enemy puffpuff
         
-        this.puff2 = new bomberman.puffPuff(this.game,61,165, 20, 'down', this);
+        this.puff2 = new bomberman.puffPuff(this.game,61,167, 20, 'down', this);
+        this.puff3 = new bomberman.puffPuff(this.game,200,166, 20, 'down', this);
 
             //---player----//
         this.player = new bomberman.bomberman_prefab(this.game, (9*16)-8,(9*16)+8, this);
