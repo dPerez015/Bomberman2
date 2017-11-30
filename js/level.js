@@ -86,7 +86,7 @@ bomberman.level = {
         //console.log(this.gridSolidObjects);
         
         //Door
-        this.door = new bomberman.door_prefab(this.game,(12*16)+8, 5*16, this.hasWon, this);
+        this.door = new bomberman.door_prefab(this.game,(12*16)+8, 5*16, this);
         this.game.add.existing(this.door);
         this.door.activate();
         

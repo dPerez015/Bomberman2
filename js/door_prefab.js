@@ -1,6 +1,6 @@
 var bomberman = bomberman || {};
 
-bomberman.door_prefab = function(game, x, y, _hasWon, _level){
+bomberman.door_prefab = function(game, x, y, _level){
     Phaser.Sprite.call(this, game, x, y, 'door');
     
     this.anchor.setTo(.5);
@@ -8,7 +8,6 @@ bomberman.door_prefab = function(game, x, y, _hasWon, _level){
     this.game.physics.arcade.enable(this);
     this.body.immovable=true;
     //Booleana que es tornarà true quan tots els enemics i els botons hagin sigut premuts
-    this.hasWon = _hasWon
     
     this.activate = function(hasWon){
         if(hasWon == true)
