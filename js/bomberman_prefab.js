@@ -149,6 +149,10 @@ bomberman.bomberman_prefab.prototype.update = function(){
        //  console.log(this.numBombas);
         this.createBomb();
     }
+    
+    if(this.level.minuts < 0){
+        this.bombermanHit();
+    }
    
 
 }
