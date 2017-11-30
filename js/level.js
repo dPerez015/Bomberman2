@@ -121,7 +121,7 @@ bomberman.level = {
         this.textTimer = this.game.add.text(160, 3, "2:00", this.style);
         this.game.time.events.loop(Phaser.Timer.SECOND, this.updateTimer, this);
         this.seconds = 0;
-        this.minuts = 2;
+        this.minuts = 4;
             //--lives----//
         this.textLives = this.game.add.text(235, 3, this.player.lives, this.style);
             //---numbBombs----//
