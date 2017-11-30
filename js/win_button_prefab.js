@@ -1,18 +1,28 @@
 var bomberman = bomberman || {};
 
-bomberman.win_buttons_prefab = function(game, x, y){
-    Phaser.Sprite.call(game, x, y, 'win_button');
+bomberman.win_buttons_prefab = function(game, x, y, _level){
+    Phaser.Sprite.call(this, game, x, y, 'win_button');
     
     this.anchor.setTo(.5);
-    this.animations.add('Expl_Collided', [0, 1], 10, false);
+    //this.animations.add('Expl_Collided', [0, 1], 10, false);
     this.game.physics.arcade.enable(this);
     this.body.immovable=true;
+    this.animations.frame = 1;
+    this.isActivated = false
+    this.level = _level;
     
+    this.activate = function(){
+        this.animations.frame = 0;
+        this.isActivated=true;
+        var hasWon=true;
+        this.level.botones.forEach(function(element){
+            if(!element.isActivated){
+                hasWon = false;
+            }
+        });
+    }
 }
 
-bomberman.win_buttons_prefab.prototype = Object.call(Phaser.Sprite.prototype);
+bomberman.win_buttons_prefab.prototype = Object.create(Phaser.Sprite.prototype);
 bomberman.win_buttons_prefab.prototype.constructor = bomberman.win_buttons_prefab;
 
-bomberman.win_buttons_prefab.prototype.update = function(){
-    thus.animations.play('Expl_Collided', null, false, true);
-};

@@ -69,6 +69,8 @@ bomberman.level = {
         //imanes
         this.createImanes(this);
         
+        //botones
+         this.createBotones(this);
         
         //COLLISIONS
         this.map.setCollisionBetween(1,129,true, 'ObjetosSolidos');
@@ -131,6 +133,7 @@ bomberman.level = {
         this.game.debug.body(this.puff2);
         this.physics.arcade.collide(this.destruibles,this.explosions,this.choquemuro,null,this);
         this.physics.arcade.collide(this.imanes,this.player);
+        this.physics.arcade.overlap(this.botones,this.explosions,this.activarBoton,null,this);
         this.game.debug.body(this.player);
 
     },   
@@ -167,6 +170,17 @@ bomberman.level = {
         });*/
         
     },
+    createBotones:function(state){
+        var _this = this;
+        this.botones = this.game.add.group();
+        var objArray = this.findObjectsById(99,this.map,'Interactuables')
+        var item;
+        
+        objArray.forEach(function(element){
+            item = new bomberman.win_buttons_prefab(state.game,element.x, element.y,_this);
+            state.botones.add(item);
+        });
+    },
     findObjectsById:function(id,map,layer){
         var result=new Array();
         map.objects[layer].forEach(function(element){
@@ -183,7 +197,9 @@ bomberman.level = {
         muro.breakBlock();
         explosion.kill();
     },
-    
+    activarBoton:function(boton){
+        boton.activate();  
+    },
     updateTimer:function(){
         this.seconds --;
 
