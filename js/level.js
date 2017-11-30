@@ -88,7 +88,6 @@ bomberman.level = {
         //Door
         this.door = new bomberman.door_prefab(this.game,(12*16)+8, 5*16, this);
         this.game.add.existing(this.door);
-        this.door.activate();
         
         //INPUTS
         this.cursors = this.game.input.keyboard.createCursorKeys();
