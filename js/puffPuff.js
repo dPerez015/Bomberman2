@@ -101,4 +101,5 @@ bomberman.puffPuff.prototype.hit = function(Number){
 bomberman.puffPuff.prototype.showScore = function(){
     var textPuffScore = this.level.add.text(this.x, this.y, "+ " + gameValues.puffScore, this.level.style);
     this.level.renderScore(gameValues.puffScore);
+    this.level.time.events.add(2000, function() {  this.level.add.tween(textPuffScore).to({y: 0}, 1500, Phaser.Easing.Linear.None, true);   this.level.add.tween(textPuffScore).to({alpha: 0}, 1500, Phaser.Easing.Linear.None, true);}, this);
 }

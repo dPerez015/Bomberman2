@@ -83,10 +83,10 @@ bomberman.bomberman_prefab.prototype.update = function(){
     this.game.physics.arcade.overlap(this,this.recentlyPlacedBomb,this.onBomb);
     
     //collisions enemics i explosions
-   /* if(this.game.physics.arcade.overlap(this,this.level.puff) || this.game.physics.arcade.overlap(this,this.level.explosions))
+    if(this.game.physics.arcade.overlap(this,this.level.explosions))
        {    
-           this.animations.play('dead',10,false,true, false);
-           this.bombermanHit()};*/
+           this.bombermanHit();
+       }
 
         if(this.level.cursors.left.isDown){
             this.body.velocity.y=0;
