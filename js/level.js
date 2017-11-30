@@ -242,5 +242,9 @@ bomberman.level = {
     renderRange:function(){
         this.textRange.setText(gameValues.bombRange);
     },
+    
+    renderNumBobs:function(){
+        this.textNumBombs.setText(gameValues.bombsQuantity);
+    },
 
 }
