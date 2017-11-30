@@ -24,7 +24,7 @@ bomberman.level = {
         this.load.spritesheet('iman','img/iman.png',16,16);
         this.load.spritesheet('upgrade','img/Upgrades_Bomberman.png', 16, 16);
         this.load.spritesheet('win_button', 'img/Victory_Button.png', 13, 14);
-        this.load.spritesheet('door', 'img/Bomberman_Gate.png', 23, 25);
+        this.load.spritesheet('door', 'img/Bomberman_Gate.png', 32, 32);
         
         //mapa
         this.load.tilemap('level1-1','maps/lvl1-1.JSON', null, Phaser.Tilemap.TILED_JSON);
@@ -86,7 +86,7 @@ bomberman.level = {
         //console.log(this.gridSolidObjects);
         
         //Door
-        this.door = new bomberman.door_prefab(this.game,(12*16)+8, 5*16, this);
+        this.door = new bomberman.door_prefab(this.game,(12*16)+8, 4*16, this);
         this.game.add.existing(this.door);
         
         //INPUTS

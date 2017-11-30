@@ -54,6 +54,7 @@ bomberman.bomberman_prefab = function(game, x, y, _currLevel){
                 break;
             case 1:
                 gameValues.bombsQuantity += 1;
+                this.numBombas++;
                 this.level.renderNumBobs();
                 break;
             case 2:
