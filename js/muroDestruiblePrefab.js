@@ -17,7 +17,7 @@ bomberman.muroDestruiblePrefab=function (game,x,y,level){
     };
     this.generateUpgrade=function(){
         var rand=Math.floor(Math.random()*90);
-        if(true){
+        if(if(rand<9)){
             if(rand<3){
                 var item = new bomberman.upgrades_prefab(this.game,this.body.x,this.body.y,1);
                 this.level.upgrades.add(item);
