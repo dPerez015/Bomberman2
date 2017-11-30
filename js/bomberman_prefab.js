@@ -44,7 +44,7 @@ bomberman.bomberman_prefab = function(game, x, y, _currLevel){
   //bomb generator 
     this.canGenerateBomb = true;
     this.recentlyPlacedBomb=false;
-    
+    this.numBombas=gameValues.bombsQuantity;
     this.range=gameValues.bombRange;
     
     //guardo la posicio inicial on ha de respawnejar
@@ -53,14 +53,15 @@ bomberman.bomberman_prefab = function(game, x, y, _currLevel){
     
     this.upgradeBomb = function(type){
         switch(type){
+            case 3:
+                gameValues.bombermanSpeed += 10;
+                break;
             case 1:
-                gameValues.bombermanSpeed = +1;
+                gameValues.bombsQuantity += 1;
+                this.numBombas++;
                 break;
             case 2:
-                gameValues.bombsQuantity = +1;
-                break;
-            case 3:
-                gameValues.bombRange = +1;
+                gameValues.bombRange +=1;
                 break;
             default:
                 break;
@@ -75,7 +76,7 @@ bomberman.bomberman_prefab.prototype.constructor = bomberman.bomberman_prefab;
 
 bomberman.bomberman_prefab.prototype.update = function(){
     this.game.physics.arcade.collide(this,this.level.walls);
-   // this.game.physics.arcade.collide(this,this.level.destroy);
+    this.game.physics.arcade.collide(this,this.level.destruibles);
     this.game.physics.arcade.collide(this,this.level.bombas);
     this.canGenerateBomb=true;
     
@@ -143,7 +144,9 @@ bomberman.bomberman_prefab.prototype.update = function(){
             this.recentlyPlacedBomb=false;
         }
     }
-    if(this.level.space.isDown && this.canGenerateBomb){
+   // console.log(this.numBombas)
+    if(this.level.space.isDown && this.canGenerateBomb && this.numBombas>0){
+       //  console.log(this.numBombas);
         this.createBomb();
     }
    
@@ -152,17 +155,16 @@ bomberman.bomberman_prefab.prototype.update = function(){
 
 bomberman.bomberman_prefab.prototype.createBomb = function(){
 
-    this.canGenerateBomb = false;
-   
+    this.canGenerateBomb = false; 
     this.recentlyPlacedBomb=this.level.bombas.getFirstExists(false);
     if(!this.recentlyPlacedBomb){
-        
         this.recentlyPlacedBomb= new bomberman.bombPrefab(this.game,(this.level.bg.getTileX(this.body.position.x)*16)+8,(this.level.bg.getTileY(this.body.position.y)*16)+8,gameValues.bombRange,this.level);
     }
     else{
-       this.recentlyPlacedBomb.reset((this.level.bg.getTileX(this.body.position.x)*16)+8,(this.level.bg.getTileY(this.body.position.y)*16)+8);
+       this.recentlyPlacedBomb.bombReset((this.level.bg.getTileX(this.body.position.x)*16)+8,(this.level.bg.getTileY(this.body.position.y)*16)+8,gameValues.bombRange);
         this.recentlyPlacedBomb.animations.play('stand');
     }
+     this.numBombas--;
 }
 
 bomberman.bomberman_prefab.prototype.onBomb=function(player,bomb){

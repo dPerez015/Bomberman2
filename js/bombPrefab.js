@@ -10,6 +10,7 @@ bomberman.bombPrefab = function (game, x, y, range, level){
     this.player=level.player;
     this.level=level;
     this.range = range;
+    console.log(range);
     this.game = game;
    // this.timing = timing;
 
@@ -17,6 +18,10 @@ bomberman.bombPrefab = function (game, x, y, range, level){
     this.isExploding = false;
     
     this.animations.play('stand');
+    this.bombReset=function(x,y,range){
+        this.range=range;
+        this.reset(x,y);
+    }
 };
 
 bomberman.bombPrefab.prototype = Object.create(Phaser.Sprite.prototype);
@@ -37,8 +42,9 @@ bomberman.bombPrefab.prototype.generateExplosion = function(x,y,type){
 
 bomberman.bombPrefab.prototype.explosion = function(){
     this.isExploding = false;
+    //le devolvemos la bomba al jugador
+    this.player.numBombas++;
     //explosion centro
-    
     this.generateExplosion(this.body.position.x,this.body.position.y,0)
     //explosiones del medio
     var canGoRight=true;

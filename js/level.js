@@ -22,7 +22,7 @@ bomberman.level = {
         this.load.spritesheet('explosions', 'img/explosion.png', 16, 16);
         this.load.spritesheet('destruible','img/wall_destroyable.png',16,16);
         this.load.spritesheet('iman','img/iman.png',16,16);
-        this.load.spritesheet('upgrade','img/Upgrades_Bomberman.png', 69, 66);
+        this.load.spritesheet('upgrade','img/Upgrades_Bomberman.png', 16, 16);
         this.load.spritesheet('win_button', 'img/Victory_Button.png', 13, 14);
         this.load.spritesheet('door', 'img/Bomberman_Gate.png', 23, 25);
         
@@ -81,7 +81,8 @@ bomberman.level = {
         //explosiones
         this.explosions=this.game.add.group();
         
-        
+        //Upgrades
+        this.upgrades=this.game.add.group();
         //console.log(this.gridSolidObjects);
 
         //INPUTS
@@ -130,11 +131,12 @@ bomberman.level = {
     },
     
     update:function(){
-        this.game.debug.body(this.puff2);
+        //this.game.debug.body(this.puff2);
         this.physics.arcade.collide(this.destruibles,this.explosions,this.choquemuro,null,this);
         this.physics.arcade.collide(this.imanes,this.player);
         this.physics.arcade.overlap(this.botones,this.explosions,this.activarBoton,null,this);
-        this.game.debug.body(this.player);
+        //this.game.debug.body(this.player);
+        this.physics.arcade.overlap(this.upgrades,this.player,this.cogerUpgrade,null,this);
 
     },   
 
@@ -155,6 +157,7 @@ bomberman.level = {
     createImanes:function(state){
         var _this=this;
         this.imanes=this.game.add.group();
+        this.imanesTrigger=this.game.add.group();
         var objArray=this.findObjectsById(92,this.map,'Interactuables');
         var item
         //arriba
@@ -199,6 +202,11 @@ bomberman.level = {
     },
     activarBoton:function(boton){
         boton.activate();  
+    },
+    cogerUpgrade:function(player,upgrade){
+        console.log(player);
+        player.upgradeBomb(upgrade.upType);
+        upgrade.destroy();
     },
     updateTimer:function(){
         this.seconds --;
