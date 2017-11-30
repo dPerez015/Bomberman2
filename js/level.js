@@ -73,7 +73,7 @@ bomberman.level = {
          this.createBotones(this);
         
         //COLLISIONS
-        this.map.setCollisionBetween(1,129,true, 'ObjetosSolidos');
+        this.map.setCollisionBetween(1,300,true, 'ObjetosSolidos');
 
         //Bombas
         this.bombas=this.game.add.group();
@@ -244,6 +244,10 @@ bomberman.level = {
     
     renderRange:function(){
         this.textRange.setText(gameValues.bombRange);
+    },
+    
+    renderNumBobs:function(){
+        this.textNumBombs.setText(gameValues.bombsQuantity);
     },
 
 }

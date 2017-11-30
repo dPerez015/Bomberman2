@@ -47,10 +47,6 @@ bomberman.bomberman_prefab = function(game, x, y, _currLevel){
     this.numBombas=gameValues.bombsQuantity;
     this.range=gameValues.bombRange;
     
-    //guardo la posicio inicial on ha de respawnejar
-    this.initPosX = x;
-    this.initPosY = y;
-    
     this.upgradeBomb = function(type){
         switch(type){
             case 3:
@@ -58,10 +54,11 @@ bomberman.bomberman_prefab = function(game, x, y, _currLevel){
                 break;
             case 1:
                 gameValues.bombsQuantity += 1;
-                this.numBombas++;
+                this.level.renderNumBobs();
                 break;
             case 2:
                 gameValues.bombRange +=1;
+                this.level.renderRange();
                 break;
             default:
                 break;
