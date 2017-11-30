@@ -84,7 +84,11 @@ bomberman.level = {
         //Upgrades
         this.upgrades=this.game.add.group();
         //console.log(this.gridSolidObjects);
-
+        
+        //Door
+        this.door = new bomberman.door_prefab(this.game,(12*16)+8, 5*16, this.hasWon, this);
+        this.game.add.existing(this.door);
+        
         //INPUTS
         this.cursors = this.game.input.keyboard.createCursorKeys();
         this.space = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
