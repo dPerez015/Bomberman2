@@ -14,10 +14,10 @@ bomberman.win_buttons_prefab = function(game, x, y, _level){
     this.activate = function(){
         this.animations.frame = 0;
         this.isActivated=true;
-        var hasWon=true;
+        //this.level.hasWon = false;
         this.level.botones.forEach(function(element){
             if(!element.isActivated){
-                hasWon = false;
+                this.level.hasWon = true;
             }
         });
     }

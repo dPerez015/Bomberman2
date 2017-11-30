@@ -8,12 +8,11 @@ bomberman.door_prefab = function(game, x, y, _hasWon, _level){
     this.game.physics.arcade.enable(this);
     this.body.immovable=true;
     //Booleana que es tornarà true quan tots els enemics i els botons hagin sigut premuts
-    this.hasWon = _hasWon;
+    this.hasWon = _hasWon
     
-    this.activate = function(){
-        if(this.hasWon == true){
+    this.activate = function(hasWon){
+        if(hasWon == true)
             this.animations.play('Open_Door');
-        }
     }
 }
 

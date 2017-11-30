@@ -88,6 +88,7 @@ bomberman.level = {
         //Door
         this.door = new bomberman.door_prefab(this.game,(12*16)+8, 5*16, this.hasWon, this);
         this.game.add.existing(this.door);
+        this.door.activate();
         
         //INPUTS
         this.cursors = this.game.input.keyboard.createCursorKeys();
@@ -207,6 +208,8 @@ bomberman.level = {
     },
     activarBoton:function(boton){
         boton.activate();  
+        this.hasWon = true;
+        this.door.activate(this.hasWon);
     },
     cogerUpgrade:function(player,upgrade){
         console.log(player);
