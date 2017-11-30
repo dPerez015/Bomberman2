@@ -3,7 +3,13 @@ var bomberman = bomberman || {};
 var music;
 
 bomberman.Transicion_scene = {
-    
+        
+    init:function(){
+        this.scale.scaleMode=Phaser.ScaleManager.SHOW_ALL;
+        this.scale.setGameSize(gameValues.MenuWidth,gameValues.MenuHeight);
+        this.scale.pageAlignHorizontally = true;  
+        this.scale.pageAlignVertically = true;
+    },
     preload:function(){
         this.load.image('lvl1-1', 'img/scene1-1.png');
         this.load.audio('Stage_change_music', 'sound/Stage-Start_soundtrack.mp3');
