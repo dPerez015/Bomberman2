@@ -49,9 +49,14 @@ bomberman.bombPrefab.prototype.explosion = function(){
     while(i<this.range){
      //arriba
         if(canGoUp){
-            console.log("caca");
-            if(this.level.map.getTile(this.body.position.x/16,(this.body.position.y/16)-i,this.level.walls)==null){
-                this.generateExplosion(this.body.position.x,this.body.position.y-(16*i),5);
+         //   console.log(this.level);
+            if(this.level.map.getTile(this.body.position.x/16,(this.body.position.y/16)-i,this.level.walls)==null ){
+                if(this.level.gridSolidObjects[this.level.bg.getTileX(this.body.x)][this.level.bg.getTileY(this.body.y)-i]!=1)
+                    this.generateExplosion(this.body.position.x,this.body.position.y-(16*i),5);
+                else{
+                    this.generateExplosion(this.body.position.x,this.body.position.y-(16*i),5);
+                    canGoUp=false;
+                }
             } 
             else{
                 canGoUp=false;
@@ -60,7 +65,12 @@ bomberman.bombPrefab.prototype.explosion = function(){
     //Derecha
         if(canGoRight){
              if(this.level.map.getTile((this.body.position.x/16)+i,(this.body.position.y/16),this.level.walls)==null){
-                this.generateExplosion(this.body.position.x+(16*i),this.body.position.y,6);
+                 if(this.level.gridSolidObjects[this.level.bg.getTileX(this.body.x)+i][this.level.bg.getTileY(this.body.y)]!=1)
+                    this.generateExplosion(this.body.position.x+(16*i),this.body.position.y,6);
+                 else{
+                     this.generateExplosion(this.body.position.x+(16*i),this.body.position.y,6);
+                    canGoRight=false;
+                 }
             }
             else{
                 canGoRight=false;
@@ -69,7 +79,12 @@ bomberman.bombPrefab.prototype.explosion = function(){
     //Izquierda
         if(canGoLeft){
              if(this.level.map.getTile((this.body.position.x/16)-i,(this.body.position.y/16),this.level.walls)==null){
-                this.generateExplosion(this.body.position.x-(16*i),this.body.position.y,6);
+                 if(this.level.gridSolidObjects[this.level.bg.getTileX(this.body.x)-i][this.level.bg.getTileY(this.body.y)]!=1)
+                     this.generateExplosion(this.body.position.x-(16*i),this.body.position.y,6);
+                  else{
+                    this.generateExplosion(this.body.position.x-(16*i),this.body.position.y,6);
+                    canGoLeft=false;
+                 }
             }
             else{
                 canGoLeft=false;
@@ -77,8 +92,13 @@ bomberman.bombPrefab.prototype.explosion = function(){
         }
     //abajo
         if(canGoDown){
-             if(this.level.map.getTile((this.body.position.x/16),(this.body.position.y/16)+i,this.level.walls)==null){
-                this.generateExplosion(this.body.position.x,this.body.position.y+(16*i),5);
+             if(this.level.map.getTile((this.body.position.x/16),(this.body.position.y/16)+i,this.level.walls)==null){ 
+                 if(this.level.gridSolidObjects[this.level.bg.getTileX(this.body.x)][this.level.bg.getTileY(this.body.y)+i]!=1)
+                     this.generateExplosion(this.body.position.x,this.body.position.y+(16*i),5);
+                 else{
+                     this.generateExplosion(this.body.position.x,this.body.position.y+(16*i),5);
+                     canGoDown=false;
+                 }
             }
             else{
                 canGoDown=false;

@@ -53,6 +53,16 @@ bomberman.level = {
         //this.destroy=this.map.createLayer('ObjetosDestruibles');
         this.anim=this.map.createLayer('BackgroundAnimated');
         
+        //grid explosiones
+        this.gridSolidObjects=[];
+        for(var i=0; i<this.map.width;i++){
+            var arry=[];
+            for(var j=0;j<this.map.height;j++){
+                arry.push(0);
+            }
+            this.gridSolidObjects.push(arry);
+        }
+        
         //bloques
         this.createDestruibles(this); 
 
@@ -68,6 +78,9 @@ bomberman.level = {
         
         //explosiones
         this.explosions=this.game.add.group();
+        
+        
+        //console.log(this.gridSolidObjects);
 
         //INPUTS
         this.cursors = this.game.input.keyboard.createCursorKeys();
@@ -123,19 +136,21 @@ bomberman.level = {
     },   
 
     createDestruibles:function(state){
-        
+        var _this=this;
         this.destruibles = this.game.add.group();
         var objArray=this.findObjectsById(4,this.map,'ObjetosDestruibles');
         var item;
         objArray.forEach(function(elem){
-            
-            item=new bomberman.muroDestruiblePrefab(state.game,elem.x, elem.y);
+        
+            item=new bomberman.muroDestruiblePrefab(state.game,elem.x, elem.y,_this);
             //this.game.physics.arcade.enable(item);
+            _this.gridSolidObjects[_this.bg.getTileX(elem.x)][_this.bg.getTileY(elem.y)]=1;
             state.destruibles.add(item);
         });
         
     },
     createImanes:function(state){
+        var _this=this;
         this.imanes=this.game.add.group();
         var objArray=this.findObjectsById(92,this.map,'Interactuables');
         var item
@@ -143,6 +158,7 @@ bomberman.level = {
         objArray.forEach(function(element){
            item=new bomberman.imanPrefab(state.game,element.x,element.y,0);
             state.imanes.add(item);
+            _this.gridSolidObjects[_this.bg.getTileX(element.x)][_this.bg.getTileY(element.y)]=1;
         });
         //derecha
         /*objArray=this.findObjectsById(93,this.map,'Interactuables');
