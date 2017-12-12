@@ -1,5 +1,5 @@
  var bomberman = bomberman || {};
- bomberman.level = {
+ bomberman.level1_2 = {
      init:function(){
         this.scale.scaleMode=Phaser.ScaleManager.SHOW_ALL;
         //this.scale.setGameSize(gameValues.gameWidth,gameValues.gameHeight);

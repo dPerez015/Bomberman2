@@ -20,7 +20,7 @@ bomberman.puffPuff = function(game,x,y,speed,direction,level){
     this.game.physics.arcade.enable(this);
     this.body.velocity.x = this.speed;
     this.body.velocity.y = this.speed;
-    this.body.setSize(16, 16, 0, 16);
+    //this.body.setSize(16, 16, 0, 16);
 
 };
 
