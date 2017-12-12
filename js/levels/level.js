@@ -17,6 +17,7 @@ bomberman.level = {
        
 
         this.load.spritesheet('Bomberman', 'img/Bomberman.png', 16, 32);
+        this.load.spritesheet('puff', 'img/puff.png', 16, 24);
         this.load.spritesheet('bomb', 'img/bomb.png', 16, 16);
         this.load.spritesheet('explosions', 'img/explosion.png', 16, 16);
         this.load.spritesheet('destruible','img/wall_destroyable.png',16,16);
