@@ -14,6 +14,7 @@ var gameValues={
     bombTimer:0,
     powerUp:0,
     puffScore:100,
+    moaiScore:200,
     score:0,
 }
 
@@ -23,5 +24,5 @@ bomberman.game = new Phaser.Game(gameValues.gameWidth,gameValues.gameHeight,Phas
 bomberman.game.state.add('main',bomberman.level);
 bomberman.game.state.add('menu',bomberman.menu);
 bomberman.game.state.add('comsoon',bomberman.comingSoon);
-bomberman.game.state.add('transScene', bomberman.Transicion_scene);
+bomberman.game.state.add('transScene', bomberman.tScene_1_1);
 bomberman.game.state.start('menu');
