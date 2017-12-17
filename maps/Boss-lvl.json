@@ -37,6 +37,30 @@
                  "width":16,
                  "x":127,
                  "y":49
+                }, 
+                {
+                 "gid":27,
+                 "height":16,
+                 "id":4,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":128,
+                 "y":160
+                }, 
+                {
+                 "gid":21,
+                 "height":16,
+                 "id":5,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":128,
+                 "y":144
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -44,7 +68,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":4,
+ "nextobjectid":10,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.0.3",
@@ -60,6 +84,19 @@
          "name":"Boss_Map",
          "spacing":0,
          "tilecount":20,
+         "tileheight":16,
+         "tilewidth":16
+        }, 
+        {
+         "columns":6,
+         "firstgid":21,
+         "image":"..\/img\/Characters.png",
+         "imageheight":32,
+         "imagewidth":97,
+         "margin":0,
+         "name":"Characters",
+         "spacing":0,
+         "tilecount":12,
          "tileheight":16,
          "tilewidth":16
         }],
