@@ -91,8 +91,6 @@
   <object id="103" gid="140" x="328" y="81" width="16" height="16"/>
   <object id="104" gid="134" x="328" y="65" width="16" height="16"/>
   <object id="105" gid="133" x="312" y="65" width="16" height="16"/>
-  <object id="106" gid="133" x="327.091" y="111.273" width="16" height="16"/>
-  <object id="107" gid="133" x="327.091" y="111.273" width="16" height="16" rotation="90"/>
  </objectgroup>
  <objectgroup name="ObjetosDestruibles">
   <object id="20" gid="4" x="64" y="112" width="16" height="16"/>
