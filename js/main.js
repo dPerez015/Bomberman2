@@ -15,6 +15,7 @@ var gameValues={
     powerUp:0,
     puffScore:100,
     moaiScore:200,
+    ramosuScore:100,
     score:0,
 }
 
