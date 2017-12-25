@@ -16,6 +16,8 @@ var gameValues={
     puffScore:100,
     moaiScore:200,
     ramosuScore:100,
+    fiberScore:200,
+    gurorinScore:100,
     score:0,
 }
 
