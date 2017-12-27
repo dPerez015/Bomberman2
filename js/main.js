@@ -15,7 +15,6 @@ var gameValues={
     powerUp:0,
     puffScore:100,
     moaiScore:200,
-<<<<<<< HEAD
     helmScore:200,
     ramosuScore:100,
     fiberScore:200,
