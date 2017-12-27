@@ -5,16 +5,28 @@ bomberman.muroDestruiblePrefab=function (game,x,y,level){
     //game.add.existing(this);
     
     this.anchor.setTo(.5);
-   var anim = this.animations.add('die',[1,2,3,4,5],10,true);
+    this.level=level;
+   var anim = this.animations.add('die',[1,2,3,4,5],10,false);
+    
     this.game.physics.arcade.enable(this);
     this.body.immovable=true;
-    this.level=level;
+    
     
     this.breakBlock=function(){
-        this.animations.play('die',null,false,true);
-        this.level.gridSolidObjects[this.level.bg.getTileX(this.body.x)][this.level.bg.getTileY(this.body.y)]=0;
-        this.generateUpgrade();
+        this.animations.play('die',null,false);
+        //this.level.gridSolidObjects[this.level.bg.getTileX(this.body.x)][this.level.bg.getTileY(this.body.y)]=0;
+        //this.generateUpgrade();
     };
+    this.destroyBlock=function(){
+        this.generateUpgrade();
+        this.level.gridSolidObjects[this.level.bg.getTileX(this.body.x)][this.level.bg.getTileY(this.body.y)]=0;
+       // console.log(this.level.gridSolidObjects);
+        this.destroy();
+                                
+    };
+    anim.onComplete.add(this.destroyBlock.bind(this),this.level);
+    
+    
     this.generateUpgrade=function(){
         var rand=Math.floor(Math.random()*90);
         if(rand<9){
@@ -39,5 +51,7 @@ bomberman.muroDestruiblePrefab=function (game,x,y,level){
 
 bomberman.muroDestruiblePrefab.prototype=Object.create(Phaser.Sprite.prototype);
 bomberman.muroDestruiblePrefab.prototype.constructor=bomberman.muroDestruiblePrefab;
+
+//bomberman.muroDestruiblePrefab.prototype.
 
 

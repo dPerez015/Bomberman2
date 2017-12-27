@@ -12,39 +12,41 @@ bomberman.explosion_prefab = function(game,x,y, type){
     this.animations.add('Horizontal_explosion', [5,13,21,29,37], 10, true);
     this.animations.add('PowerUp_explosion', [7,15,23,31,39], 10, true);
     this.game.physics.arcade.enable(this);
-    this.resetExplosion = function(x, y, type){
-        
-    this.reset(x,y);
-    switch (type){
-    case 0:
-       this.animations.play('Center_explosion',10,false,true);
-        break; 
-    case 1:
-            this.animations.play('Upper_explosion',10,false,true);
-            break;
-    case 2:
-            this.animations.play('Down_explosion',10,false,true);
-            break;
-    case 3:
-            this.animations.play('Right_explosion',10,false,true);
-            break;
-    case 4:
-            this.animations.play('Left_explosion',10,false,true);
-            break;
-    case 5:
-            this.animations.play('Vertical_explosion',10,false,true);
-            break;
-    case 6:
-            this.animations.play('Horizontal_explosion',10,false,true);
-            break;
-    case 7:
-            this.animations.play('PowerUp_explosion',10,false,true);
-            break;
-    default:
-        break;
-            };
     
-}
+    
+    this.resetExplosion = function(x, y, type){ 
+        this.reset(x,y);
+        this.animations.stop();
+        switch (type){
+        case 0:
+           this.animations.play('Center_explosion',10,false,true);
+            break; 
+        case 1:
+                this.animations.play('Upper_explosion',10,false,true);
+                break;
+        case 2:
+                this.animations.play('Down_explosion',10,false,true);
+                break;
+        case 3:
+                this.animations.play('Right_explosion',10,false,true);
+                break;
+        case 4:
+                this.animations.play('Left_explosion',10,false,true);
+                break;
+        case 5:
+             this.animations.play('Vertical_explosion',10,false,true);
+                break;
+        case 6:
+                this.animations.play('Horizontal_explosion',10,false,true);
+                break;
+        case 7:
+                this.animations.play('PowerUp_explosion',10,false,true);
+                break;
+        default:
+            break;
+                };
+    
+};
     
     switch (type){
         case 0:

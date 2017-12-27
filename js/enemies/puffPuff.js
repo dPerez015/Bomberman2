@@ -9,8 +9,11 @@ bomberman.puffPuff = function(game,x,y,speed,direction,level){
     this.animations.add('walkLeft',[3,4,5], 10, true);
     this.animations.add('walkUp', [6,7,8], 10, true);
     this.animations.add('walkRight',[10,11,12], 10, true);
-    this.animations.add('killPuff', [9], 1, true);
-
+    var anim=this.animations.add('killPuff', [9], 1, true);
+    //anim.onComplete.add(level.checkVictory.bind(level));
+    //necesario para que se pase de nivel
+    this.events.onKilled.add(level.checkVictory.bind(level));
+    
     this.speed = speed;
     this.direction = direction;
     this.level = level;
@@ -32,6 +35,7 @@ bomberman.puffPuff.prototype.update = function(){
     this.game.physics.arcade.collide(this,this.level.walls);
     this.game.physics.arcade.collide(this,this.level.destruibles);
     this.game.physics.arcade.collide(this,this.level.bombas);
+    this.game.physics.arcade.collide(this,this.level.imanes);
     
     if(this.game.physics.arcade.overlap(this,this.level.player)){
         this.level.player.bombermanHit();
@@ -94,6 +98,7 @@ bomberman.puffPuff.prototype.hit = function(Number){
         this.body.velocity.y = 0;
         this.animations.play('killPuff', null, false, true);
         this.showScore();
+        //this.level.checkVictory();
     }
     return this.hp;
 };

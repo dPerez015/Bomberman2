@@ -12,6 +12,7 @@ bomberman.win_buttons_prefab = function(game, x, y, _level){
     this.level = _level;
     
     this.activate = function(){
+        this.level.numBtnToActivate--;
         this.animations.frame = 0;
         this.isActivated=true;
         //this.level.hasWon = false;
