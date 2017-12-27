@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="17" height="13" tilewidth="16" tileheight="16" nextobjectid="51">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="17" height="13" tilewidth="16" tileheight="16" nextobjectid="76">
  <tileset firstgid="1" name="world" tilewidth="16" tileheight="16" tilecount="130" columns="13">
   <image source="../img/World3.png" width="208" height="160"/>
+ </tileset>
+ <tileset firstgid="131" name="Characters" tilewidth="16" tileheight="16" tilecount="8" columns="4">
+  <image source="../img/Characters2Try.png" width="65" height="32"/>
  </tileset>
  <layer name="BackgroundStatic" width="17" height="13">
   <data encoding="csv">
@@ -98,5 +101,14 @@
   <object id="25" gid="109" x="128" y="160" width="16" height="16"/>
   <object id="26" gid="109" x="144" y="160" width="16" height="16"/>
  </objectgroup>
- <objectgroup name="Characters"/>
+ <objectgroup name="Characters">
+  <object id="62" gid="135" x="48" y="48" width="16" height="16"/>
+  <object id="63" gid="131" x="48" y="32" width="16" height="16"/>
+  <object id="65" gid="136" x="176" y="96" width="16" height="16"/>
+  <object id="66" gid="132" x="176" y="80" width="16" height="16"/>
+  <object id="68" gid="136" x="112" y="160" width="16" height="16"/>
+  <object id="69" gid="132" x="112" y="144" width="16" height="16"/>
+  <object id="71" gid="136" x="112" y="192" width="16" height="16"/>
+  <object id="72" gid="132" x="112" y="176" width="16" height="16"/>
+ </objectgroup>
 </map>
