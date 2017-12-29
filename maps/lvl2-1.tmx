@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="17" height="13" tilewidth="16" tileheight="16" nextobjectid="90">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="17" height="13" tilewidth="16" tileheight="16" nextobjectid="102">
  <tileset firstgid="1" name="world" tilewidth="16" tileheight="16" tilecount="130" columns="13">
   <image source="../img/World3.png" width="208" height="160"/>
  </tileset>
- <tileset firstgid="131" name="Characters" tilewidth="16" tileheight="16" tilecount="12" columns="6">
+ <tileset firstgid="131" name="Characters" tilewidth="16" tileheight="32" tilecount="6" columns="6">
+  <image source="../img/Characters.png" width="96" height="32"/>
+ </tileset>
+ <tileset firstgid="137" name="Characters2" tilewidth="16" tileheight="32" tilecount="6" columns="6">
   <image source="../img/Characters2.png" width="96" height="32"/>
  </tileset>
  <layer name="BackgroundStatic" width="17" height="13">
@@ -12,12 +15,12 @@
 53,97,0,0,0,0,0,0,0,36,0,0,0,0,0,98,54,
 53,97,0,8,0,8,0,8,0,49,0,8,0,0,0,98,54,
 53,97,0,6,7,6,7,6,8,8,8,6,7,0,0,98,54,
-53,97,0,6,0,6,0,6,0,6,0,6,0,0,0,98,54,
+53,97,0,6,0,6,0,6,0,6,0,6,0,6,0,98,54,
 53,97,0,6,7,6,7,6,7,6,7,6,0,6,0,98,54,
 53,97,0,6,0,6,0,6,0,6,0,6,0,6,0,98,54,
 53,97,0,6,7,6,7,6,7,6,7,6,7,6,0,98,54,
 53,97,0,6,0,6,0,6,0,6,0,0,0,6,0,98,54,
-53,97,0,0,0,0,0,0,0,0,0,0,0,0,0,98,54,
+53,97,0,0,0,0,0,0,0,0,0,0,0,6,0,98,54,
 53,97,0,0,0,6,0,6,0,6,0,0,0,0,0,98,54,
 53,97,0,0,0,0,0,0,0,0,0,0,6,0,0,98,54,
 53,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,54
@@ -77,8 +80,6 @@
  <objectgroup name="Interactuables">
   <object id="1" gid="86" x="208" y="48" width="16" height="16"/>
   <object id="2" gid="87" x="208" y="64" width="16" height="16"/>
-  <object id="3" gid="88" x="208" y="80" width="16" height="16"/>
-  <object id="4" gid="88" x="208" y="160" width="16" height="16"/>
   <object id="5" gid="87" x="208" y="176" width="16" height="16"/>
   <object id="6" gid="86" x="208" y="192" width="16" height="16"/>
   <object id="7" gid="89" x="192" y="96" width="16" height="16"/>
@@ -100,15 +101,16 @@
   <object id="24" gid="109" x="112" y="160" width="16" height="16"/>
   <object id="25" gid="109" x="128" y="160" width="16" height="16"/>
   <object id="26" gid="109" x="144" y="160" width="16" height="16"/>
+  <object id="90" gid="88" x="208" y="160" width="16" height="16"/>
+  <object id="91" gid="91" x="208" y="80" width="16" height="16"/>
  </objectgroup>
  <objectgroup name="Characters">
-  <object id="76" gid="137" x="48" y="48" width="16" height="16"/>
-  <object id="77" gid="131" x="48" y="32" width="16" height="16"/>
-  <object id="80" gid="138" x="176" y="96" width="16" height="16"/>
-  <object id="81" gid="132" x="176" y="80" width="16" height="16"/>
-  <object id="83" gid="138" x="112" y="160" width="16" height="16"/>
-  <object id="84" gid="132" x="112" y="144" width="16" height="16"/>
-  <object id="86" gid="138" x="112" y="192" width="16" height="16"/>
-  <object id="88" gid="132" x="112" y="176" width="16" height="16"/>
+  <object id="93" gid="137" x="48" y="48" width="16" height="32"/>
+  <object id="94" gid="138" x="176" y="96" width="16" height="32"/>
+  <object id="95" gid="138" x="112" y="160" width="16" height="32"/>
+  <object id="96" gid="138" x="112" y="192" width="16" height="32"/>
+  <object id="98" gid="141" x="136.375" y="47.125" width="16" height="32"/>
+  <object id="99" gid="141" x="136" y="48" width="16" height="32"/>
+  <object id="100" gid="142" x="152" y="48" width="16" height="32"/>
  </objectgroup>
 </map>
