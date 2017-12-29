@@ -24,6 +24,7 @@ bomberman.level = {
         this.load.spritesheet('explosions', 'img/explosion.png', 16, 16);
         this.load.spritesheet('destruible','img/wall_destroyable'+gameValues.currentWorld.toString()+'.png',16,16);
         this.load.spritesheet('iman','img/iman.png',16,16);
+        this.load.spritesheet('dynamite',  'img/dynamite.png', 16, 16);
         this.load.spritesheet('upgrade','img/Upgrades_Bomberman.png', 16, 16);
         this.load.spritesheet('win_button', 'img/Victory_Button'+ gameValues.currentWorld.toString() +'.png', 16, 16);
         this.load.spritesheet('door', 'img/Bomberman_Gate'+ gameValues.currentWorld.toString() +'.png', 32, 32);
@@ -71,6 +72,9 @@ bomberman.level = {
 
         //imanes
         this.createImanes(this);
+        
+        //dinamitas
+        this.createDinamitas(this);
         
         //botones
         this.numBtnToActivate;
@@ -226,7 +230,7 @@ bomberman.level = {
     createBotones:function(state){
         var _this = this;
         this.botones = this.game.add.group();
-        var objArray = this.findObjectsById(99,this.map,'Interactuables')
+        var objArray = this.findObjectsById(99,this.map,'Interactuables');
         var item;
         this.numBtnToActivate=0;
         
@@ -234,6 +238,19 @@ bomberman.level = {
             item = new bomberman.win_buttons_prefab(state.game,element.x, element.y,_this);
             state.botones.add(item);
             _this.numBtnToActivate++;
+        });
+    },
+    
+    createDinamitas:function(state){
+        var _this = this;
+        this.dynamites = this.game.add.group();
+        var objArray = this.findObjectsById(95, this.map, 'Interactuables');
+        var item;
+        
+        objArray.forEach(function(element){
+            item = new bomberman.dynamite(state.game, element.x, element.y,_this);
+            state.dynamites.add(item);
+            
         });
     },
     createCharacters:function(state){
@@ -245,7 +262,7 @@ bomberman.level = {
         objArray.forEach(function(element){
                 switch(element.gid){
             case 132:
-                item = new bomberman.magnetHelm(state.game, element.x, element.y, 15, 'right', _this);
+                item = new bomberman.puffPuff(state.game, element.x, element.y, 15, 'right', _this);
                 state.enemys.add(item);
                 break;
             case 131:
