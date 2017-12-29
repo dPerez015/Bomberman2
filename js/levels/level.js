@@ -173,6 +173,7 @@ bomberman.level = {
         
         this.physics.arcade.collide(this.destruibles,this.bombas);
         this.physics.arcade.collide(this.imanes,this.bombas);
+        this.physics.arcade.collide(this.dynamites, this.bombas);//DINAMITA
         this.physics.arcade.collide(this.walls,this.bombas);
         //this.game.physics.arcade.overlap(this.door,this.player,this.goToNextLevel);
         
@@ -244,12 +245,13 @@ bomberman.level = {
     createDinamitas:function(state){
         var _this = this;
         this.dynamites = this.game.add.group();
-        var objArray = this.findObjectsById(95, this.map, 'Interactuables');
+        var objArray = this.findObjectsById(96, this.map, 'Interactuables');
         var item;
         
         objArray.forEach(function(element){
             item = new bomberman.dynamite(state.game, element.x, element.y,_this);
             state.dynamites.add(item);
+           // _this.gridSolidObjects[_this.bg.getTileX(element.x)][_this.bg.getTileY(element.y)]=1;
             
         });
     },
@@ -262,7 +264,7 @@ bomberman.level = {
         objArray.forEach(function(element){
                 switch(element.gid){
             case 132:
-                item = new bomberman.puffPuff(state.game, element.x, element.y, 15, 'right', _this);
+                item = new bomberman.dynamite(state.game, element.x, element.y, _this);
                 state.enemys.add(item);
                 break;
             case 131:

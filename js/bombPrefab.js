@@ -6,7 +6,7 @@ bomberman.bombPrefab = function (game, x, y, range, level){
     
     this.anchor.setTo(.5);
     this.anim=this.animations.add('stand', [0,1,2,3], 1, false);
-    ;
+    
     this.player=level.player;
     this.level=level;
     this.range = range;
