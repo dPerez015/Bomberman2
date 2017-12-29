@@ -7,19 +7,20 @@ bomberman.ramosu = function(game,x,y,speed,direction,level){
     this.animations.add('walkDown',[0,1,2,3,4,5,6,7],10,true);
     this.animations.add('walkLeft',[14,15,16,17,18], 10, true);
     this.animations.add('walkUp', [8,9,10,11,12,13], 10, true);
-    //this.animations.add('walkRight',[10,11,12], 10, true); mateix sprite que esquerra pero *-x
+    this.animations.add('walkRight',[10,11,12], 10, true);
     this.animations.add('killRamosu', [19], 1, true);
 
     this.speed = speed;
     this.direction = direction;
     this.level = level;
     this.hp = 1;
-    this.score = gameValues.puffScore;
+    this.score = gameValues.ramosuScore;
     this.isHit = false;
     this.game.physics.arcade.enable(this);
     this.body.velocity.x = this.speed;
     this.body.velocity.y = this.speed;
-
+    this.body.setSize(16,16,0,8);
+    
 };
 
 bomberman.ramosu.prototype = Object.create(Phaser.Sprite.prototype);
@@ -27,6 +28,7 @@ bomberman.ramosu.prototype.constructor = bomberman.ramosu;
 
 
 bomberman.ramosu.prototype.update = function(){
+    this.game.debug.body(this);
     this.game.physics.arcade.collide(this,this.level.walls);
     this.game.physics.arcade.collide(this,this.level.destruibles);
     this.game.physics.arcade.collide(this,this.level.bombas);
