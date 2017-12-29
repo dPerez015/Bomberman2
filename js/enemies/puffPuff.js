@@ -21,9 +21,9 @@ bomberman.puffPuff = function(game,x,y,speed,direction,level){
     this.score = gameValues.puffScore;
     this.isHit = false;
     this.game.physics.arcade.enable(this);
-    this.body.velocity.x = this.speed;
-    this.body.velocity.y = this.speed;
-    //this.body.setSize(16, 16, 0, 16);
+    this.body.velocity.x = this.speed-5;
+    //this.body.velocity.y = this.speed;
+    this.body.setSize(16, 16, 0, 8);
 
 };
 
@@ -32,6 +32,7 @@ bomberman.puffPuff.prototype.constructor = bomberman.puffPuff;
 
 
 bomberman.puffPuff.prototype.update = function(){
+    this.game.debug.body(this);
     this.game.physics.arcade.collide(this,this.level.walls);
     this.game.physics.arcade.collide(this,this.level.destruibles);
     this.game.physics.arcade.collide(this,this.level.bombas);

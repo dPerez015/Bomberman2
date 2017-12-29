@@ -4,12 +4,12 @@ bomberman.magnetHelm = function(game,x,y,speed,direction,level){
     Phaser.Sprite.call(this,game,x,y,'magnetHelm');
     this.game.add.existing(this);
     this.anchor.setTo(.5);
-    /*this.animations.add('walkDown',[0,1,2],10,true);
-    this.animations.add('walkLeft',[3,4,5], 10, true);
-    this.animations.add('walkUp', [6,7,8], 10, true);
-    this.animations.add('walkRight',[10,11,12], 10, true);
-    var anim=this.animations.add('atract',[],10,true);
-    this.animations.add('kill', [], 1, true);*/
+    this.animations.add('walkDown',[0,1,2,3],10,true);
+    this.animations.add('walkLeft',[8,9,10,11], 10, true);
+    this.animations.add('walkUp', [4,5,6,7], 10, true);
+    this.animations.add('walkRight',[4,5,6,7], 10, true);
+    var anim=this.animations.add('atract',[12,13],10,true);
+    this.animations.add('kill', [14,15], 1, true);
     
     //necesario para que se pase de nivel
     this.events.onKilled.add(level.checkVictory.bind(level));
@@ -28,7 +28,7 @@ bomberman.magnetHelm = function(game,x,y,speed,direction,level){
     this.playerAtractingVel=40;
     //this.body.velocity.x = this.speed;
     //this.body.velocity.y = this.speed;
-    //this.body.setSize(16, 16, 0, 16);
+    this.body.setSize(16, 16, 0, 0);
     
     this.checkMovement=function(){
         var ret=false;
@@ -50,27 +50,27 @@ bomberman.magnetHelm = function(game,x,y,speed,direction,level){
         switch(dir){
             case 0:
                 if(this.level.gridSolidObjects[posX][posY-1]==0){
-                    return=true;
+                    return true;
                 } 
-                return=false;
+                return false;
                 break;
             case 1:
                 if(this.level.gridSolidObjects[posX+1][posY]==0){
-                    return=true;
+                    return true;
                 } 
-                return=false;
+                return false;
                 break;
             case 2: 
                 if(this.level.gridSolidObjects[posX][posY+1]==0){
-                    return=true;
+                    return true;
                 } 
-                return=false;
+                return false;
                 break;
             case 3: 
                 if(this.level.gridSolidObjects[posX-1][posY]==0){
-                    return=true;
+                    return true;
                 } 
-                return=false;
+                return false;
                 break;
             default:
                 return false;
@@ -86,7 +86,7 @@ bomberman.magnetHelm = function(game,x,y,speed,direction,level){
         invalidDirections.add(this.direction);
         
         while(!validDirectionFound){
-            var newDirection=Math.floor(Math.random()*4));
+            var newDirection=Math.floor(Math.random()*4);
             while(!set.has(newDirection)){
                 newDirection=(newDirection+1)%4;
             }
@@ -110,7 +110,7 @@ bomberman.magnetHelm = function(game,x,y,speed,direction,level){
         var playerPosX=this.level.bg.getTileX(this.level.player.body.position.x);
         var playerPosY=this.level.bg.getTileY(this.level.player.body.position.y);
         if(playerPosX==posX ||  playerPosY==posY ){
-            var canPas=true;
+            var canPass=true;
             var difX=Math.abs(playerPosX-posX);
             var difY=Math.abs(playerPosY-posY);
             var dif=difX;
@@ -122,7 +122,7 @@ bomberman.magnetHelm = function(game,x,y,speed,direction,level){
                 difX=1;
             }
             
-            for(int i=0;i<=dif ;i++){
+            for(var i=0; i<=dif ;i++){
                 posX+=difX;
                 posY+=difY;
                 if(this.level.gridSolidObjects[posX][posY]==1){
@@ -139,6 +139,7 @@ bomberman.magnetHelm = function(game,x,y,speed,direction,level){
 
 bomberman.magnetHelm.prototype.update = function(){
     //colisiones
+    this.game.debug.body(this);
     this.game.physics.arcade.collide(this,this.level.walls);
     this.game.physics.arcade.collide(this,this.level.destruibles);
     this.game.physics.arcade.collide(this,this.level.bombas);

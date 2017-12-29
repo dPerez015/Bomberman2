@@ -2,26 +2,26 @@ var bomberman = bomberman || {};
 
 //com de moment nomes implementem un enemic li dic enemy, ja en el futur cquan implementem mes dun ho canviem
 bomberman.moai = function(game,x,y,speed,direction,level){
-    Phaser.Sprite.call(this,game,x,y,'puff');
+    Phaser.Sprite.call(this,game,x,y,'moai');
     this.game.add.existing(this);//renderitza wey
     this.anchor.setTo(.5);
-    this.animations.add('walkDown',[0,1],10,true);
-    this.animations.add('walkLeft',[2,3], 10, true);
-    this.animations.add('walkUp', [6,7], 10, true);
-    this.animations.add('walkRight',[4,5], 10, true);
+    this.animations.add('walkDown',[0,1],7,true);
+    this.animations.add('walkLeft',[2,3], 7, true);
+    this.animations.add('walkUp', [6,7], 7, true);
+    this.animations.add('walkRight',[4,5], 7, true);
     this.animations.add('killMoai', [8], 1, true);
 
     this.speed = speed;
     this.direction = direction;
     this.level = level;
     this.hp = 2;
-    this.score = gameValues.puffScore;
+    this.score = gameValues.moaiScore;
     this.isHit = false;
     this.game.physics.arcade.enable(this);
     this.body.velocity.x = this.speed;
-    this.body.velocity.y = this.speed;
+    this.body.velocity.y = this.speed;    
     this.body.setSize(16, 16, 0, 16);
-
+   
 };
 
 bomberman.moai.prototype = Object.create(Phaser.Sprite.prototype);
@@ -29,6 +29,7 @@ bomberman.moai.prototype.constructor = bomberman.moai;
 
 
 bomberman.moai.prototype.update = function(){
+    this.game.debug.body(this);
     this.game.physics.arcade.collide(this,this.level.walls);
     this.game.physics.arcade.collide(this,this.level.destruibles);
     this.game.physics.arcade.collide(this,this.level.bombas);
@@ -87,13 +88,17 @@ bomberman.moai.prototype.changeDirection = function(){
 };
 
 bomberman.moai.prototype.hit = function(Number){
-    this.hp --;
+     console.log(this.hp);
+    this.hp -= 1;
 //    this.body.velocity.x = 0;
 //    this.body.velocity.y = 0;
     this.animations.play('killMoai', null, false, true);
     if(this.hp == 0){
+        this.body.velocity.x = 0;
+        this.body.velocity.y = 0;
         this.showScore();
     }
+     console.log("despres del hit" + this.hp);
     return this.hp;
 };
 

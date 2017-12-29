@@ -18,6 +18,8 @@ bomberman.level = {
 
         this.load.spritesheet('Bomberman', 'img/Bomberman.png', 16, 32);
         this.load.spritesheet('puff', 'img/puff.png', 16, 24);
+        this.load.spritesheet('moai', 'img/moai.png', 16, 34);
+        this.load.spritesheet('magnetHelm', 'img/magnetic_helm.png', 32, 32);
         this.load.spritesheet('bomb', 'img/bomb.png', 16, 16);
         this.load.spritesheet('explosions', 'img/explosion.png', 16, 16);
         this.load.spritesheet('destruible','img/wall_destroyable'+gameValues.currentWorld.toString()+'.png',16,16);
@@ -243,7 +245,7 @@ bomberman.level = {
         objArray.forEach(function(element){
                 switch(element.gid){
             case 132:
-                item=new bomberman.puffPuff(state.game,element.x,element.y,20,'down',_this);
+                item = new bomberman.magnetHelm(state.game, element.x, element.y, 15, 'right', _this);
                 state.enemys.add(item);
                 break;
             case 131:
@@ -255,6 +257,11 @@ bomberman.level = {
                 state.door = new bomberman.door_prefab(state.game,element.x+8, element.y-9, _this);
                 state.game.add.existing(state.door);
                 break;
+            case 134:
+                item = new bomberman.moai(state.game, element.x, element.y, 15, 'right', _this);
+                state.enemys.add(item);
+                break;
+                        
             default:
                 break;
                 }
