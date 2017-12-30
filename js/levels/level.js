@@ -264,6 +264,7 @@ bomberman.level = {
         objArray.forEach(function(element){
                 switch(element.gid){
             case 132:
+                item = new bomberman.puffPuff(state.game, element.x, element.y,15, 'right', _this);
                 state.enemys.add(item);
                 break;
             case 131:
