@@ -9,19 +9,42 @@ bomberman.moai = function(game,x,y,speed,direction,level){
     this.animations.add('walkLeft',[2,3], 7, true);
     this.animations.add('walkUp', [6,7], 7, true);
     this.animations.add('walkRight',[4,5], 7, true);
-    this.animations.add('killMoai', [8], 1, true);
-
+    this.hitAnim = this.animations.add('killMoai', [8,9], 3, true);
+    
     this.speed = speed;
     this.direction = direction;
     this.level = level;
     this.hp = 2;
     this.score = gameValues.moaiScore;
-    this.isHit = false;
     this.game.physics.arcade.enable(this);
     this.body.velocity.x = this.speed;
     this.body.velocity.y = this.speed;    
     this.body.setSize(16, 16, 0, 16);
-   
+    this.invu = false;
+    
+    this.isHit = function(){
+    this.invu = true;
+    this.animations.play('killMoai', null, false);
+    this.hp --;
+
+    this.body.velocity.x = 0;
+    this.body.velocity.y = 0;
+    
+    if(this.hp == 0){
+        this.showScore();
+        this.hitAnim.onComplete.add(this.kill.bind(this), this.level);
+    }    
+    //console.log(this.hp);
+
+    };
+    
+    this.changeInvu = function(){
+        this.invu = false;
+    };
+
+//this.hitAnim.onStart.add(this.changeInvu.bind(this), level);
+this.hitAnim.onComplete.add(this.changeDirection.bind(this), this.level);
+this.hitAnim.onComplete.add(this.changeInvu.bind(this), this.level);
 };
 
 bomberman.moai.prototype = Object.create(Phaser.Sprite.prototype);
@@ -48,9 +71,9 @@ bomberman.moai.prototype.update = function(){
         this.changeDirection();
     } 
 
-    if(this.game.physics.arcade.overlap(this, this.level.explosions)){
-       this.hit(this.hp);
-       }
+    if(this.game.physics.arcade.overlap(this, this.level.explosions) && this.invu==false){
+        this.isHit();
+    }
 
 };
 
@@ -82,25 +105,16 @@ bomberman.moai.prototype.changeDirection = function(){
             this.animations.play('walkLeft');
             break;
             
+        default:
+            this.body.velocity.x += this.speed;
+            this.body.velocity.y = 0;
+            this.animations.play('walkRight');
+            break;
         
     }
     return this.direction;
 };
 
-bomberman.moai.prototype.hit = function(Number){
-     console.log(this.hp);
-    this.hp -= 1;
-//    this.body.velocity.x = 0;
-//    this.body.velocity.y = 0;
-    this.animations.play('killMoai', null, false, true);
-    if(this.hp == 0){
-        this.body.velocity.x = 0;
-        this.body.velocity.y = 0;
-        this.showScore();
-    }
-     console.log("despres del hit" + this.hp);
-    return this.hp;
-};
 
 bomberman.moai.prototype.showScore = function(){
     var textMoaiScore = this.level.add.text(this.x, this.y, "+ " + gameValues.moaiScore, this.level.style);

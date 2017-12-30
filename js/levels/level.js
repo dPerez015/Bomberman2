@@ -153,7 +153,6 @@ bomberman.level = {
         lvlMusic.play();
         lvlMusic.loop = true;
         
-        
     },
     /*render:function(){
         var zone=this.game.camera.deadzone;
@@ -264,7 +263,7 @@ bomberman.level = {
         objArray.forEach(function(element){
                 switch(element.gid){
             case 132:
-                item = new bomberman.dynamite(state.game, element.x, element.y, _this);
+                item = new bomberman.moai(state.game, element.x, element.y,15, 'right', _this);
                 state.enemys.add(item);
                 break;
             case 131:
