@@ -7,7 +7,7 @@ bomberman.ramosu = function(game,x,y,speed,direction,level){
     this.animations.add('walkDown',[0,1,2,3,4,5,6,7],10,true);
     this.animations.add('walkLeft',[14,15,16,17,18], 10, true);
     this.animations.add('walkUp', [8,9,10,11,12,13], 10, true);
-    this.animations.add('walkRight',[10,11,12], 10, true);
+    this.animations.add('walkRight',[20,21,22,23,24], 10, true);
     this.animations.add('killRamosu', [19], 1, true);
 
     this.speed = speed;

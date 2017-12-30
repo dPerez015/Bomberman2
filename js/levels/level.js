@@ -21,6 +21,8 @@ bomberman.level = {
         this.load.spritesheet('moai', 'img/moai.png', 16, 34);
         this.load.spritesheet('magnetHelm', 'img/magnetic_helm.png', 32, 32);
         this.load.spritesheet('bomb', 'img/bomb.png', 16, 16);
+        this.load.spritesheet('ramosu', 'img/ramosu.png', 16, 32);
+        this.load.spritesheet('gurorin', 'img/gurorin.png', 16,16);
         this.load.spritesheet('explosions', 'img/explosion.png', 16, 16);
         this.load.spritesheet('destruible','img/wall_destroyable'+gameValues.currentWorld.toString()+'.png',16,16);
         this.load.spritesheet('iman','img/iman.png',16,16);
@@ -169,7 +171,6 @@ bomberman.level = {
         
         this.physics.arcade.overlap(this.upgrades,this.player,this.cogerUpgrade,null,this);
         
-        
         this.physics.arcade.collide(this.destruibles,this.bombas);
         this.physics.arcade.collide(this.imanes,this.bombas);
         this.physics.arcade.collide(this.dynamites, this.bombas);//DINAMITA
@@ -263,7 +264,6 @@ bomberman.level = {
         objArray.forEach(function(element){
                 switch(element.gid){
             case 132:
-                item = new bomberman.moai(state.game, element.x, element.y,15, 'right', _this);
                 state.enemys.add(item);
                 break;
             case 131:

@@ -5,22 +5,22 @@ bomberman.gurorin = function(game,x,y,speed,direction,level){
     Phaser.Sprite.call(this,game,x,y,'gurorin');
     this.game.add.existing(this);//renderitza wey
     this.anchor.setTo(.5);
-    this.animations.add('walkDown',[0,1],10,true);
-    this.animations.add('walkLeft',[2,3], 10, true);
-    this.animations.add('walkUp', [6,7], 10, true);
-    this.animations.add('walkRight',[4,5], 10, true);
-    this.animations.add('killMoai', [8], 1, true);
+    this.animations.add('walk',[0,1,2],10,true);
+    //this.anim = this.animations.add('stop',[3,4,5,7], 10, true);
+    this.animations.add('killGurorin', [6], 1, true);
 
     this.speed = speed;
     this.direction = direction;
     this.level = level;
-    this.hp = 2;
+    this.hp = 1;
     this.score = gameValues.puffScore;
     this.isHit = false;
     this.game.physics.arcade.enable(this);
     this.body.velocity.x = this.speed;
     this.body.velocity.y = this.speed;
-    this.body.setSize(16, 16, 0, 16);
+    this.body.setSize(16, 16, 0, 0);
+    
+//this.anim.onComplete.add(this.changeDirection.bind(this), this.level);
 
 };
 
@@ -50,35 +50,38 @@ bomberman.gurorin.prototype.update = function(){
     if(this.game.physics.arcade.overlap(this, this.level.explosions)){
        this.hit(this.hp);
        }
+    this.game.debug.body(this);
 
 };
 
 bomberman.gurorin.prototype.changeDirection = function(){
     var arrayDir = ['up', 'down', 'left', 'right'];
+    this.animations.play('walk');
     this.direction = arrayDir[Math.floor(Math.random() * arrayDir.length)];
         switch(this.direction){
         case 'up':
             this.body.velocity.y -= this.speed;
             this.body.velocity.x = 0;
-            this.animations.play('walkUp');
             break;
         
         case 'down':
             this.body.velocity.y += this.speed; 
             this.body.velocity.x = 0;
-            this.animations.play('walkDown');
             break;
        
         case 'right':
             this.body.velocity.x += this.speed;
             this.body.velocity.y = 0;
-            this.animations.play('walkRight');
             break;
         
         case 'left':
             this.body.velocity.x -= this.speed; 
             this.body.velocity.y = 0;
-            this.animations.play('walkLeft');
+            break;
+                
+        default:
+            this.body.velocity.x += this.speed;
+            this.body.velocity.y = 0;
             break;
             
         
