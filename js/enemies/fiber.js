@@ -1,7 +1,7 @@
 var bomberman = bomberman || {};
 
 bomberman.fiber = function(game,x,y,speed,direction,level){
-    Phaser.Sprite.call(this,game,x,y,'ramosu');
+    Phaser.Sprite.call(this,game,x,y,'fiber');
     this.game.add.existing(this);//renderitza wey
     this.anchor.setTo(.5);
     this.animations.add('walkDown',[0,1,2,3,4,5,6,7],10,true);
