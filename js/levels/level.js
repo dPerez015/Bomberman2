@@ -30,6 +30,7 @@ bomberman.level = {
         this.load.spritesheet('upgrade','img/Upgrades_Bomberman.png', 16, 16);
         this.load.spritesheet('win_button', 'img/Victory_Button'+ gameValues.currentWorld.toString() +'.png', 16, 16);
         this.load.spritesheet('door', 'img/Bomberman_Gate'+ gameValues.currentWorld.toString() +'.png', 32, 32);
+        this.load.spritesheet('fiber', 'img/fiber.png', 24, 24);
         
         //mapa
         
