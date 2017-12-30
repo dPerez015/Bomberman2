@@ -38,6 +38,7 @@ bomberman.level = {
         gameValues.currentLevel.toString()+'.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.image('world','img/world'+ gameValues.currentWorld.toString() +'.png');
         
+        
         //HUD
         this.load.image('hud', 'img/hud1.png');
     
@@ -106,6 +107,9 @@ bomberman.level = {
         //CHARACTERS & Enemies
         
         this.createCharacters(this);
+        this.enemys=this.game.add.group();
+        this.createEnemies(this);
+        
         
         //CAMERA
         //console.log(this.map.widthInPixels);
@@ -168,6 +172,7 @@ bomberman.level = {
         this.physics.arcade.overlap(this.destruibles,this.explosions,this.choquemuro,null,this);
         this.physics.arcade.collide(this.imanes,this.player);
         this.physics.arcade.overlap(this.botones,this.explosions,this.activarBoton,null,this);
+        this.physics.arcade.overlap(this.door,this.explosions,this.reCreateEnemies.bind(this));
         
         this.physics.arcade.overlap(this.upgrades,this.player,this.cogerUpgrade,null,this);
         
@@ -175,6 +180,8 @@ bomberman.level = {
         this.physics.arcade.collide(this.imanes,this.bombas);
         this.physics.arcade.collide(this.dynamites, this.bombas);//DINAMITA
         this.physics.arcade.collide(this.walls,this.bombas);
+        this.physics.arcade.collide(this.bombas);
+        this.game.physics.arcade.overlap(this.bombas,this.explosions, this.explodeBomb, null,this);
         //this.game.physics.arcade.overlap(this.door,this.player,this.goToNextLevel);
         
         
@@ -257,16 +264,12 @@ bomberman.level = {
     },
     createCharacters:function(state){
         var _this=this;
-        this.enemys=this.game.add.group();
+        //this.enemys=this.game.add.group();
         var objArray=this.findObjectsByIdRange(131,134,this.map,'Characters');
         var item;
         
         objArray.forEach(function(element){
                 switch(element.gid){
-            case 132:
-                item = new bomberman.puffPuff(state.game, element.x, element.y,15, 'right', _this);
-                state.enemys.add(item);
-                break;
             case 131:
                 item = new bomberman.bomberman_prefab(state.game, element.x,element.y, _this);
                 state.player=item;
@@ -276,10 +279,6 @@ bomberman.level = {
                 state.door = new bomberman.door_prefab(state.game,element.x+8, element.y-9, _this);
                 state.game.add.existing(state.door);
                 break;
-            case 134:
-                item = new bomberman.moai(state.game, element.x, element.y, 15, 'right', _this);
-                state.enemys.add(item);
-                break;
                         
             default:
                 break;
@@ -287,13 +286,45 @@ bomberman.level = {
         });
         
     },
+    reCreateEnemies:function(door,explosion){
+        console.log(this);
+        explosion.kill();
+        this.createEnemies(this);
+    },
+    createEnemies:function(state){
+        var _this=state;
+        var objArray=state.findObjectsByIdRange(132,134,state.map,'Characters');
+        var item;
+         objArray.forEach(function(element){
+                switch(element.gid){
+            case 132:
+                console.log(element.x,element.y);
+                item = new bomberman.puffPuff(state.game, element.x, element.y,15, 'right', _this);
+                state.enemys.add(item);
+                break;
+            case 134:
+                item = new bomberman.moai(state.game, element.x, element.y, 15, 'right', _this);
+                state.enemys.add(item);
+                break;
+            case 135:
+                item=new bomberman.magnetHelm(state.game, element.x, element.y,15,0,_this);
+                state.enemys.add(item);
+                break;
+            default:
+                break;
+                }
+        });
+    },
     findObjectsById:function(id,map,layer){
         var result=new Array();
+        
         map.objects[layer].forEach(function(element){
            if(element.gid==id){
-               element.y-=(map.tileHeight/2);
-               element.x+=map.tileWidth/2;
-               result.push(element);
+               var res={x:0,y:0,gid:0};
+               res.gid=element.gid;
+               res.y=element.y-(map.tileHeight/2);
+               res.x=element.x+map.tileWidth/2;
+               result.push(res);
            } 
         });
         return result;
@@ -301,12 +332,15 @@ bomberman.level = {
     findObjectsByIdRange:function(id1,id2,map,layer){
         var result=new Array();
         //console.log(map);
+        
         map.objects[layer].forEach(function(element){
            // console.log(element);
            if(element.gid>=id1 && element.gid<=id2){
-               element.y-=(map.tileHeight/2);
-               element.x+=map.tileWidth/2;
-               result.push(element);
+               var res={x:0,y:0,gid:0};
+               res.gid=element.gid;
+                res.y=element.y-(map.tileHeight/2);
+               res.x=element.x+map.tileWidth/2;
+               result.push(res);
            } 
         });
         return result;
@@ -334,6 +368,10 @@ bomberman.level = {
         boton.activate();  
         this.checkVictory();
         }
+    },
+    explodeBomb:function(bomba,explosion){
+        explosion.kill();
+        bomba.explosion();
     },
     cogerUpgrade:function(player,upgrade){
         //console.log(player);

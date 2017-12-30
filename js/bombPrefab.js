@@ -4,6 +4,7 @@ bomberman.bombPrefab = function (game, x, y, range, level){
     Phaser.Sprite.call(this, game,x,y,'bomb');
     game.add.existing(this);
     
+    
     this.anchor.setTo(.5);
     this.anim=this.animations.add('stand', [0,1,2,3], 1, false);
     
@@ -25,6 +26,7 @@ bomberman.bombPrefab = function (game, x, y, range, level){
         this.level.imanes.forEach(function(iman){
             iman.checkBomb(this);
         },this);
+        this.animations.stop();
         
     }
     this.generateExplosion = function(x,y,type){
@@ -161,6 +163,6 @@ bomberman.bombPrefab.prototype.constructor = bomberman.bombPrefab;
 
 
 bomberman.bombPrefab.prototype.update = function (){
-    this.game.physics.arcade.overlap(this,this.level.explosions, this.explosion, null,this);
+   // this.game.physics.arcade.overlap(this,this.level.explosions, this.explosion, null,this);
 };
 

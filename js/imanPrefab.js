@@ -89,7 +89,7 @@ bomberman.imanPrefab=function(game,x,y,rot,level){
             this.explosion=explo;
             this.currentRotation=(this.currentRotation+1)%4;
             this.animations.frame=this.currentRotation;
-            this.checkBombs();
+            //this.checkBombs();
         }
     };
     this.stopBomb=function(bomb){
@@ -107,6 +107,8 @@ bomberman.imanPrefab.prototype.update=function(){
     //this.game.debug.body(this);
     
    // this.game.physics.arcade.overlap(this,this.level.bombas,this.stopBomb);
+    
+    this.checkBombs();
     
     if(this.explosion==null){   
      //   console.log(this);
