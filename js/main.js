@@ -19,6 +19,7 @@ var gameValues={
     ramosuScore:100,
     fiberScore:200,
     gurorinScore:100,
+    boss1Score:30000,
     score:0,
 }
 
