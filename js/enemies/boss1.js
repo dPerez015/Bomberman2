@@ -1,6 +1,6 @@
 var bomberman = bomberman || {};
 
-bomberman.boss1 = function(game, x, y, speed, level){
+bomberman.boss1 = function(game, x, y, speed, level, direction){
     Phaser.Sprite.call(this,game,x,y,'boss1');
     this.game.add.existing(this);
     this.anchor.setTo(.5);
@@ -23,17 +23,64 @@ bomberman.boss1 = function(game, x, y, speed, level){
     this.level = level;
     this.hp = 12;
     this.score = gameValues.boss1Score;
-    this.isHit = false;
     this.isHitting = false;
+    
     this.game.physics.arcade.enable(this);
     this.body.velocity.x = this.speed;
-    this.body.velocity.y = this.speed;
 };
 
 bomberman.boss1.prototype = Object.create(Phaser.Sprite.prototype);
 bomberman.boss1.prototype.constructor = bomberman.boss1;
 
 bomberman.boss1.prototype.update = function(){
+    this.game.physics.arcade.collide(this,this.level.walls);
     
+    if(this.game.physics.arcade.overlap(this, this.level.bombas)){
+        this.level.player.bombas.kill();//Nse si es pot fer
+    }
     
+    if(this.game.physics.arcade.collide(this,this.level.player)){
+        this.level.player.bombermanHit();
+    }
+    
+    if(this.game.physics.arcade.overlap(this,this.level.explosions)){
+        this.hit()
+    }
+    
+    if(this.body.y != this.level.player.y && this.hp >=10){
+        this.animations.play('standStill');
+        this.body.velocity.x -= this.speed;
+    }else if(this.body.y == this.player.y && this.hp >=10){
+        this.animations.play('punchLeft');
+    }
+    if(this.body.y != this.level.player.y && this.hp >=7 && this.hp <= 9){
+        this.animations.play('standStillWeak');
+        this.body.velocity
+    }
+    
+};
+
+bomberman.boss1.prototype.changeDirection = function(){
+    var arrDir = ['left', 'right'];
+    if(this.hp >= 10 && this.hp <= 12){
+        this.animations.play('standStill');
+    }
+    if(this.hp >= 7 && this.hp <= 9){
+        this.animations.play('standStillWeak');
+    }
+    if(this.hp >= 4 && this.hp <= 6){
+        this.animations.play('standStillWeaker');
+    }
+    if(this.hp >= 1 && this.hp <= 3){
+        this.animations.play('standStillAlmostDead');
+    }
+    
+};
+
+bomberman.boss1.prototype.hit = function(){
+    this.hp --;
+    
+    if(this.hp == 0){
+        
+    }
 }
