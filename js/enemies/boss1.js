@@ -34,9 +34,9 @@ bomberman.boss1.prototype.constructor = bomberman.boss1;
 
 bomberman.boss1.prototype.update = function(){
     this.game.physics.arcade.collide(this,this.level.walls);
-    
+    //Per comprobar pos del player mirar magnethelm
     if(this.game.physics.arcade.overlap(this, this.level.bombas)){
-        this.level.player.bombas.kill();//Nse si es pot fer
+        this.level.player.bombas.kill();//No es pot fer, mirar el codi del boto de level o el choquemuro
     }
     
     if(this.game.physics.arcade.collide(this,this.level.player)){
@@ -74,6 +74,7 @@ bomberman.boss1.prototype.changeDirection = function(){
     if(this.hp >= 1 && this.hp <= 3){
         this.animations.play('standStillAlmostDead');
     }
+    
     
 };
 
