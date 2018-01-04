@@ -49,7 +49,7 @@ bomberman.menu = {
         gameValues.bombRange = 1;
         gameValues.bombsQuantity = 3;
         gameValues.currentLevel=1;
-        gameValues.currentWorld=1;
+        gameValues.currentWorld=2;
         gameValues.score = 0;
         music.stop();
         bomberman.loadScene('transScene');

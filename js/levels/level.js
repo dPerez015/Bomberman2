@@ -25,8 +25,10 @@ bomberman.level = {
         this.load.spritesheet('gurorin', 'img/gurorin.png', 16,16);
         this.load.spritesheet('explosions', 'img/explosion.png', 16, 16);
         this.load.spritesheet('destruible','img/wall_destroyable'+gameValues.currentWorld.toString()+'.png',16,16);
+        this.load.spritesheet('flameGround','img/wall_destroyable'+gameValues.currentWorld.toString+'.png',16,16);
         this.load.spritesheet('iman','img/iman.png',16,16);
         this.load.spritesheet('dynamite',  'img/dynamite.png', 16, 16);
+        this.load.spritesheet('potenciador', 'img/potenciador.png', 16, 16);
         this.load.spritesheet('upgrade','img/Upgrades_Bomberman.png', 16, 16);
         this.load.spritesheet('win_button', 'img/Victory_Button'+ gameValues.currentWorld.toString() +'.png', 16, 16);
         this.load.spritesheet('door', 'img/Bomberman_Gate'+ gameValues.currentWorld.toString() +'.png', 32, 32);
@@ -84,6 +86,9 @@ bomberman.level = {
         //botones
         this.numBtnToActivate;
          this.createBotones(this);
+        
+        //potenciador
+        this.createPotenciador(this);
         
         //COLLISIONS
         this.map.setCollisionBetween(1,300,true, 'ObjetosSolidos');
@@ -264,6 +269,19 @@ bomberman.level = {
             
         });
     },
+    
+    createPotenciador:function(state){
+        var _this = this;
+        this.potenciadores = this.game.add.group();
+        var objectArray = this.findObjectsById(97, this.map, 'Interactuables');
+        var item;
+        
+        objectArray.forEach(function(element){
+           item = new bomberman.potenciador(state.game, element.x, element.y,_this);
+           state.potenciadores.add(item);    
+        });
+    },
+    
     createCharacters:function(state){
         var _this=this;
         //this.enemys=this.game.add.group();
