@@ -85,7 +85,6 @@ bomberman.bomberman_prefab = function(game, x, y, _currLevel){
         var result=Phaser.Sprite.prototype.preUpdate.call(this,arguments);
                 this.game.physics.arcade.collide(this,this.level.walls);
                 this.game.physics.arcade.collide(this,this.level.destruibles);
-                this.game.physics.arcade.collide(this,this.level.dynamites);
             
                 if(this.recentlyPlacedBomb==false){
                     this.game.physics.arcade.collide(this,this.level.bombas,function(player,bomba){
