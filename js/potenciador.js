@@ -8,10 +8,6 @@ bomberman.potenciador = function(game,x,y,_level){
     this.body.immovable = true;
     this.level = _level;
     
-    this.increaseExplosion:function(){
-        
-    };
-    
 }
 
 bomberman.potenciador.prototype = Object.create(Phaser.Sprite.prototype);

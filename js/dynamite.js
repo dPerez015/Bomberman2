@@ -344,7 +344,7 @@ bomberman.dynamite.prototype.constructor = bomberman.dynamite;
 
 bomberman.dynamite.prototype.update = function (){
     //this.game.physics.arcade.overlap(this,this.level.explosions, this.explosion, null,this);
-        if(this.game.physics.arcade.overlap(this,this.level.explosions)){
+    if(this.game.physics.arcade.overlap(this,this.level.explosions)){
         this.explosion();
         this.kill();
     }
