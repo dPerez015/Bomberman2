@@ -13,6 +13,7 @@ bomberman.addNameScene = {
         //Name player
         this.namePlayer="";
         this.inputLetter="";
+        
     },
     create:function(){
         
@@ -144,12 +145,79 @@ bomberman.addNameScene = {
         this.enterText = this.game.add.text(this.game.world.centerX, 400, "Press enter to save the ID", this.style);
         this.enterText.anchor.setTo(.5);
         
+        //default names
+        for(this.it = 0; it<10; it++){
+            localStorage.setItem("name"+it.toString(), "---------");
+        }
+        
+        //default scores
+        for(this.it = 0; it<10; it++){
+            localStorage.setItem("score"+it.toString(), 0);
+        }
+        
+        //Sort and add score and names
         if(this.enter.isDown && this.enter.downDuration(1)){
-            localStorage.setItem(this.namePlayer, gameValues.score);
+            
+            this.arrScores = [];
+            for(this.it = 0; it< 10; it++){
+                var item = {};
+
+                item.name = localStorage.getItem("name"+it.toString());
+                
+                item.score = parseInt(localStorage.getItem("score"+it.toString()));
+
+                this.arrScores.push(item);
+            }
+
+            this.isPlaced = false;
+            var newPlayer={name:this.namePlayer, score:gameValues.score};
+            var it = 9;
+
+            while(!this.isPlaced){
+                if(gameValues.score < this.arrScores[it].score){
+                    this.arrScores.splice(it+1, 0, this.namePlayer);
+                    this.isPlaced = true;
+                }else{
+                    it++;
+                }
+
+            }
+            
+            this.arrScores.pop();
+
+            for(this.it = 0;i<this.arrScores.length;it++){
+                var playerIdKey = "name"+it.toString();
+                var playerScoreKey = "score"+it.toPrecision();
+                
+                localStorage.setItem(playerIdKey, this.namePlayer);
+                localStorage.setItem(playerScoreKey, gameValues.score);
+            }
             this.doneText = this.game.add.text(this.game.world.centerX, 600, "DONE!", this.style);
             this.doneText.anchor.setTo(.5);
+            
             bomberman.loadScene("menu");
         }
+        
+        
+        /*if(this.enter.isDown && this.enter.downDuration(1)){
+            if(localStorage.getItem(this.namePlayer) !== null){
+                this.lastScore = parseInt(localStorage.getItem(this.namePlayer));
+                if(this.lastScore < gameValues.score){
+                    localStorage.setItem(this.namePlayer, gameValues.score);
+                    this.doneText = this.game.add.text(this.game.world.centerX, 600, "DONE!", this.style);
+                    this.doneText.anchor.setTo(.5);
+                }else{
+                    this.adviseText = this.game.add.text(this.game.world.centerX, 600, "Your already have a higher score", this.style);
+                    this.adviseText.anchor.setTo(.5);
+                }
+            }else{
+                localStorage.setItem(this.namePlayer, gameValues.score);
+                this.doneText = this.game.add.text(this.game.world.centerX, 600, "DONE!", this.style);
+                this.doneText.anchor.setTo(.5);
+            }
+            
+            bomberman.loadScene("menu");
+        }*/
         
     }
 }

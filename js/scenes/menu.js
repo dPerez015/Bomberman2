@@ -48,7 +48,7 @@ bomberman.menu = {
         gameValues.bombermanLife = 3;
         gameValues.bombRange = 1;
         gameValues.bombsQuantity = 3;
-        gameValues.currentLevel=1;
+        gameValues.currentLevel=2;
         gameValues.currentWorld=1;
         gameValues.score = 0;
         music.stop();
@@ -62,12 +62,7 @@ bomberman.menu = {
     passordsMode:function(){
         //radev rules
        music.stop();
-       bomberman.loadScene('comsoon');
-    },
-    passordsMode:function(){
-        //radev rules
-       music.stop();
-       bomberman.loadScene('comsoon'); 
+       bomberman.loadScene('scoreScene');
     }
     
 }
