@@ -39,6 +39,14 @@ bomberman.menu = {
         this.passwordButton = new bomberman.MenuButton_prefab(this.game,287,537,'Button',this.passordsMode);
         this.game.add.existing(this.passwordButton);
         
+        //default names
+        if(localStorage.getItem("name1") === null){
+            for(var it = 0; it<10; it++){
+                localStorage.setItem("name"+it.toString(), "---------");
+                localStorage.setItem("score"+it.toString(), 0);
+            }
+        }
+        
     },
     
     update:function(){

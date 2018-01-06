@@ -58,6 +58,9 @@ bomberman.addNameScene = {
         this.textTitle = this.game.add.text(this.game.world.centerX, 80, "Insert your ID:", this.style);
         this.textTitle.anchor.setTo(.5);
         
+        this.getSavedValues();
+        console.log(this.highScores);
+        
     },
     update:function(){
         if(this.q.isDown && this.q.downDuration(1)){
@@ -145,22 +148,21 @@ bomberman.addNameScene = {
         this.enterText = this.game.add.text(this.game.world.centerX, 400, "Press enter to save the ID", this.style);
         this.enterText.anchor.setTo(.5);
         
-        //default names
-        for(this.it = 0; it<10; it++){
-            localStorage.setItem("name"+it.toString(), "---------");
-        }
-        
-        //default scores
-        for(this.it = 0; it<10; it++){
-            localStorage.setItem("score"+it.toString(), 0);
-        }
         
         //Sort and add score and names
         if(this.enter.isDown && this.enter.downDuration(1)){
             
+            this.doneText = this.game.add.text(this.game.world.centerX, 600, "DONE!", this.style);
+            this.doneText.anchor.setTo(.5);
+            
+            bomberman.loadScene("menu");
+        }
+    },
+    getSavedValues:function(){
+            
             this.highScores = [];
             console.log(this.highScores);
-            for(this.it = 0; it< 10; it++){
+            for(var it = 0; it< 10; it++){
                 var item = {};
 
                 item.name = localStorage.getItem("name"+it.toString());
@@ -171,57 +173,30 @@ bomberman.addNameScene = {
                  
             }
 
-            console.log(this.highScores);
-            console.log(this);
-            this.isPlaced = false;
-            var newPlayer={name:this.namePlayer, score:gameValues.score};
-            var it = 9;
+    },
+    addNewValue:function(){
+        var isPlaced = false;
+        var newPlayer={name:this.namePlayer, score:gameValues.score};
+        var it = 9;
 
-            while(!this.isPlaced){
-                if(gameValues.score < this.highScores[it].score){
-                    this.highScores.splice(it+1, 0, this.namePlayer);
-                    this.isPlaced = true;
-                }else{
-                    it--;
-                }
-
-            }
-            
-            this.highScores.pop();
-
-            for(this.it = 0;i<this.highScores.length;it++){
-                var playerIdKey = "name"+it.toString();
-                var playerScoreKey = "score"+it.toPrecision();
-                
-                localStorage.setItem(playerIdKey, this.namePlayer);
-                localStorage.setItem(playerScoreKey, gameValues.score);
-            }
-            this.doneText = this.game.add.text(this.game.world.centerX, 600, "DONE!", this.style);
-            this.doneText.anchor.setTo(.5);
-            
-            bomberman.loadScene("menu");
-        }
-        
-        
-        /*if(this.enter.isDown && this.enter.downDuration(1)){
-            if(localStorage.getItem(this.namePlayer) !== null){
-                this.lastScore = parseInt(localStorage.getItem(this.namePlayer));
-                if(this.lastScore < gameValues.score){
-                    localStorage.setItem(this.namePlayer, gameValues.score);
-                    this.doneText = this.game.add.text(this.game.world.centerX, 600, "DONE!", this.style);
-                    this.doneText.anchor.setTo(.5);
-                }else{
-                    this.adviseText = this.game.add.text(this.game.world.centerX, 600, "Your already have a higher score", this.style);
-                    this.adviseText.anchor.setTo(.5);
-                }
+        while(!isPlaced){
+            if(gameValues.score < this.highScores[it].score){
+                this.highScores.splice(it+1, 0, this.namePlayer);
+                isPlaced = true;
             }else{
-                localStorage.setItem(this.namePlayer, gameValues.score);
-                this.doneText = this.game.add.text(this.game.world.centerX, 600, "DONE!", this.style);
-                this.doneText.anchor.setTo(.5);
+                it--;
             }
+
+        }
             
-            bomberman.loadScene("menu");
-        }*/
-        
+        this.highScores.pop();
+
+        for(var it = 0;i<this.highScores.length;it++){
+            var playerIdKey = "name"+it.toString();
+            var playerScoreKey = "score"+it.toPrecision();
+                
+            localStorage.setItem(playerIdKey, this.namePlayer);
+            localStorage.setItem(playerScoreKey, gameValues.score);
+        }
     }
 }
