@@ -25,7 +25,6 @@ bomberman.level = {
         this.load.spritesheet('gurorin', 'img/gurorin.png', 16,16);
         this.load.spritesheet('explosions', 'img/explosion.png', 16, 16);
         this.load.spritesheet('destruible','img/wall_destroyable'+gameValues.currentWorld.toString()+'.png',16,16);
-        this.load.spritesheet('flameGround','img/wall_destroyable'+gameValues.currentWorld.toString+'.png',16,16);
         this.load.spritesheet('iman','img/iman.png',16,16);
         this.load.spritesheet('dynamite',  'img/dynamite.png', 16, 16);
         this.load.spritesheet('potenciador', 'img/potenciador.png', 16, 16);

@@ -225,7 +225,7 @@ bomberman.bomberman_prefab.prototype.bombermanHit = function(){
 
     if(gameValues.bombermanLife < 0){
         lvlMusic.stop()
-        bomberman.loadScene('menu');
+        bomberman.loadScene('addName');
     }else{
         lvlMusic.stop();
         bomberman.loadScene('transScene');

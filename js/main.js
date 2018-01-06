@@ -30,5 +30,6 @@ bomberman.game.state.add('main',bomberman.level);
 bomberman.game.state.add('menu',bomberman.menu);
 bomberman.game.state.add('comsoon',bomberman.comingSoon);
 bomberman.game.state.add('transScene', bomberman.tScene_1_1);
-bomberman.game.state.add('addName', bomberman.ScoreScene);
+bomberman.game.state.add('addName', bomberman.addNameScene);
+bomberman.game.state.add('scoreScene', bomberman.ScoreScene)
 bomberman.game.state.start('menu');
