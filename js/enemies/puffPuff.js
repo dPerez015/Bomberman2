@@ -32,7 +32,6 @@ bomberman.puffPuff.prototype.constructor = bomberman.puffPuff;
 
 
 bomberman.puffPuff.prototype.update = function(){
-    this.game.debug.body(this);
     this.game.physics.arcade.collide(this,this.level.walls);
     this.game.physics.arcade.collide(this,this.level.destruibles);
     this.game.physics.arcade.collide(this,this.level.bombas);

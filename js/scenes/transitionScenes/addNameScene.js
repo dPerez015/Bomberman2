@@ -59,7 +59,6 @@ bomberman.addNameScene = {
         this.textTitle.anchor.setTo(.5);
         
         this.getSavedValues();
-        console.log(this.highScores);
         
     },
     update:function(){
@@ -155,13 +154,14 @@ bomberman.addNameScene = {
             this.doneText = this.game.add.text(this.game.world.centerX, 600, "DONE!", this.style);
             this.doneText.anchor.setTo(.5);
             
+            this.addNewValue();
+            
             bomberman.loadScene("menu");
         }
     },
     getSavedValues:function(){
             
             this.highScores = [];
-            console.log(this.highScores);
             for(var it = 0; it< 10; it++){
                 var item = {};
 
@@ -178,11 +178,13 @@ bomberman.addNameScene = {
         var isPlaced = false;
         var newPlayer={name:this.namePlayer, score:gameValues.score};
         var it = 9;
-
+        
         while(!isPlaced){
-            if(gameValues.score < this.highScores[it].score){
-                this.highScores.splice(it+1, 0, this.namePlayer);
+            if(gameValues.score <= this.highScores[it].score){
+                console.log(it);
+                this.highScores.splice(it+1, 0, newPlayer);
                 isPlaced = true;
+                
             }else{
                 it--;
             }
@@ -191,12 +193,12 @@ bomberman.addNameScene = {
             
         this.highScores.pop();
 
-        for(var it = 0;i<this.highScores.length;it++){
+        for(var it = 0;it<this.highScores.length;it++){
             var playerIdKey = "name"+it.toString();
             var playerScoreKey = "score"+it.toPrecision();
                 
-            localStorage.setItem(playerIdKey, this.namePlayer);
-            localStorage.setItem(playerScoreKey, gameValues.score);
+            localStorage.setItem(playerIdKey, this.highScores[it].name);
+            localStorage.setItem(playerScoreKey, this.highScores[it].score);
         }
     }
 }
