@@ -178,7 +178,7 @@ bomberman.addNameScene = {
                     this.arrScores.splice(it+1, 0, this.namePlayer);
                     this.isPlaced = true;
                 }else{
-                    it++;
+                    it--;
                 }
 
             }
