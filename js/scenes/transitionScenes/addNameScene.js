@@ -158,7 +158,8 @@ bomberman.addNameScene = {
         //Sort and add score and names
         if(this.enter.isDown && this.enter.downDuration(1)){
             
-            this.arrScores = [];
+            this.highScores = [];
+            console.log(this.highScores);
             for(this.it = 0; it< 10; it++){
                 var item = {};
 
@@ -166,16 +167,19 @@ bomberman.addNameScene = {
                 
                 item.score = parseInt(localStorage.getItem("score"+it.toString()));
 
-                this.arrScores.push(item);
+                this.highScores.push(item);
+                 
             }
 
+            console.log(this.highScores);
+            console.log(this);
             this.isPlaced = false;
             var newPlayer={name:this.namePlayer, score:gameValues.score};
             var it = 9;
 
             while(!this.isPlaced){
-                if(gameValues.score < this.arrScores[it].score){
-                    this.arrScores.splice(it+1, 0, this.namePlayer);
+                if(gameValues.score < this.highScores[it].score){
+                    this.highScores.splice(it+1, 0, this.namePlayer);
                     this.isPlaced = true;
                 }else{
                     it--;
@@ -183,9 +187,9 @@ bomberman.addNameScene = {
 
             }
             
-            this.arrScores.pop();
+            this.highScores.pop();
 
-            for(this.it = 0;i<this.arrScores.length;it++){
+            for(this.it = 0;i<this.highScores.length;it++){
                 var playerIdKey = "name"+it.toString();
                 var playerScoreKey = "score"+it.toPrecision();
                 
