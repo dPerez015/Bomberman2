@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="17" height="13" tilewidth="16" tileheight="16" nextobjectid="18">
+ <tileset firstgid="1" name="Boss_Map" tilewidth="16" tileheight="16" tilecount="20" columns="4">
+  <image source="../img/Boss_Map.png" width="64" height="80"/>
+ </tileset>
+ <tileset firstgid="21" name="Characters" tilewidth="16" tileheight="32" tilecount="6" columns="6">
+  <image source="../img/Characters.png" width="96" height="32"/>
+ </tileset>
+ <tileset firstgid="27" name="Boss1Tile" tilewidth="88" tileheight="98" tilecount="1" columns="1">
+  <image source="../img/Boss1Tile.png" width="88" height="98"/>
+ </tileset>
+ <layer name="BackgroundStatic" width="17" height="13">
+  <data encoding="csv">
+1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,
+5,0,10,10,10,10,10,10,10,10,10,10,10,10,10,0,8,
+9,0,6,0,6,0,6,0,6,0,6,0,6,0,6,0,12,
+15,0,6,11,6,11,6,11,6,11,6,11,6,11,6,0,18,
+15,0,6,0,6,0,6,0,6,0,6,0,6,0,6,0,18,
+14,0,6,11,6,11,6,11,6,11,6,11,6,11,6,0,19,
+13,0,6,0,6,0,6,0,6,0,6,0,6,0,6,0,16,
+14,0,6,11,6,11,6,11,6,11,6,11,6,11,6,0,19,
+15,0,6,0,6,0,6,0,6,0,6,0,6,0,6,0,18,
+15,0,6,11,6,11,6,11,6,11,6,11,6,11,6,0,18,
+9,0,6,0,6,0,6,0,6,0,6,0,6,0,6,0,12,
+1,0,6,11,6,11,6,11,6,11,6,11,6,11,6,0,4,
+5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8
+</data>
+ </layer>
+ <layer name="ObjetosSolidos" width="17" height="13">
+  <data encoding="csv">
+0,2,3,3,3,3,3,3,3,3,3,3,3,3,3,2,0,
+0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,
+0,2,0,7,0,7,0,7,0,7,0,7,0,7,0,2,0,
+0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,
+0,2,0,7,0,7,0,7,0,7,0,7,0,7,0,2,0,
+0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,
+0,2,0,7,0,7,0,7,0,7,0,7,0,7,0,2,0,
+0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,
+0,2,0,7,0,7,0,7,0,7,0,7,0,7,0,2,0,
+0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,
+0,2,0,7,0,7,0,7,0,7,0,7,0,7,0,2,0,
+0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,
+0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0
+</data>
+ </layer>
+ <objectgroup name="Characters">
+  <object id="2" gid="17" x="127" y="49" width="16" height="16"/>
+  <object id="11" gid="21" x="128" y="160" width="16" height="32"/>
+ </objectgroup>
+ <objectgroup name="Bosses">
+  <object id="17" gid="27" x="92" y="114" width="88" height="98"/>
+ </objectgroup>
+</map>

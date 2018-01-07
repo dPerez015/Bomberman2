@@ -28,7 +28,7 @@ bomberman.tScene_1_1 = {
             align: "center",
         };
         
-        this.lvlAndWorld = this.game.add.text(this.game.world.centerX, this.game.world.centerY, gameValues.currentLevel + "-" + gameValues.currentWorld, this.style);
+        this.lvlAndWorld = this.game.add.text(this.game.world.centerX, this.game.world.centerY, gameValues.currentWorld + "-" + gameValues.currentLevel, this.style);
         this.lvlAndWorld.anchor.setTo(.5);
         
         this.startText = this.game.add.text(this.game.world.centerX, 400, "START!", this.style);

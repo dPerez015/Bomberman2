@@ -179,7 +179,7 @@ bomberman.addNameScene = {
         var newPlayer={name:this.namePlayer, score:gameValues.score};
         var it = 9;
         
-        while(!isPlaced){
+        while(!isPlaced && it > -1){
             if(gameValues.score <= this.highScores[it].score){
                 console.log(it);
                 this.highScores.splice(it+1, 0, newPlayer);
@@ -189,6 +189,10 @@ bomberman.addNameScene = {
                 it--;
             }
 
+        }
+        
+        if(it == 0){
+            this.highScores.splice(1, 0, newPlayer);
         }
             
         this.highScores.pop();
