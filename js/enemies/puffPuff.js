@@ -36,6 +36,9 @@ bomberman.puffPuff.prototype.update = function(){
     this.game.physics.arcade.collide(this,this.level.destruibles);
     this.game.physics.arcade.collide(this,this.level.bombas);
     this.game.physics.arcade.collide(this,this.level.imanes);
+    this.game.physics.arcade.collide(this,this.level.enemys);
+    this.game.physics.arcade.collide(this,this.level.dynamites);
+    this.game.physics.arcade.collide(this,this.level.door);
     
     if(this.game.physics.arcade.overlap(this,this.level.player)){
         this.level.player.bombermanHit();

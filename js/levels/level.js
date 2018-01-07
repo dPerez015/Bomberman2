@@ -180,6 +180,7 @@ bomberman.level = {
     update:function(){
         this.physics.arcade.overlap(this.destruibles,this.explosions,this.choquemuro,null,this);
         this.physics.arcade.collide(this.imanes,this.player);
+         this.physics.arcade.collide(this.dynamites,this.player);
         this.physics.arcade.overlap(this.botones,this.explosions,this.activarBoton,null,this);
         this.physics.arcade.overlap(this.door,this.explosions,this.reCreateEnemies.bind(this));
         
@@ -188,6 +189,7 @@ bomberman.level = {
         this.physics.arcade.collide(this.destruibles,this.bombas);
         this.physics.arcade.collide(this.imanes,this.bombas);
         this.physics.arcade.collide(this.dynamites, this.bombas);//DINAMITA
+        
         this.physics.arcade.collide(this.walls,this.bombas);
         this.physics.arcade.collide(this.bombas);
         this.game.physics.arcade.overlap(this.bombas,this.explosions, this.explodeBomb, null,this);
@@ -320,7 +322,6 @@ bomberman.level = {
          objArray.forEach(function(element){
                 switch(element.gid){
             case 132:
-                console.log(element.x,element.y);
                 item = new bomberman.puffPuff(state.game, element.x, element.y,15, 'right', _this);
                 state.enemys.add(item);
                 break;

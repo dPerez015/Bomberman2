@@ -8,6 +8,7 @@ bomberman.dynamite = function (game, x, y, level){
     this.level=level;
     this.range = 3;
     this.game = game;
+    this.body.immovable=true;
     this.isExploding = false;
     this.isExpanded = false;
     
