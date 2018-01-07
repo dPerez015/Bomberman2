@@ -174,7 +174,6 @@ bomberman.level = {
         this.game.context.fillRect(zone.x, zone.y, zone.width, zone.height);
     },*/
     update:function(){
-        this.game.debug.body(this.player);
         this.physics.arcade.overlap(this.destruibles,this.explosions,this.choquemuro,null,this);
         this.physics.arcade.collide(this.imanes,this.player);
         this.physics.arcade.overlap(this.botones,this.explosions,this.activarBoton,null,this);

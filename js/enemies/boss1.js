@@ -98,7 +98,7 @@ bomberman.boss1.prototype.update = function(){
             var playerPosX=this.level.bg.getTileX(this.level.player.body.position.x);
             var playerPosY=this.level.bg.getTileY(this.level.player.body.position.y);
             
-            var vX=posX-playerPosX;
+            var vX=posX-playerPosX; 
             var vY=posY-playerPosY;
             
             if(vX!=0)
