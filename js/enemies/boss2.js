@@ -35,19 +35,14 @@ bomberman.boss2 = function(game, x, y, speed, direction, level){
         }
         //treure frames
         if(this.hp >= 13){
-            this.animations.frame = 0;
             this.animations.play('hit1');
         }else if(this.hp >= 10 && this.hp <= 12){
-            this.animations.frame = 1;
             this.animations.play('hit2');
         }else if(this.hp >= 7 && this.hp <=9){
-            this.animations.frame = 2;
             this.animations.play('hit3');
         }else if(this.hp >= 4 && this.hp <=6){
-            this.animations.frame = 3;
             this.animations.play('hit4');
         }else if(this.hp >=1 && this.hp <= 3){
-            this.animations.frame = 4;           
             this.animations.play('hit5');
         }
         
@@ -63,6 +58,17 @@ bomberman.boss2 = function(game, x, y, speed, direction, level){
     this.changeInvu = function(){
         this.invu = false;
         //afegir els ifs dels frames
+        if(this.hp >= 13){
+            this.animations.frame = 0;
+        }else if(this.hp >= 10 && this.hp <= 12){
+            this.animations.frame = 1;
+        }else if(this.hp >= 7 && this.hp <=9){
+            this.animations.frame = 2;
+        }else if(this.hp >= 4 && this.hp <=6){
+            this.animations.frame = 3;
+        }else if(this.hp >=1 && this.hp <= 3){
+            this.animations.frame = 4;           
+        }
     };
     
     this.hitAnim1.onComplete.add(this.changeDirection.bind(this), this.level);

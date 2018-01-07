@@ -22,7 +22,7 @@ bomberman.door_prefab.prototype.constructor = bomberman.door_prefab;
 
 bomberman.door_prefab.prototype.update=function(){
     //console.log("cca");
-    if(!this.isActive)
+    if(this.isActive)
         this.game.physics.arcade.overlap(this,this.level.player,this.level.player.winLevel.bind(this.level.player));
     else
         this.game.physics.arcade.collide(this,this.level.player);
