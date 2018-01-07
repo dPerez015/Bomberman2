@@ -35,6 +35,9 @@ bomberman.ScoreScene = {
         for(var it = 0; it < 10; it++){
             this.game.add.text(this.world.centerX, 100+(it*50), (it+1).toString()+"-"+this.highScores[it].name+": "+this.highScores[it].score, this.style2);
         }
+        
+        this.escText = this.game.add.text(this.game.world.centerX, 610, "Press ESC to go to the menu", this.style);
+        this.escText.anchor.setTo(.5);
     },
     update:function(){
         
@@ -45,7 +48,6 @@ bomberman.ScoreScene = {
         getSavedValues:function(){
             
             this.highScores = [];
-            console.log(this.highScores);
             for(var it = 0; it< 10; it++){
                 var item = {};
 

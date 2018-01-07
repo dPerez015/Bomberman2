@@ -156,7 +156,7 @@ bomberman.addNameScene = {
             
             this.addNewValue();
             
-            bomberman.loadScene("menu");
+            bomberman.loadScene("scoreScene");
         }
     },
     getSavedValues:function(){
@@ -190,9 +190,8 @@ bomberman.addNameScene = {
             }
 
         }
-        
-        if(it == 0){
-            this.highScores.splice(1, 0, newPlayer);
+        if(it == -1){
+            this.highScores.splice(0, 0, newPlayer);
         }
             
         this.highScores.pop();
