@@ -39,9 +39,9 @@
                  "y":160
                 }, 
                 {
-                 "gid":144,
+                 "gid":145,
                  "height":32,
-                 "id":25,
+                 "id":27,
                  "name":"",
                  "rotation":0,
                  "type":"",
@@ -76,7 +76,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":26,
+ "nextobjectid":28,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.0.3",
