@@ -19,6 +19,11 @@ bomberman.boss2 = function(game, x, y, speed, direction, level){
     this.score = gameValues.bossScore;
     this.isShotting = false;
     this.invu = false;
+    this.range = 9;
+    this.isAttacking = false;
+    this.timeStartAtck = 0;
+    this.durAtck = 3;
+    this.level = level;
     
     this.game.physics.arcade.enable(this);
     
@@ -28,7 +33,7 @@ bomberman.boss2 = function(game, x, y, speed, direction, level){
             this.hp --;
             this.invu = true;
         }
-        
+        //treure frames
         if(this.hp >= 13){
             this.animations.frame = 0;
             this.animations.play('hit1');
@@ -57,6 +62,7 @@ bomberman.boss2 = function(game, x, y, speed, direction, level){
     
     this.changeInvu = function(){
         this.invu = false;
+        //afegir els ifs dels frames
     };
     
     this.hitAnim1.onComplete.add(this.changeDirection.bind(this), this.level);
@@ -72,6 +78,9 @@ bomberman.boss2 = function(game, x, y, speed, direction, level){
     
     this.attackBoss = function(){
         
+        //fer un prefab nou exactament igual que la bomba, i contar les vegades que fa l'animació i aleshores explota
+        this.isAtracting = true;
+        this.timeStartAtck = 0;
     };
 };
 
@@ -83,16 +92,23 @@ bomberman.boss2.prototype.update = function(){
     this.game.physics.arcade.overlap(this,this.level.player, this.level.player.bombermanHit,null,this);
     this.game.physics.arcade.overlap(this,this.level.bombas, this.level.bombas.kill,null,this);
     
-    if((this.body.blocked.up || this.body.touching.up) && (this.body.blocked.left || this.body.touching.left) && this.direction == 'leftUp'){
-        this.changeDirection();
-    } else if((this.body.blocked.down || this.body.touching.down) && (this.body.blocked.left || this.body.touching.left) && this.direction == 'leftDown'){
-        this.changeDirection();
-    } else if((this.body.blocked.up || this.body.touching.up) && (this.body.blocked.right || this.body.touching.right) && this.direction == 'rightUp'){
-        this.changeDirection();
-    } else if((this.body.blocked.down || this.body.touching.down) && (this.body.blocked.right || this.body.touching.right) && this.direction == 'rightDown'){
-        this.changeDirection();
-    } 
-    
+    if(!this.isAttacking){
+        if((this.body.blocked.up || this.body.touching.up) && (this.body.blocked.left || this.body.touching.left) && this.direction == 'leftUp'){
+            this.attackBoss();
+        } else if((this.body.blocked.down || this.body.touching.down) && (this.body.blocked.left || this.body.touching.left) && this.direction == 'leftDown'){
+            this.attackBoss();
+        } else if((this.body.blocked.up || this.body.touching.up) && (this.body.blocked.right || this.body.touching.right) && this.direction == 'rightUp'){
+            this.attackBoss();
+        } else if((this.body.blocked.down || this.body.touching.down) && (this.body.blocked.right || this.body.touching.right) && this.direction == 'rightDown'){
+            this.attackBoss();
+        } 
+    }else{
+        this.timeStartAtck += this.level.game.time.physicsElapsed;
+        if(this.timeStartAtck > this.durAtck){
+            this.changeDirection();
+            this.isAttacking = false;
+        }
+    }
     this.game.physics.arcade.overlap(this, this.level.explosions,this.isHit,null,this);
     
 }
