@@ -153,7 +153,21 @@ bomberman.bombPrefab = function (game, x, y, range, level){
     //checkear los imanes
     this.level.imanes.forEach(function(iman){
         iman.checkBomb(this);
-    },this)
+    },this);
+    
+    //check potenciador
+    this.potenciador=function(){
+        var bomb = this;
+        this.level.potenciadores.forEach(function(potenciador){
+            if(bomb.body.x == potenciador.body.x && bomb.body.y == potenciador.body.y){
+            var tmp = bomb.range;
+            bomb.range = 10;
+            }
+            
+        });
+
+
+   };
 
 };
 
@@ -164,5 +178,6 @@ bomberman.bombPrefab.prototype.constructor = bomberman.bombPrefab;
 
 bomberman.bombPrefab.prototype.update = function (){
    // this.game.physics.arcade.overlap(this,this.level.explosions, this.explosion, null,this);
+    this.potenciador();
 };
 
