@@ -32,7 +32,11 @@ bomberman.level = {
         this.load.spritesheet('win_button', 'img/Victory_Button'+ gameValues.currentWorld.toString() +'.png', 16, 16);
         this.load.spritesheet('door', 'img/Bomberman_Gate'+ gameValues.currentWorld.toString() +'.png', 32, 32);
         this.load.spritesheet('fiber', 'img/fiber.png', 24, 24);
-        this.load.spritesheet('boss1', 'img/boss1.png', 46, 114);
+        this.load.spritesheet('boss1', 'img/boss1.png', 88, 96);
+        this.load.spritesheet('armBoss1','img/BossArm.png', 15, 16);
+        this.load.spritesheet('rightPunchBoss1','img/BossRightPunch.png',28,32);
+        this.load.spritesheet('leftPunchBoss1','img/BossLeftPunch.png',28,32);
+        
         
         //mapa
         
