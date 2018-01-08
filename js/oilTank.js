@@ -68,7 +68,7 @@ bomberman.oilTank = function(game, x, y, _level){
     
 }
 
-bomberman.oilTank.prototype = Object.cre   ate(Phaser.Sprite.prototype);
+bomberman.oilTank.prototype = Object.create(Phaser.Sprite.prototype);
 bomberman.oilTank.prototype.constructor = bomberman.objecteMobil;
 bomberman.imanPrefab.prototype.update=function(){
     if(this.isActivated == true){
