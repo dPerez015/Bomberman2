@@ -21,6 +21,8 @@ var gameValues={
     gurorinScore:100,
     bossScore:30000,
     score:0,
+    boss1Life:15,
+    boss1Attack:false,
 }
 
 

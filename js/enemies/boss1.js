@@ -17,27 +17,7 @@ bomberman.boss1 = function(game, x, y, speed, direction, level){
     this.body.velocity.x = this.speed;
     
     
-    
-    /*this.checkPlayer=function(){
-    var posX=this.level.bg.getTileX(this.body.x);
-        
-    var playerPosX=this.level.bg.getTileX(this.level.player.body.position.x);
-    if(playerPosX==posX){
-        var canPass=true;
-        var difX=playerPosX-posX;
-        var dif=difX;
-        if(dif!=0){
-            difX/=Math.abs(difX);
-        }
-        
-        for(var i=0; i<=dif ;i++){
-            posX+=difX;
-        }
-        return canPass;
-    }
-        else
-            return false;
-    }*/
+
 };
 
 bomberman.boss1.prototype = Object.create(Phaser.Sprite.prototype);

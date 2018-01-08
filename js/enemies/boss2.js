@@ -7,20 +7,18 @@ bomberman.boss2 = function(game, x, y, speed, direction, level){
     
     this.hitAnim1 = this.animations.add('hit1', [0,1], 10, true);
     this.hitAnim2 = this.animations.add('hit2', [1,2], 10, true);
-    this.hitAnim3 = this.animations.add('hit3 ', [1,2], 10, true);
-    this.hitAnim4 = this.animations.add('hit4', [1,2], 10, true);
-    this.hitAnim5 = this.animations.add('hit5', [1,2], 10, true);
+    this.hitAnim3 = this.animations.add('hit3 ', [2,3], 10, true);
+    this.hitAnim4 = this.animations.add('hit4', [3,4], 10, true);
     
     this.events.onKilled.add(level.checkVictory.bind(level));
     
     this.game = game;
     this.speed = speed;
-    this.direction.direction;
+    this.direction = direction;
     this.hp = 15;
     this.score = gameValues.bossScore;
     this.isShotting = false;
     this.invu = false;
-    this.range = 9;
     this.isAttacking = false;
     this.timeStartAtck = 0;
     this.durAtck = 3;
@@ -44,7 +42,7 @@ bomberman.boss2 = function(game, x, y, speed, direction, level){
         }else if(this.hp >= 4 && this.hp <=6){
             this.animations.play('hit4');
         }else if(this.hp >=1 && this.hp <= 3){
-            this.animations.play('hit5');
+            this.animations.play('hit4');
         }
         
         this.body.velocity.x = 0;
@@ -80,8 +78,6 @@ bomberman.boss2 = function(game, x, y, speed, direction, level){
     this.hitAnim3.onComplete.add(this.changeInvu.bind(this), this.level);
     this.hitAnim4.onComplete.add(this.changeDirection.bind(this), this.level);
     this.hitAnim4.onComplete.add(this.changeInvu.bind(this), this.level);
-    this.hitAnim5.onComplete.add(this.changeDirection.bind(this), this.level);
-    this.hitAnim5.onComplete.add(this.changeInvu.bind(this), this.level);
     
     this.attackBoss = function(){
         
