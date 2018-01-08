@@ -17,7 +17,6 @@ bomberman.boss2 = function(game, x, y, speed, direction, level){
     this.direction = direction;
     this.hp = 15;
     this.score = gameValues.bossScore;
-    this.isShotting = false;
     this.invu = false;
     this.isAttacking = false;
     this.timeStartAtck = 0;
@@ -129,7 +128,7 @@ bomberman.boss2.prototype.changeDirection = function(){
             break;
         
         case 'leftDown':
-            this.body.velocity.y += this.speed; 
+            this.body.velocity.y -= this.speed; 
             this.body.velocity.x -= this.speed;
             break;
        

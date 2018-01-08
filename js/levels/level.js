@@ -119,6 +119,7 @@ bomberman.level = {
         this.createCharacters(this);
         this.enemys=this.game.add.group();
         this.createEnemies(this);
+        this.createBosses(this);
         
         
         //CAMERA
