@@ -13,6 +13,7 @@ bomberman.boss2 = function(game, x, y, speed, direction, level){
     
     this.events.onKilled.add(level.checkVictory.bind(level));
     
+    this.game = game;
     this.speed = speed;
     this.direction.direction;
     this.hp = 15;
@@ -85,7 +86,10 @@ bomberman.boss2 = function(game, x, y, speed, direction, level){
     this.attackBoss = function(){
         
         //fer un prefab nou exactament igual que la bomba, i contar les vegades que fa l'animació i aleshores explota
-        this.isAtracting = true;
+        for(var it = 0; it < 4; it++){
+            this.attackExplosion = new bomberman.Boss_AttackPrefab(this.game,this.level.map.getTileX((Math.random()* this.level.map.widthInPixels)*16)+8,this.level.map.getTileY((Math.random()* this.level.map.heightInPixels)*16)+8,this.level);
+        }
+        this.isAttacking = true;
         this.timeStartAtck = 0;
     };
 };

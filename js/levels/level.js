@@ -37,6 +37,7 @@ bomberman.level = {
         this.load.spritesheet('rightPunchBoss1','img/BossRightPunch.png',28,32);
         this.load.spritesheet('leftPunchBoss1','img/BossLeftPunch.png',28,32);
         this.load.spritesheet('boss2', 'img/boss2.png',93,85);
+        this.load.spritesheet('boss2Attack', 'img/Marca_Boss2.png',16,16);
         
         
         //mapa
