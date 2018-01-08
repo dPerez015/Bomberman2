@@ -5,7 +5,8 @@ bomberman.imanPrefab=function(game,x,y,rot,level){
     this.anchor.setTo(.5);
     this.game.physics.arcade.enable(this);
     this.body.immovable=true;
-    this.currentRotation=0;
+    this.currentRotation=rot;
+     this.animations.frame=this.currentRotation;
     this.level=level;
     this.explosion=null;
     

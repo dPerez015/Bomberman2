@@ -28,7 +28,13 @@ bomberman.tScene_1_1 = {
             align: "center",
         };
         
-        this.lvlAndWorld = this.game.add.text(this.game.world.centerX, this.game.world.centerY, gameValues.currentWorld + "-" + gameValues.currentLevel, this.style);
+        if(gameValues.currentLevel!=4){
+            this.lvlAndWorld = this.game.add.text(this.game.world.centerX, this.game.world.centerY, gameValues.currentWorld + "-" + gameValues.currentLevel, this.style);
+        }
+        else{
+            this.lvlAndWorld=this.game.add.text(this.game.world.centerX,this.game.world.centerY, "BOSS",this.style);
+        }
+        
         this.lvlAndWorld.anchor.setTo(.5);
         
         this.startText = this.game.add.text(this.game.world.centerX, 400, "START!", this.style);
