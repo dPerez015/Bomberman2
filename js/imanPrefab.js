@@ -47,11 +47,11 @@ bomberman.imanPrefab=function(game,x,y,rot,level){
             if(this.level.bg.getTileY(bomb.body.position.y) == this.level.bg.getTileY(this.body.position.Y)){
                 if(this.currentRotation==1){
                     if(this.checkDistanceBomb(bomb,1,0))
-                        atract(bomb,-1,0);
+                        this.atract(bomb,-1,0);
                 }
                 else if(this.currentRotation==3)
                     if(this.checkDistanceBomb(bomb,-1,0))
-                        atract(bomb,1,0);
+                        this.atract(bomb,1,0);
             }
                 
         },this);
@@ -71,11 +71,11 @@ bomberman.imanPrefab=function(game,x,y,rot,level){
         else if(this.level.bg.getTileY(bomb.body.position.y) == this.level.bg.getTileY(this.body.position.y)){
                 if(this.currentRotation==1){
                     if(this.checkDistanceBomb(bomb,1,0))
-                        atract(bomb,-1,0);
+                        this.atract(bomb,-1,0);
                 }
                 else if(this.currentRotation==3)
                     if(this.checkDistanceBomb(bomb,-1,0))
-                        atract(bomb,1,0);
+                        this.atract(bomb,1,0);
             }
                 
         

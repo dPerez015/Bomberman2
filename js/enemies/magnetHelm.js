@@ -199,7 +199,6 @@ bomberman.magnetHelm.prototype.showScore = function(){
 
 bomberman.magnetHelm.prototype.update = function(){
     //colisiones
-    this.game.debug.body(this);
     this.game.physics.arcade.collide(this,this.level.walls);
     this.game.physics.arcade.collide(this,this.level.destruibles);
     this.game.physics.arcade.collide(this,this.level.bombas);

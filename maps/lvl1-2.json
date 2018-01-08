@@ -300,18 +300,6 @@
                  "y":144
                 }, 
                 {
-                 "gid":135,
-                 "height":32,
-                 "id":159,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":352,
-                 "y":80
-                }, 
-                {
                  "gid":133,
                  "height":32,
                  "id":162,
