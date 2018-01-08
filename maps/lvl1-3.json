@@ -1030,7 +1030,7 @@
          "name":"Characters",
          "objects":[
                 {
-                 "gid":136,
+                 "gid":135,
                  "height":32,
                  "id":170,
                  "name":"",
@@ -1040,21 +1040,9 @@
                  "width":16,
                  "x":112,
                  "y":112
-                }, 
+                },  
                 {
                  "gid":135,
-                 "height":32,
-                 "id":171,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":208,
-                 "y":240
-                }, 
-                {
-                 "gid":136,
                  "height":32,
                  "id":172,
                  "name":"",
@@ -1086,8 +1074,8 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":56,
-                 "y":80
+                 "x":208,
+                 "y":240
                 }, 
                 {
                  "gid":133,
