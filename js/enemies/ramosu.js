@@ -31,6 +31,8 @@ bomberman.ramosu.prototype.update = function(){
     this.game.physics.arcade.collide(this,this.level.walls);
     this.game.physics.arcade.collide(this,this.level.destruibles);
     this.game.physics.arcade.collide(this,this.level.bombas);
+    this.game.physics.arcade.collide(this,this.level.enemys);
+    this.game.physics.arcade.collide(this,this.level.door);
     
     if(this.game.physics.arcade.overlap(this,this.level.player)){
         this.level.player.bombermanHit();
