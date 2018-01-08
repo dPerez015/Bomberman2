@@ -39,12 +39,14 @@ bomberman.level = {
         
         
         //mapa
-        
-        
         this.load.tilemap('level','maps/lvl'+ gameValues.currentWorld.toString() +'-'+ 
         gameValues.currentLevel.toString()+'.json', null, Phaser.Tilemap.TILED_JSON);
-        this.load.image('world','img/world'+ gameValues.currentWorld.toString() +'.png');
-        
+        if(){
+            this.load.image('world','img/Bossmap'+gameValues.currentWorld.toString()+'.png');   
+        }
+        else{
+            this.load.image('world','img/world'+ gameValues.currentWorld.toString() +'.png');
+        }
         
         //HUD
         this.load.image('hud', 'img/hud1.png');
@@ -232,13 +234,31 @@ bomberman.level = {
         var _this=this;
         this.imanes=this.game.add.group();
         this.imanesTrigger=this.game.add.group();
-        var objArray=this.findObjectsById(92,this.map,'Interactuables');
+        var objArray=this.findObjectsByIdRange(92,95,this.map,'Interactuables');
         var item
         //arriba
         objArray.forEach(function(element){
-           item=new bomberman.imanPrefab(state.game,element.x,element.y,0,_this);
-            state.imanes.add(item);
-            _this.gridSolidObjects[_this.bg.getTileX(element.x)][_this.bg.getTileY(element.y)]=1;
+            switch(element.gid){
+                case 92:
+                    item=new bomberman.imanPrefab(state.game,element.x,element.y,0,_this);
+                    state.imanes.add(item);
+                    _this.gridSolidObjects[_this.bg.getTileX(element.x)][_this.bg.getTileY(element.y)]=1;
+                    break;
+                case 93: 
+                     item=new bomberman.imanPrefab(state.game,element.x,element.y,1,_this);
+                    state.imanes.add(item);
+                    _this.gridSolidObjects[_this.bg.getTileX(element.x)][_this.bg.getTileY(element.y)]=1;
+                    break;
+                case 94: 
+                     item=new bomberman.imanPrefab(state.game,element.x,element.y,2,_this);
+                    state.imanes.add(item);
+                    _this.gridSolidObjects[_this.bg.getTileX(element.x)][_this.bg.getTileY(element.y)]=1;
+                case 95:
+                     item=new bomberman.imanPrefab(state.game,element.x,element.y,3,_this);
+                    state.imanes.add(item);
+                    _this.gridSolidObjects[_this.bg.getTileX(element.x)][_this.bg.getTileY(element.y)]=1;
+            }
+           
         });
         //derecha
         /*objArray=this.findObjectsById(93,this.map,'Interactuables');
@@ -312,7 +332,6 @@ bomberman.level = {
         
     },
     reCreateEnemies:function(door,explosion){
-        console.log(this);
         explosion.kill();
         this.createEnemies(this);
     },
@@ -377,8 +396,15 @@ bomberman.level = {
                 won=false;
         }
         //console.log(this.numBtnToActivate);
-        if(this.numBtnToActivate==0 && won){
-            this.door.activate();
+        
+        if(gameValues.currentLevel!=4){
+            if(this.numBtnToActivate==0 && won){
+                this.door.activate();
+            }
+        }
+        else{
+            if(won)
+                this.player.winLevel();
         }
     },
     choquemuro:function(muro,explosion){
@@ -405,6 +431,11 @@ bomberman.level = {
     goToNextLevel:function(){
         gameValues.currentLevel++;
         
+        if(currentLevel>4){
+            currentLevel=1;
+            currentWorld++;
+        }
+           
         bomberman.loadScene('transScene');
     },
     updateTimer:function(){
