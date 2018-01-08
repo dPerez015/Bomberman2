@@ -1,4 +1,4 @@
-var bomberman = bomberman || {}:
+var bomberman = bomberman || {};
 
 bomberman.bodyBoss1Prefab = function(game,x,y,level){
     Phaser.Sprite.call(this, game, x, y, 'bodyBoss1');

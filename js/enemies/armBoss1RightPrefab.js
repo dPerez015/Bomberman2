@@ -17,7 +17,7 @@ bomberman.armBoss1RightPrefab = function(game, x, y, level){
 bomberman.armBoss1RightPrefab.prototype = Object.create(Phaser.Sprite.prototype);
 bomberman.armBoss1RightPrefab.prototype.constructor = bomberman.armBoss1RightPrefab;
 
-bomberman.bodyBoss1Prefab.prototype.update = function(){
+bomberman.armBoss1RightPrefab.prototype.update = function(){
     this.game.physics.arcade.collide(this,this.level.walls);
     this.game.physics.arcade.overlap(this,this.level.player, this.level.player.bombermanHit,null,this);
     this.game.physics.arcade.overlap(this, this.level.explosions,this.isHit,null,this);

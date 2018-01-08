@@ -7,7 +7,7 @@
   <image source="../img/Characters2.png" width="96" height="32"/>
  </tileset>
  <tileset firstgid="13" name="world" tilewidth="16" tileheight="16" tilecount="130" columns="13">
-  <image source="../img/world3.png" width="208" height="160"/>
+  <image source="../img/Bossmap1.png" width="208" height="160"/>
  </tileset>
  <tileset firstgid="143" name="Characters3" tilewidth="16" tileheight="32" tilecount="6" columns="6">
   <image source="../img/Characters3.png" width="96" height="32"/>

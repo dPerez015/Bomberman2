@@ -28,7 +28,6 @@ bomberman.ramosu.prototype.constructor = bomberman.ramosu;
 
 
 bomberman.ramosu.prototype.update = function(){
-    this.game.debug.body(this);
     this.game.physics.arcade.collide(this,this.level.walls);
     this.game.physics.arcade.collide(this,this.level.destruibles);
     this.game.physics.arcade.collide(this,this.level.bombas);

@@ -25,6 +25,12 @@ bomberman.boss2 = function(game, x, y, speed, direction, level){
     
     this.game.physics.arcade.enable(this);
     
+    //rightDown 
+    this.direction = "rightDown";
+    this.body.velocity.x += this.speed; 
+    this.body.velocity.y += this.speed;
+    
+    
     this.isHit = function(){
         
         if(this.invu = false){
@@ -82,7 +88,7 @@ bomberman.boss2 = function(game, x, y, speed, direction, level){
         
         //fer un prefab nou exactament igual que la bomba, i contar les vegades que fa l'animació i aleshores explota
         for(var it = 0; it < 4; it++){
-            this.attackExplosion = new bomberman.Boss_AttackPrefab(this.game,this.level.map.getTileX((Math.random()* this.level.map.widthInPixels)*16)+8,this.level.map.getTileY((Math.random()* this.level.map.heightInPixels)*16)+8,this.level);
+            this.attackExplosion = new bomberman.Boss_AttackPrefab(this.game,this.level.bg.getTileX((Math.random()* this.level.map.widthInPixels)*16)+8,this.level.bg.getTileY((Math.random()* this.level.map.heightInPixels)*16)+8,this.level);
         }
         this.isAttacking = true;
         this.timeStartAtck = 0;
@@ -93,32 +99,33 @@ bomberman.boss2.prototype = Object.create(Phaser.Sprite.prototype);
 bomberman.boss2.prototype.constructor = bomberman.boss2;
 
 bomberman.boss2.prototype.update = function(){
-    this.game.physics.arcade.collide(this,this.level.walls);
     this.game.physics.arcade.overlap(this,this.level.player, this.level.player.bombermanHit,null,this);
     this.game.physics.arcade.overlap(this,this.level.bombas, this.level.bombas.kill,null,this);
     
-    if(!this.isAttacking){
-        if((this.body.blocked.up || this.body.touching.up) && (this.body.blocked.left || this.body.touching.left) && this.direction == 'leftUp'){
-            this.attackBoss();
-        } else if((this.body.blocked.down || this.body.touching.down) && (this.body.blocked.left || this.body.touching.left) && this.direction == 'leftDown'){
-            this.attackBoss();
-        } else if((this.body.blocked.up || this.body.touching.up) && (this.body.blocked.right || this.body.touching.right) && this.direction == 'rightUp'){
-            this.attackBoss();
-        } else if((this.body.blocked.down || this.body.touching.down) && (this.body.blocked.right || this.body.touching.right) && this.direction == 'rightDown'){
-            this.attackBoss();
-        } 
-    }else{
-        this.timeStartAtck += this.level.game.time.physicsElapsed;
-        if(this.timeStartAtck > this.durAtck){
-            this.changeDirection();
-            this.isAttacking = false;
+    if(this.body.position.x < 32+47 || this.body.position.x > 240-47 || this.body.position.y < 16+43 || this.body.position.y > 192-43){
+        if(!this.isAttacking){
+            if(this.body.position.y < 16+43 && this.body.position.x > 240-47 && this.direction == 'leftUp'){
+                this.attackBoss();
+            } else if(this.body.position.y > 192-43 && this.body.position.x > 240-47 && this.direction == 'leftDown'){
+                this.attackBoss();
+            } else if(this.body.position.y < 16+43 && this.body.position.x < 32+47 && this.direction == 'rightUp'){
+                this.attackBoss();
+            } else if(this.body.position.y > 192-43 && this.body.position.x < 32+47 && this.direction == 'rightDown'){
+                this.attackBoss();
+            } 
+        }else{
+            this.timeStartAtck += this.level.game.time.physicsElapsed;
+            if(this.timeStartAtck > this.durAtck){
+                this.changeDirection();
+                this.isAttacking = false;
+            }
         }
     }
     this.game.physics.arcade.overlap(this, this.level.explosions,this.isHit,null,this);
     
 }
 
-bomberman.boss2.prototype.changeDirection = function(){
+bomberman.boss2.prototype.changeDirection = function(){ 
         var arrayDir = ['leftUp', 'leftDown', 'rightUp', 'rightDown'];//up,down,left,right
         this.direction = arrayDir[Math.floor(Math.random() * arrayDir.length)];
         switch(this.direction){

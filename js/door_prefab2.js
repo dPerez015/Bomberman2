@@ -1,7 +1,7 @@
 var bomberman = bomberman || {};
 
 bomberman.door_prefab2 = function(game,x,y,_level){
-    Phaser.Sprite.call(this,game,x,y,'door2');
+    Phaser.Sprite.call(this,game,x,y,'door');
     this.anchor.setTo(.5);
     
     this.animations.add('Open_Door', [0, 1], 5, false);
@@ -14,7 +14,7 @@ bomberman.door_prefab2 = function(game,x,y,_level){
         this.isActive=true;
         //this.body.immovable=false;
         this.animations.play('Open_Door',null,false); 
-    }
+    };
 }
 
 bomberman.door_prefab2.prototype = Object.create(Phaser.Sprite.prototype);

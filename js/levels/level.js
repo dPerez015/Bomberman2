@@ -35,6 +35,7 @@ bomberman.level = {
         this.load.spritesheet('bodyBoss1', 'img/bodyBoss.png', 89, 96);
         this.load.spritesheet('armBossRight', 'img/armRight.png', 28, 138);
         this.load.spritesheet('armBossLeft', 'img/armLeft.png', 28, 138);
+        this.load.spritesheet('boss2', 'img/boss2.png', 93, 86);
         this.load.spritesheet('boss2Attack', 'img/Marca_Boss2.png',16,16);
         
         
@@ -120,9 +121,7 @@ bomberman.level = {
         
         this.createCharacters(this);
         this.enemys=this.game.add.group();
-        this.createEnemies(this);
-        this.createBosses(this);
-        
+        this.createEnemies(this);        
         
         //CAMERA
         //console.log(this.map.widthInPixels);
@@ -310,7 +309,7 @@ bomberman.level = {
     createCharacters:function(state){
         var _this=this;
         //this.enemys=this.game.add.group();
-        var objArray=this.findObjectsByIdRange(131,134,this.map,'Characters');
+        var objArray=this.findObjectsByIdRange(131,142,this.map,'Characters');
         var item;
         
         objArray.forEach(function(element){
@@ -324,7 +323,11 @@ bomberman.level = {
                 state.door = new bomberman.door_prefab(state.game,element.x+8, element.y-9, _this);
                 state.game.add.existing(state.door);
                 break;
-                        
+            case 141:
+                state.door = new bomberman.door_prefab2(state.game,element.x+8, element.y-3, _this);
+                state.game.add.existing(state.door);
+                break;
+ 
             default:
                 break;
                 }
@@ -337,7 +340,7 @@ bomberman.level = {
     },
     createEnemies:function(state){
         var _this=state;
-        var objArray=state.findObjectsByIdRange(132,134,state.map,'Characters');
+        var objArray=state.findObjectsByIdRange(132,145,state.map,'Characters');
         var item;
          objArray.forEach(function(element){
                 switch(element.gid){
@@ -350,7 +353,27 @@ bomberman.level = {
                 state.enemys.add(item);
                 break;
             case 135:
-                item=new bomberman.magnetHelm(state.game, element.x, element.y,15,0,_this);
+                item= new bomberman.magnetHelm(state.game, element.x, element.y,15,0,_this);
+                state.enemys.add(item);
+                break;
+            case 138:
+                item= new bomberman.ramosu(state.game, element.x, element.y, 15, 'right', _this);
+                state.enemys.add(item);
+                break;
+            case 139:
+                item = new bomberman.gurorin(state.game, element.x, element.y, 20,'right',_this);
+                state.enemys.add(item);
+                break;
+            case 140:
+                item = new bomberman.fiber(state.game, element.x, element.y, 15, 'right', _this);
+                state.enemys.add(item);
+                break;
+            case 144:
+                item = new bomberman.boss1(state.game, element.x, element.y, 30, 'right', _this);
+                state.enemys.add(item);
+                break;
+            case 145:
+                item = new bomberman.boss2(state.game, element.x, element.y, 30, 'leftDown', _this);
                 state.enemys.add(item);
                 break;
             default:
