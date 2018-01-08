@@ -41,8 +41,8 @@ bomberman.level = {
         //mapa
         this.load.tilemap('level','maps/lvl'+ gameValues.currentWorld.toString() +'-'+ 
         gameValues.currentLevel.toString()+'.json', null, Phaser.Tilemap.TILED_JSON);
-        if(){
-            this.load.image('world','img/Bossmap'+gameValues.currentWorld.toString()+'.png');   
+        if(gameValues.currentLevel == 4){
+            this.load.image('world','img/Bossmap1.png');   
         }
         else{
             this.load.image('world','img/world'+ gameValues.currentWorld.toString() +'.png');

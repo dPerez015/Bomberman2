@@ -24,5 +24,5 @@ bomberman.objecteMobil = function(game, x, y, _level){
     }
 }
 
-bomberman.objecteMobil.prototype = Object.cre   ate(Phaser.Sprite.prototype);
+bomberman.objecteMobil.prototype = Object.create(Phaser.Sprite.prototype);
 bomberman.objecteMobil.prototype.constructor = bomberman.objecteMobil;

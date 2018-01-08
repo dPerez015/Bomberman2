@@ -4,11 +4,13 @@ bomberman.boss1 = function(game,x,y,speed,level){
     
     Phaser.Group.call(this, game, x, y);
     this.anchor.setTo(.5);
-        
+    
+    this.events.onKilled.add(level.checkVictory.bind(level));
+    
     this.game = game;
     this.x = x;
     this.y = y;
-    this.speed = speed:
+    this.speed = speed;
     this.goesRight = false;
     this.hasHitRight = false;
     this.hp = 15
@@ -194,9 +196,6 @@ bomberman.boss1.prototype.update = function(){
                 this.body.velocity.setTo(0,0);
                 this.timeAtracting=0;
             }
-        }
-        
-    }
     else{ //atraccion
         if(this.checkPlayer()){
             var posX=this.level.bg.getTileX(this.body.x);
@@ -223,6 +222,7 @@ bomberman.boss1.prototype.update = function(){
         
     }
     
+}
 }
 
 bomberman.boss1.prototype.changeDirection = function(){
