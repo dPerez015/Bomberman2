@@ -453,10 +453,12 @@ bomberman.level = {
     },
     goToNextLevel:function(){
         gameValues.currentLevel++;
+        lvlMusic.stop();
         
-        if(currentLevel>4){
-            currentLevel=1;
-            currentWorld++;
+        if(gameValues.currentLevel>4){
+            gameValues.currentLevel=1;
+            gameValues.currentWorld++;
+            lvlMusic.stop();
         }
            
         bomberman.loadScene('transScene');

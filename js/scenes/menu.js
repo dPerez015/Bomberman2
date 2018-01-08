@@ -54,8 +54,8 @@ bomberman.menu = {
     },
     gameStart:function(){
         gameValues.bombermanLife = 3;
-        gameValues.bombRange = 1;
-        gameValues.bombsQuantity = 1;
+        gameValues.bombRange = 9;
+        gameValues.bombsQuantity = 9;
         gameValues.currentLevel=1;
         gameValues.currentWorld=1;
         gameValues.score = 0;
