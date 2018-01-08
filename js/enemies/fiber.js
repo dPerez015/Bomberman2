@@ -70,7 +70,6 @@ bomberman.fiber.prototype.update = function(){
         
     }
     
-    this.game.debug.body(this);
 };
 
 bomberman.fiber.prototype.changeDirection = function(){
